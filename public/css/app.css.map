@@ -1,0 +1,1 @@
+{"version":3,"sources":["partials/_headings.scss"],"names":[],"mappings":"AAAA;EACE,iBAAgB;EAChB,kBAAiB;EACjB,qBAAoB;EACpB,oBAAmB;EACnB,gBAAe,EALH","file":"app.css","sourcesContent":[".page-heading{\n  margin-top: 1em;\n  margin-bottom: 0;\n  padding-bottom: 1em;\n  text-align: center;\n  line-height: 1;\n\n  \n}"],"sourceRoot":"/source/"}
