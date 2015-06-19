@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Services\Verify\Verify;
+use App\Services\Verify;
 
 class UGCController extends Controller {
 
