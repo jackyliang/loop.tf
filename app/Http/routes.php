@@ -18,8 +18,12 @@ Route::get('/', 'PagesController@home');
  */
 Route::resource('notices', 'NoticesController@create');
 
+Route::get('UGC', 'UGCController@create');
+
+Route::get('UGC/verify', 'UGCController@verify');
+
 Route::get('notices/create/confirm', 'NoticesController@confirm');
-//
+
 Route::post('notices', 'NoticesController@store');
 
 /**
