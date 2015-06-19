@@ -1,9 +1,13 @@
 @extends('app')
 
+@section('title')
+    loop.tf - Verify UGC Roster
+@stop
+
 @section('content')
     <h1 class="page-heading">Verify A UGC Roster</h1>
 
-    {!! Form::open(['method' => 'GET', 'action' => 'UGCController@verify']) !!}
+    {!! Form::open(['method' => 'POST', 'action' => 'UGCController@verify']) !!}
 
     <div class="form-group">
         {!! Form::label('our_team_link', 'Your team\'s UGC profile link'); !!}

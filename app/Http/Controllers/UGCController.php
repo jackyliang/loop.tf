@@ -1,10 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use App\Services\Verify;
-
-use Illuminate\Http\Request;
+use App\Services\Verify\Verify;
 
 class UGCController extends Controller {
 
@@ -32,15 +29,30 @@ class UGCController extends Controller {
 		return view('verify.verify', compact('ourTeamURL', 'theirTeamURL', 'sampleStatus'));
 	}
 
+    /**
+     * Display the results of UGC verification
+     * @param Requests\VerifyUGCRequest $request
+     * @return \Illuminate\View\View
+     */
     public function verify(Requests\VerifyUGCRequest $request)
     {
         $ourTeamURL = $request->input('our_team_link');
         $theirTeamURL = $request->input('their_team_link');
+        $status = $request->input('status_text');
 
-        $verify = new Verify($ourTeamURL, $theirTeamURL);
-        $ourTeamList = $verify->getOurTeam();
+        $verify = new Verify($ourTeamURL, $theirTeamURL, $status);
+        $unrostered = $verify->getUnrosteredProfile();
+        $unrosteredNumber = $verify->getTheirRosterSize();
+        $ourTeamName = $verify->getOurRosterName();
 
-        return $ourTeamList;
+        return view(
+            'verify.verify_results',
+            compact(
+                'unrostered',
+                'unrosteredNumber',
+                'ourTeamName'
+            )
+        );
     }
 
 	/**
