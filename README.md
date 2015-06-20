@@ -7,6 +7,11 @@ based projects
 
 ### 2015
 
+#### June 21
+
+- Added form validation for the UGC profile links. You now won't be
+  able to add verify random URLs
+
 #### June 20
 
 - Implemented [UGC Roster Verification](http://loop.tf/UGC)
