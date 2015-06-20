@@ -5,7 +5,21 @@
 @stop
 
 @section('content')
-    <h1 class="page-heading">Verify Server UGC Roster</h1>
+    <h1
+        class="page-heading">Verify Server UGC Roster
+    </h1>
+    <div class="text-center">
+        <button
+            type="button"
+            class="btn btn-link"
+            data-toggle="popover"
+            data-trigger="focus"
+            title="{{ $popoverTitle }}"
+            data-content="{{ $popoverText }}"
+        >
+            What is this?
+        </button>
+    </div>
 
     {!! Form::open(['method' => 'POST', 'action' => 'UGCController@verify']) !!}
 
@@ -16,23 +30,27 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('their_team_link', 'Enemy team\'s UGC Profile Link'); !!}
+        {!! Form::label('their_team_link', 'Enemy team\'s UGC profile Link'); !!}
         {!! Form::text('their_team_link', null, ['class' => 'form-control',
                                                 'placeholder' => $theirTeamURL]); !!}
     </div>
 
     <div class="form-group">
-        {!! Form::label('status_text', ''); !!}
+        {!! Form::label('status_text', 'Status text'); !!}
         {!! Form::textarea('status_text', null, ['class' => 'form-control',
                                                  'placeholder' => $sampleStatus]); !!}
     </div>
 
     <div class="form-group">
-        {!! Form::submit('Verify UGC Roster', ['class' => 'btn btn-primary form-control']) !!}
+        {!! Form::submit('Verify', ['class' => 'btn btn-success form-control']) !!}
     </div>
 
 
     @include('errors.list')
 
     {!! Form::close() !!}
+
+    @include('js.popup')
+
 @stop
+
