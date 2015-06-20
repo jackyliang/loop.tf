@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <h1 class="page-heading">Verify A UGC Roster</h1>
+    <h1 class="page-heading">Verify Server UGC Roster</h1>
 
     {!! Form::open(['method' => 'POST', 'action' => 'UGCController@verify']) !!}
 

@@ -1,11 +1,14 @@
 @extends('app')
 
 @section('title')
-    loop.tf - Verification Results
+    loop.tf - Results
 @stop
 
 
 @section('content')
+    <div class="alert alert-success" roll="alert">
+        <strong>Click on the name!</strong> You will be linked to their Steam profile.
+    </div>
     <h1 class="page-heading">Results</h1>
     <div class="container">
         <h3># of Unrostered Players:
