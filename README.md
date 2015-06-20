@@ -12,7 +12,7 @@ based projects
 - Added form validation for the UGC profile links. You now won't be
   able to add verify random URLs
 - Added tool tip and tweaked UI in UGC Roster Verification
-- Added release notes tab in the navigation bar
+- Painstakingly updated the footer to include a way to report bugs, check release notes, and join the Steam group
 
 #### June 20
 
