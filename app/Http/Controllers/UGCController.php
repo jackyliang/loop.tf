@@ -44,7 +44,7 @@ class UGCController extends Controller {
 
         $verify = new Verify($ourTeamURL, $theirTeamURL, $status);
         $unrostered = $verify->getUnrosteredProfile();
-        $unrosteredNumber = $verify->getTheirRosterSize();
+        $unrosteredNumber = $verify->getUnrosteredSize();
         $ourTeamName = $verify->getOurRosterName();
 
         return view(
