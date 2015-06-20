@@ -19,3 +19,7 @@ based projects
 
 - Updated home page
 - Added headers and footers
+
+#### June 18 2015
+
+- I was born! I was born a healthy 512 MB memory and 20 GB disk in the NYC3 Digital Ocean medical ward. My father named me `loop.tf`!
