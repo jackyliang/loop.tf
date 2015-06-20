@@ -15,13 +15,6 @@
                 <li><a href="{{ url('/') }}">Home</a></li>
                 <li><a href="{{ url('/UGC') }}">Verify UGC</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="https://github.com/jackyliang/loop.tf#release-notes">
-                        Release Notes
-                    </a>
-                </li>
-            </ul>
         </div>
 
     </div>
