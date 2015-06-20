@@ -19,7 +19,7 @@
 	    @yield('content')
     </div>
 
-    <div class="footer navbar-fixed-bottom">
+    <div class="footer navbar-bottom">
         @include('partials.footer')
     </div>
 

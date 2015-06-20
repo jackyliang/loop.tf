@@ -43,16 +43,33 @@ class UGCController extends Controller {
         $status = $request->input('status_text');
 
         $verify = new Verify($ourTeamURL, $theirTeamURL, $status);
+
+        $ourRosterName = $verify->getOurRosterName();
+        $ourRosterSize = $verify->getOurRosterSize();
+        $ourRosterURL = $verify->getOurRosterURL();
+        $ourTeamProfile = $verify->getOurTeamProfile();
+
+        $theirRosterName = $verify->getTheirRosterName();
+        $theirRosterSize = $verify->getTheirRosterSize();
+        $theirRosterURL = $verify->getTheirRosterURL();
+        $theirTeamProfile = $verify->getTheirTeamProfile();
+
         $unrostered = $verify->getUnrosteredProfile();
         $unrosteredNumber = $verify->getUnrosteredSize();
-        $ourTeamName = $verify->getOurRosterName();
 
         return view(
             'verify.verify_results',
             compact(
+                'ourRosterName',
+                'ourRosterSize',
+                'ourRosterURL',
+                'ourTeamProfile',
+                'theirRosterName',
+                'theirRosterSize',
+                'theirRosterURL',
+                'theirTeamProfile',
                 'unrostered',
-                'unrosteredNumber',
-                'ourTeamName'
+                'unrosteredNumber'
             )
         );
     }
