@@ -3,10 +3,6 @@
 This is the source code for loop.tf where I host all my personal web
 based projects
 
-# Installation
-
-    [Put something here]
-
 # Release Notes
 
 ### 2015
