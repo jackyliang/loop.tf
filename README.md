@@ -9,7 +9,7 @@ based projects
 
 #### June 20
 
-- Implemented [UGC Roster Verification](loop.tf/UGC)
+- Implemented [UGC Roster Verification](http://loop.tf/UGC)
 
 #### June 19
 
