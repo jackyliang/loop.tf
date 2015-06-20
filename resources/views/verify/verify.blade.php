@@ -5,7 +5,21 @@
 @stop
 
 @section('content')
-    <h1 class="page-heading">Verify Server UGC Roster</h1>
+    <h1
+        class="page-heading">Verify Server UGC Roster
+    </h1>
+    <div class="text-center">
+        <button
+            type="button"
+            class="btn btn-link"
+            data-toggle="popover"
+            data-trigger="focus"
+            title="{{ $popoverTitle }}"
+            data-content="{{ $popoverText }}"
+        >
+            What is this?
+        </button>
+    </div>
 
     {!! Form::open(['method' => 'POST', 'action' => 'UGCController@verify']) !!}
 
@@ -35,4 +49,8 @@
     @include('errors.list')
 
     {!! Form::close() !!}
+
+    @include('js.popup')
+
 @stop
+
