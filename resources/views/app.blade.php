@@ -24,7 +24,7 @@
 	    @yield('content')
     </div>
 
-    <div class="footer navbar-bottom">
+    <div class="panel-footer navbar-bottom">
         @include('partials.footer')
     </div>
 
