@@ -1,7 +1,7 @@
 .page-heading{
-  margin-top: 1em;
+  margin-top: 0;
   margin-bottom: 0;
-  padding-bottom: 1em;
+  padding-bottom: 10px;
   text-align: center;
   line-height: 1;
 
@@ -11,6 +11,6 @@
     height: 3px;
     display:block;
     background: $brandColor;
-    margin: 40px auto 0;
+    margin: 20px auto 0;
   }
 }

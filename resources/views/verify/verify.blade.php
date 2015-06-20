@@ -30,19 +30,19 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('their_team_link', 'Enemy team\'s UGC Profile Link'); !!}
+        {!! Form::label('their_team_link', 'Enemy team\'s UGC profile Link'); !!}
         {!! Form::text('their_team_link', null, ['class' => 'form-control',
                                                 'placeholder' => $theirTeamURL]); !!}
     </div>
 
     <div class="form-group">
-        {!! Form::label('status_text', ''); !!}
+        {!! Form::label('status_text', 'Status text'); !!}
         {!! Form::textarea('status_text', null, ['class' => 'form-control',
                                                  'placeholder' => $sampleStatus]); !!}
     </div>
 
     <div class="form-group">
-        {!! Form::submit('Verify UGC Roster', ['class' => 'btn btn-primary form-control']) !!}
+        {!! Form::submit('Verify', ['class' => 'btn btn-success form-control']) !!}
     </div>
 
 
