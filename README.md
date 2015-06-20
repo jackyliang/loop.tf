@@ -11,6 +11,7 @@ based projects
 
 - Added form validation for the UGC profile links. You now won't be
   able to add verify random URLs
+- Added tool tip and tweaked UI in UGC Roster Verification
 
 #### June 20
 
