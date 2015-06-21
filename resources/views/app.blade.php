@@ -28,5 +28,7 @@
         @include('partials.footer')
     </div>
 
+    @include('google.analytics');
+
 </body>
 </html>
