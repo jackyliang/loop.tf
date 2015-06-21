@@ -16,6 +16,8 @@
 	<!-- Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
+    @include('google.analytics')
+
 </head>
 <body>
     @include('partials.nav')
@@ -27,6 +29,5 @@
     <div class="panel-footer navbar-bottom">
         @include('partials.footer')
     </div>
-
 </body>
 </html>
