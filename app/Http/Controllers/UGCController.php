@@ -3,8 +3,6 @@
 use App\Http\Requests;
 use App\Services\Verify\Verify;
 
-ini_set('display_errors', 'On');
-
 class UGCController extends Controller {
 
 	/**

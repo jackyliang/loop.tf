@@ -90,15 +90,19 @@ class ScrapeUGC {
         $teamName = '';
 
         // Save the team's abbreviation
-        foreach($teamAbbNode as $node) {
-            $teamAbb = trim($node->nodeValue);
-            break;
+        if($teamAbbNode) {
+            foreach($teamAbbNode as $node) {
+                $teamAbb = trim($node->nodeValue);
+                break;
+            }
         }
 
         // Save the team's name
-        foreach($teamNameNode as $node) {
-            $teamName = trim($node->nodeValue);
-            break;
+        if($teamNameNode){
+            foreach($teamNameNode as $node) {
+                $teamName = trim($node->nodeValue);
+                break;
+            }
         }
 
         return '[ ' . $teamAbb . ' ] ' . $teamName;
@@ -124,25 +128,28 @@ class ScrapeUGC {
         $steamNameList = array();
         $steamIDList = array();
 
-        foreach ($steamNameAndIDs as $id => $node) {
-            $steamName = "";
-            $steamID = "";
+        // Continue only if the query was successful
+        if($steamNameAndIDs) {
+            foreach ($steamNameAndIDs as $id => $node) {
+                $steamName = "";
+                $steamID = "";
 
-            // Store Steam name first (which is the even-numbered item)
-            // in the scraped list. Then store the Steam ID (which is
-            // the odd-numbered item).
-            if($id % 2 == 0) {
-                $steamName = $node->nodeValue;
-            } else if ($id % 2 == 1) {
-                $steamID = $node->nodeValue;
-            }
+                // Store Steam name first (which is the even-numbered item)
+                // in the scraped list. Then store the Steam ID (which is
+                // the odd-numbered item).
+                if ($id % 2 == 0) {
+                    $steamName = $node->nodeValue;
+                } else if ($id % 2 == 1) {
+                    $steamID = $node->nodeValue;
+                }
 
-            if(!empty($steamName)) {
-                // Add each Steam name onto our team's list
-                array_push($steamNameList, $steamName);
-            } else if(!empty($steamID)){
-                // Add each Steam ID onto our team's list
-                array_push($steamIDList, $steamID);
+                if (!empty($steamName)) {
+                    // Add each Steam name onto our team's list
+                    array_push($steamNameList, $steamName);
+                } else if (!empty($steamID)) {
+                    // Add each Steam ID onto our team's list
+                    array_push($steamIDList, $steamID);
+                }
             }
         }
 

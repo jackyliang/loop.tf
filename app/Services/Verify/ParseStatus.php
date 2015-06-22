@@ -37,13 +37,14 @@ class ParseStatus {
 
         // Parse each Steam Name and Steam ID from the status output
         foreach($rows as $row) {
-            // Match Steam name and push to list
-            if(preg_match(ParseStatus::STEAMNAME_REGEX, $row, $steamName)) {
-                array_push($steamNameList, $steamName[1]);
-            }
+
+            $nameMatch = preg_match(ParseStatus::STEAMNAME_REGEX, $row, $steamName);
+            $steamIDMatch = preg_match(ParseStatus::STEAMID3_REGEX, $row, $steamID);
 
             // Match Steam ID and push to list
-            if(preg_match(ParseStatus::STEAMID3_REGEX, $row, $steamID)) {
+            // Match Steam name and push to list
+            if($nameMatch && $steamIDMatch) {
+                array_push($steamNameList, $steamName[1]);
                 array_push($steamIDList, $steamID[0]);
             }
         }
