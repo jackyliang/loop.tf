@@ -7,6 +7,10 @@ based projects
 
 ### 2015
 
+#### June 22
+
+- Minor bug fix
+
 #### June 21
 
 - Added form validation for the UGC profile links. You now won't be
