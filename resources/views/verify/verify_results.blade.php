@@ -6,13 +6,9 @@
 
 
 @section('content')
-    <div class="alert alert-success" roll="alert">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>Click on the name!</strong> You will be linked to their Steam profile.
-    </div>
     <h1 class="page-heading">Results</h1>
     <div class="container">
-        <h3># of Unrostered Players:
+        <h3>Number of unrostered players:
             @if($unrosteredNumber == 0)
                 <span class="label label-success">{{ $unrosteredNumber }}</span>
             @elseif($unrosteredNumber > 0 && $unrosteredNumber < 3)
@@ -23,15 +19,20 @@
         </h3>
 
         @if($unrostered)
-            <table class="table table-hover">
+            <table class="table table-hover table-striped">
                 <thead>
                 <tr>
+                    <th>#</th>
                     <th>Name</th>
                 </tr>
                 </thead>
                 <tbody>
+                    <?php $index = 1; ?>
                     @foreach($unrostered as $name => $profile)
                         <tr>
+                            <td>
+                                <?= $index; $index++; ?>
+                            </td>
                             <td>
                                 <a
                                     href="{{ $profile }}">{{ $name }}
@@ -43,25 +44,32 @@
             </table>
         @endif
 
-        <h3># of Players on <a href="{{ $ourRosterURL }}">{{ $ourRosterName }}</a>:
+        <h3>Team <a href="{{ $ourRosterURL }}">{{ $ourRosterName }}</a> has
 
             @if($ourRosterSize == 9)
                 <span class="label label-success">{{ $ourRosterSize }}</span>
             @else
                 <span class="label label-warning">{{ $ourRosterSize }}</span>
             @endif
+
+            players
         </h3>
 
         @if($ourTeamProfile)
-            <table class="table table-hover">
+            <table class="table table-hover table-striped">
                 <thead>
                 <tr>
+                    <th>#</th>
                     <th>Name</th>
                 </tr>
                 </thead>
                 <tbody>
+                <?php $index = 1; ?>
                 @foreach($ourTeamProfile as $name => $profile)
                     <tr>
+                        <td>
+                            <?= $index; $index++; ?>
+                        </td>
                         <td>
                             <a
                                 href="{{ $profile }}">{{ $name }}
@@ -73,25 +81,31 @@
             </table>
         @endif
 
-        <h3># of Players on <a href="{{ $theirRosterURL }}">{{ $theirRosterName }}</a>:
+        <h3>Team <a href="{{ $theirRosterURL }}">{{ $theirRosterName }}</a> has
 
             @if($theirRosterSize == 9)
                 <span class="label label-success">{{ $theirRosterSize }}</span>
             @else
                 <span class="label label-warning">{{ $theirRosterSize }}</span>
             @endif
+            players
         </h3>
 
         @if($theirTeamProfile)
-            <table class="table table-hover">
+            <table class="table table-hover table-striped">
                 <thead>
                 <tr>
+                    <th>#</th>
                     <th>Name</th>
                 </tr>
                 </thead>
                 <tbody>
+                <?php $index = 1; ?>
                 @foreach($theirTeamProfile as $name => $profile)
                     <tr>
+                        <td>
+                            <?= $index; $index++; ?>
+                        </td>
                         <td>
                             <a
                                 href="{{ $profile }}">{{ $name }}

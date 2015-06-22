@@ -105,7 +105,7 @@ class ScrapeUGC {
             }
         }
 
-        return '[ ' . $teamAbb . ' ] ' . $teamName;
+        return $teamName;
     }
 
     /**
