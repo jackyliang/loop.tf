@@ -7,6 +7,7 @@
 
 @section('content')
     <div class="alert alert-success" roll="alert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Click on the name!</strong> You will be linked to their Steam profile.
     </div>
     <h1 class="page-heading">Results</h1>
