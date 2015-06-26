@@ -145,6 +145,7 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
+        'Invisnik\LaravelSteamAuth\SteamServiceProvider',
 
 	],
 
@@ -193,7 +194,8 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-        'Form'      => 'Illuminate\Html\FormFacade'
+        'Form'      => 'Illuminate\Html\FormFacade',
+        'SteamAuth' => 'Invisnik\LaravelSteamAuth\Facades\SteamAuth',
 	],
 
 ];

@@ -21,6 +21,8 @@ Route::get('UGC', 'UGCController@create');
 
 Route::post('UGC/verify', 'UGCController@verify');
 
+Route::get('steam', 'SteamController@getLogin');
+
 /**
  * Authentication
  */
