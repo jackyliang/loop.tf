@@ -10,6 +10,7 @@ based projects
 #### June 28
 
 - Added TF2 Player Rankings profiles to each user
+- Added UGC profiles to each user
 
 #### June 22
 
