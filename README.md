@@ -7,6 +7,10 @@ based projects
 
 ### 2015
 
+#### June 28
+
+- Added TF2 Player Rankings profiles to each user
+
 #### June 22
 
 - Minor bug fix
