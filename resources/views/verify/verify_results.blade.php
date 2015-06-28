@@ -24,7 +24,8 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Player Rankings</th>
+                    <th>Player Ranking</th>
+                    <th>UGC Profile</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,6 +45,16 @@
                                     href="{{ $unrosteredRanks[$name] }}">
                                     <img
                                         src={{ asset('/logos/tpr_abbv.png') }}
+                                        height="15"
+                                        width="30"
+                                    >
+                                </a>
+                            </td>
+                            <td>
+                                <a
+                                    href="{{ $unrosteredUGC[$name] }}">
+                                    <img
+                                        src={{ asset('/logos/ugc.png') }}
                                         height="15"
                                         width="30"
                                     >
@@ -73,6 +84,7 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Player Rankings</th>
+                    <th>UGC Profile</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -94,7 +106,17 @@
                                     src={{ asset('/logos/tpr_abbv.png') }}
                                     height="15"
                                     width="30"
-                                    >
+                                >
+                            </a>
+                        </td>
+                        <td>
+                            <a
+                                href="{{ $ourTeamUGC[$name] }}">
+                                <img
+                                    src={{ asset('/logos/ugc.png') }}
+                                    height="15"
+                                    width="30"
+                                >
                             </a>
                         </td>
                     </tr>
@@ -120,6 +142,7 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Player Rankings</th>
+                    <th>UGC Profile</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -141,7 +164,17 @@
                                     src={{ asset('/logos/tpr_abbv.png') }}
                                     height="15"
                                     width="30"
-                                    >
+                                >
+                            </a>
+                        </td>
+                        <td>
+                            <a
+                                href="{{ $theirTeamUGC[$name] }}">
+                                <img
+                                    src={{ asset('/logos/ugc.png') }}
+                                    height="15"
+                                    width="30"
+                                >
                             </a>
                         </td>
                     </tr>
