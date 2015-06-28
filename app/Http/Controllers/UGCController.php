@@ -70,14 +70,17 @@ This app saves 90% of your time prior to the match for 100% roster verification 
         $ourRosterSize = $verify->getOurRosterSize();
         $ourRosterURL = $verify->getOurRosterURL();
         $ourTeamProfile = $verify->getOurTeamProfile();
+        $ourTeamRanks = $verify->getOurTeamRanks();
 
         $theirRosterName = $verify->getTheirRosterName();
         $theirRosterSize = $verify->getTheirRosterSize();
         $theirRosterURL = $verify->getTheirRosterURL();
         $theirTeamProfile = $verify->getTheirTeamProfile();
+        $theirTeamRanks = $verify->getTheirTeamRanks();
 
         $unrostered = $verify->getUnrosteredProfile();
         $unrosteredNumber = $verify->getUnrosteredSize();
+        $unrosteredRanks = $verify->getUnrosteredRanks();
 
         return view(
             'verify.verify_results',
@@ -91,7 +94,10 @@ This app saves 90% of your time prior to the match for 100% roster verification 
                 'theirRosterURL',
                 'theirTeamProfile',
                 'unrostered',
-                'unrosteredNumber'
+                'unrosteredNumber',
+                'ourTeamRanks',
+                'theirTeamRanks',
+                'unrosteredRanks'
             )
         );
     }
