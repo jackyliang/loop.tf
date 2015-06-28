@@ -11,6 +11,7 @@ namespace App\Services\Verify;
 
 define('STEAMID64_ADDITIVE', '76561197960265728');
 define('STEAM_PROFILE','http://steamcommunity.com/profiles/');
+define('TF2RANK_PROFILE', 'http://beta.tf2playerrankings.com/profile/');
 
 class SteamID {
 
@@ -49,6 +50,14 @@ class SteamID {
      */
     public function profileURL() {
         return STEAM_PROFILE . bcadd($this->accountId, STEAMID64_ADDITIVE, 0);
+    }
+
+    /**
+     * Returns a TF2Ranks URL given a valid community ID
+     * @return string A TF2Ranks URL
+     */
+    public function TF2RankURL() {
+        return TF2RANK_PROFILE . bcadd($this->accountId, STEAMID64_ADDITIVE, 0);
     }
 
 	public static function parse($inputRaw) {

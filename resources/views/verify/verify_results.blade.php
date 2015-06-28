@@ -24,6 +24,7 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
+                    <th>Player Rankings</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -36,6 +37,16 @@
                             <td>
                                 <a
                                     href="{{ $profile }}">{{ $name }}
+                                </a>
+                            </td>
+                            <td>
+                                <a
+                                    href="{{ $unrosteredRanks[$name] }}">
+                                    <img
+                                        src={{ asset('/logos/tpr_abbv.png') }}
+                                        height="15"
+                                        width="30"
+                                    >
                                 </a>
                             </td>
                         </tr>
@@ -61,6 +72,7 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
+                    <th>Player Rankings</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -73,6 +85,16 @@
                         <td>
                             <a
                                 href="{{ $profile }}">{{ $name }}
+                            </a>
+                        </td>
+                        <td>
+                            <a
+                                href="{{ $ourTeamRanks[$name] }}">
+                                <img
+                                    src={{ asset('/logos/tpr_abbv.png') }}
+                                    height="15"
+                                    width="30"
+                                    >
                             </a>
                         </td>
                     </tr>
@@ -97,6 +119,7 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
+                    <th>Player Rankings</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -109,6 +132,16 @@
                         <td>
                             <a
                                 href="{{ $profile }}">{{ $name }}
+                            </a>
+                        </td>
+                        <td>
+                            <a
+                                href="{{ $theirTeamRanks[$name] }}">
+                                <img
+                                    src={{ asset('/logos/tpr_abbv.png') }}
+                                    height="15"
+                                    width="30"
+                                    >
                             </a>
                         </td>
                     </tr>

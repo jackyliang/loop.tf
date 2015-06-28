@@ -33,6 +33,11 @@ class Verify {
     private $theirTeamProfile;
     private $unrosteredProfile;
 
+    // TF2Player Rankings
+    private $ourTeamRanks;
+    private $theirTeamRanks;
+    private $unrosteredRanks;
+
     /**
      * Determine the roster status of all players within the current server
      * @param $ourTeamURL   UGC URL of your team
@@ -71,14 +76,17 @@ class Verify {
                 // Add to our team's roster list + profiles
                 $this->ourTeamRoster[$name] = $steamID;
                 $this->ourTeamProfile[$name] = SteamID::parse($steamID)->profileURL();
-            } else if (in_array($steamID, $theirTeamPlayers)) {
+                $this->ourTeamRanks[$name] = SteamID::parse($steamID)->TF2RankURL();
+            } elseif (in_array($steamID, $theirTeamPlayers)) {
                 // Add to their team's roster list + profiles
                 $this->theirTeamRoster[$name] = $steamID;
                 $this->theirTeamProfile[$name] = SteamID::parse($steamID)->profileURL();
+                $this->theirTeamRanks[$name] = SteamID::parse($steamID)->TF2RankURL();
             } else {
                 // Add to unrostered + profiles
                 $this->unrostered[$name] = $steamID;
                 $this->unrosteredProfile[$name] = SteamID::parse($steamID)->profileURL();
+                $this->unrosteredRanks[$name] = SteamID::parse($steamID)->TF2RankURL();
             }
         }
     }
@@ -185,5 +193,29 @@ class Verify {
      */
     public function getUnrosteredProfile() {
         return $this->unrosteredProfile;
+    }
+
+    /**
+     * Get all our team's TF2Ranks profile URLs
+     * @return mixed
+     */
+    public function getOurTeamRanks() {
+        return $this->ourTeamRanks;
+    }
+
+    /**
+     * Get all of their team's TF2Ranks profile URLs
+     * @return mixed
+     */
+    public function getTheirTeamRanks() {
+        return $this->theirTeamRanks;
+    }
+
+    /**
+     * Get all of the unrostered's TF2 Ranks profile URLs
+     * @return mixed
+     */
+    public function getUnrosteredRanks() {
+        return $this->unrosteredRanks;
     }
 }
