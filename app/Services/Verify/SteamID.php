@@ -12,6 +12,7 @@ namespace App\Services\Verify;
 define('STEAMID64_ADDITIVE', '76561197960265728');
 define('STEAM_PROFILE','http://steamcommunity.com/profiles/');
 define('TF2RANK_PROFILE', 'http://beta.tf2playerrankings.com/profile/');
+define('UGC_PROFILE','http://www.ugcleague.com/players_page.cfm?player_id=');
 
 class SteamID {
 
@@ -58,6 +59,14 @@ class SteamID {
      */
     public function TF2RankURL() {
         return TF2RANK_PROFILE . bcadd($this->accountId, STEAMID64_ADDITIVE, 0);
+    }
+
+    /**
+     * Returns a UGC URL given a valid community ID
+     * @return string A UGC URL
+     */
+    public function UGCProfileURL() {
+        return UGC_PROFILE . bcadd($this->accountId, STEAMID64_ADDITIVE, 0);
     }
 
 	public static function parse($inputRaw) {

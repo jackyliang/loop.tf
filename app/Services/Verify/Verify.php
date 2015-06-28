@@ -38,6 +38,11 @@ class Verify {
     private $theirTeamRanks;
     private $unrosteredRanks;
 
+    // UGC Profile
+    private $ourTeamUGC;
+    private $theirTeamUGC;
+    private $unrosteredUGC;
+
     /**
      * Determine the roster status of all players within the current server
      * @param $ourTeamURL   UGC URL of your team
@@ -77,16 +82,19 @@ class Verify {
                 $this->ourTeamRoster[$name] = $steamID;
                 $this->ourTeamProfile[$name] = SteamID::parse($steamID)->profileURL();
                 $this->ourTeamRanks[$name] = SteamID::parse($steamID)->TF2RankURL();
+                $this->ourTeamUGC[$name] = SteamID::parse($steamID)->UGCProfileURL();
             } elseif (in_array($steamID, $theirTeamPlayers)) {
                 // Add to their team's roster list + profiles
                 $this->theirTeamRoster[$name] = $steamID;
                 $this->theirTeamProfile[$name] = SteamID::parse($steamID)->profileURL();
                 $this->theirTeamRanks[$name] = SteamID::parse($steamID)->TF2RankURL();
+                $this->theirTeamUGC[$name] = SteamID::parse($steamID)->UGCProfileURL();
             } else {
                 // Add to unrostered + profiles
                 $this->unrostered[$name] = $steamID;
                 $this->unrosteredProfile[$name] = SteamID::parse($steamID)->profileURL();
                 $this->unrosteredRanks[$name] = SteamID::parse($steamID)->TF2RankURL();
+                $this->unrosteredUGC[$name] = SteamID::parse($steamID)->UGCProfileURL();
             }
         }
     }
@@ -217,5 +225,29 @@ class Verify {
      */
     public function getUnrosteredRanks() {
         return $this->unrosteredRanks;
+    }
+
+    /**
+     * Get all our team's UGC profile URLs
+     * @return mixed
+     */
+    public function getOurTeamUGC() {
+        return $this->ourTeamUGC;
+    }
+
+    /**
+     * Get all of their team's UGC profile URLs
+     * @return mixed
+     */
+    public function getTheirTeamUGC() {
+        return $this->theirTeamUGC;
+    }
+
+    /**
+     * Get all of the unrostered's UGC profile URLs
+     * @return mixed
+     */
+    public function getUnrosteredUGC() {
+        return $this->unrosteredUGC;
     }
 }
