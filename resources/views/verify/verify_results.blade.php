@@ -7,7 +7,7 @@
 
 @section('content')
     <h1 class="page-heading">Results</h1>
-    <div class="container">
+    <div class="container half-page">
         <h3>Number of unrostered players:
             @if($unrosteredNumber == 0)
                 <span class="label label-success">{{ $unrosteredNumber }}</span>
