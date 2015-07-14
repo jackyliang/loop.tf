@@ -7,7 +7,7 @@ define('LECTURE', 'Lecture');
 define('LAB', 'Lab');
 
 
-class Blah extends Model {
+class DrexelClass extends Model {
 
 	 /**
      * The database table used by the model.
