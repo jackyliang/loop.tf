@@ -63,7 +63,8 @@ class DrexelClass extends Model {
     /**
      * Search for course title or subject name
      * @param $query
-     * @param $searchTerm Course Title or Subject Name
+     * @param $searchTerm Course Title or Subject Name i.e. "ECEC 355" or
+     *                    "Digital Logic"
      * @return mixed
      */
     public function scopeSearch($query, $searchTerm) {
@@ -73,6 +74,7 @@ class DrexelClass extends Model {
                 'like',
                 '%' . $searchTerm . '%'
             )
+            ->orWhere('instructor', 'like', '%' . $searchTerm . '%')
             ;
     }
 }
