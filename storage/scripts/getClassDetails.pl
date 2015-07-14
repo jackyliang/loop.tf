@@ -1,17 +1,17 @@
 #!/usr/bin/perl
 # by Stephen Wetzel May 03 2015
-#Requires cURL is installed
+# Requires cURL to be installed
 
-#Use getSchedule.pl first to get a list of URLs of detail pages for each course.
+# Use getSchedule.pl first to get a list of URLs of detail pages for each course.
 
 use strict;
 use warnings;
-#use List::MoreUtils qw(any uniq);
 use DBI;
 
 #use autodie; #die on file not found
 $|++; #autoflush disk buffer
 
+# This script works directly with our SQLite DB  
 my $dbFile = '../database.sqlite';
 my $dsn      = "dbi:SQLite:dbname=$dbFile";
 my $user     = "";

@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 # by Stephen Wetzel May 03 2015
-#Requires cURL is installed
+# Requires cURL is installed
 
 #Run this first to get a list of detailed pages for each class stored in crns.csv.
 #Will do a search for courses that contain the letter 'a', then 'e' and so on.  It'll dump the detailed page url to a file and the script getClasses.pl can be used to go through them and get the course details.
