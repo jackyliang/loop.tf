@@ -17,20 +17,7 @@ class DrexelClass extends Model {
      protected $table = 'classes';
 
     /**
-     * Get all classes by their subject code
-     * @param $query
-     * @param $searchTerm A subject code like "ECEC"
-     * @return mixed
-     */
-    public function scopeSubjectCode($query, $subjectCode) {
-        return $query
-            ->where('subject_code', 'like', $subjectCode)
-            ;
-    }
-
-    /**
      * Get all lectures of a class
-     * TODO: Fix error
      * @param $query
      * @param $subjectCode Course subject code i.e. "PHYS"
      * @param $courseNo    Course # i.e. "101" or "%" for everything
@@ -40,13 +27,12 @@ class DrexelClass extends Model {
         return $query
             ->where('subject_code', 'like', $subjectCode)
             ->where('course_no', 'like', $courseNo)
-            ->whereIn('instr_type', 'like', LECTURE)
+            ->where('instr_type', 'like', LECTURE)
             ;
     }
 
     /**
      * Get all labs of a class
-     * TODO: Fix error
      * @param $query
      * @param $subjectCode Course subject code i.e. "PHYS"
      * @param $courseNo    Course # i.e. "101" or "%" for everything
@@ -56,7 +42,7 @@ class DrexelClass extends Model {
         return $query
             ->where('subject_code', 'like', $subjectCode)
             ->where('course_no', 'like', $courseNo)
-            ->whereIn('instr_type', 'like', LAB)
+            ->where('instr_type', 'like', LAB)
             ;
     }
 
