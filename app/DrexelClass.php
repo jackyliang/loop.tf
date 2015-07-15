@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 define('LECTURE', 'Lecture');
 define('LAB', 'Lab');
+define('RECITATION', 'Recitation/Discussion');
 
 
 class DrexelClass extends Model {
@@ -36,13 +37,28 @@ class DrexelClass extends Model {
      * @param $query
      * @param $subjectCode Course subject code i.e. "PHYS"
      * @param $courseNo    Course # i.e. "101" or "%" for everything
-     * @return mixed       A list of lectures of the class
+     * @return mixed       A list of labs of the class
      */
     public function scopeLabsByClass($query, $subjectCode, $courseNo) {
         return $query
             ->where('subject_code', 'like', $subjectCode)
             ->where('course_no', 'like', $courseNo)
             ->where('instr_type', 'like', LAB)
+            ;
+    }
+
+    /**
+     * Get all recitations of a class
+     * @param $query
+     * @param $subjectCode Course subject code i.e. "PHYS"
+     * @param $courseNo    Course # i.e. "101" or "%" for everything
+     * @return mixed       A list of recitations of the class
+     */
+    public function scopeRecitationsByClass($query, $subjectCode, $courseNo) {
+        return $query
+            ->where('subject_code', 'like', $subjectCode)
+            ->where('course_no', 'like', $courseNo)
+            ->where('instr_type', 'like', RECITATION)
             ;
     }
 
