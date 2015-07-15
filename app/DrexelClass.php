@@ -3,6 +3,12 @@
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Instruction Type Constants
+ * These are the instruction-type strings used by TMS to categorize
+ * each type of class. The four main ones are below.
+ * Last modified: July 14 2015
+ */
 define('LECTURE', 'Lecture');
 define('LAB', 'Lab');
 define('RECITATION', 'Recitation/Discussion');
