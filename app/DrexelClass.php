@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 define('LECTURE', 'Lecture');
 define('LAB', 'Lab');
 define('RECITATION', 'Recitation/Discussion');
+define('LECTURE_AND_LAB', 'Lecture & Lab');
 
 
 class DrexelClass extends Model {
@@ -61,6 +62,22 @@ class DrexelClass extends Model {
             ->where('instr_type', 'like', RECITATION)
             ;
     }
+
+    /**
+     * Get all "lecture & labs" of a class
+     * @param $query
+     * @param $subjectCode Course subject code i.e. "PHYS"
+     * @param $courseNo    Course # i.e. "101" or "%" for everything
+     * @return mixed       A list of "lecture & labs" of the class
+     */
+    public function scopeLectureAndLabByClass($query, $subjectCode, $courseNo) {
+        return $query
+            ->where('subject_code', 'like', $subjectCode)
+            ->where('course_no', 'like', $courseNo)
+            ->where('instr_type', 'like', LECTURE_AND_LAB)
+            ;
+    }
+
 
     /**
      * Search for course title or subject name
