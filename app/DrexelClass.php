@@ -102,4 +102,15 @@ class DrexelClass extends Model {
             ->orWhere('instructor', 'like', '%' . $searchTerm . '%')
             ;
     }
+
+    /**
+     * Search for lab sectures
+     * @param $query
+     * @return mixed All of a classes' lab section
+     */
+    public function scopeLabs($query) {
+        return $query
+            ->where('instr_type', 'like', LAB)
+            ;
+    }
 }
