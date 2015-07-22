@@ -26,7 +26,7 @@ class DrexelClass extends Model {
      protected $table = 'classes';
 
     /**
-     * Search for course title or subject name
+     * Search for course title or subject name or instructor name
      * @param $query
      * @param $searchTerm Course Title or Subject Name i.e. "ECEC 355" or
      *                    "Digital Logic"
