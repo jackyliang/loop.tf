@@ -1,4 +1,4 @@
-@extends('app')
+@extends('app_sched')
 
 @section('title')
     loop.tf - Schedulizer
