@@ -7,24 +7,13 @@
 @section('content')
 
     <div class="form-group">
-        {!! Form::open(['action' => ['SchedulizerController@create'], 'method' => 'GET']) !!}
-        {!! Form::text('q', '', ['id' =>  'q', 'placeholder' =>  'Enter name']) !!}
-        {!! Form::submit('Search', array('class' => 'button expand')) !!}
+        {!! Form::open(['action' => ['SchedulizerController@search'], 'method' => 'GET']) !!}
+        {!! Form::text('q', '', ['class' => 'form-control', 'id' =>  'q', 'placeholder' =>  'Enter name']) !!}
+        {!! Form::submit('Search', array('class' => 'btn btn-success form-control')) !!}
         {!! Form::close() !!}
     </div>
 
-    <script type="text/javascript">
-    $(function()
-    {
-        $( "#q" ).autocomplete({
-            source: '{{ URL('autocomplete') }}',
-            minLength: 3,
-            select: function(event, ui) {
-                $('#q').val(ui.item.value);
-            }
-        });
-    });
-    </script>
+    @include('js.classes-autocomplete')
 
 @stop
 

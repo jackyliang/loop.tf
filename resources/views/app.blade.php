@@ -10,7 +10,7 @@
 	<link href="/css/all.css" rel="stylesheet">
     <!-- Scripts -->
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+    <script src='http://code.jquery.com/ui/1.10.2/jquery-ui.js'></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js'></script>
     <script type="text/javascript"></script>
 
