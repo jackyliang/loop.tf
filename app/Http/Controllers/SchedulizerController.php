@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\DrexelClass;
 use DB;
 use Input;
 use Response;
@@ -20,6 +21,10 @@ class SchedulizerController extends Controller {
 		//
 	}
 
+    public function search() {
+        return view('schedulizer.search');
+    }
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -32,16 +37,7 @@ class SchedulizerController extends Controller {
 
         $results = array();
 
-
-        $queries = DB::table('classes')
-            ->where('course_title', 'like', '%' . $term . '%')
-            ->orWhere(
-                DB::raw("subject_code || ' ' ||  course_no"),
-                'like',
-                '%' . $term . '%'
-            )
-            ->orWhere('instructor', 'like', '%' . $term . '%')
-            ->take(5)->get();
+        $queries = DrexelClass::search($term)->take(10)->get();
 
         foreach($queries as $query)
         {
@@ -49,12 +45,7 @@ class SchedulizerController extends Controller {
                 'id' => $query->crn,
                 'value' => $query->subject_code . '-' . $query->course_no . ' ' . $query->course_title ];
         }
-        // return Response::json($results);
-        return view(
-            'schedulizer.search',
-            compact(
-                'results'
-            ));
+        return Response::json($results);
 	}
 
 	/**

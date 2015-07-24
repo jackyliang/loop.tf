@@ -17,7 +17,7 @@
     $(function()
     {
         $( "#q" ).autocomplete({
-            source: "search/autocomplete",
+            source: '{{ URL('schedulizer/create') }}',
             minLength: 3,
             select: function(event, ui) {
                 $('#q').val(ui.item.value);
