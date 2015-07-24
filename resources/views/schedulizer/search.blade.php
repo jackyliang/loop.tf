@@ -7,8 +7,10 @@
 @section('content')
 
     <div class="form-group">
+
+        {!! Form::label('search_class', 'Search for a class (like the instructor name or the class name)!'); !!}
         {!! Form::open(['action' => ['SchedulizerController@search'], 'method' => 'GET']) !!}
-        {!! Form::text('q', '', ['class' => 'form-control', 'id' =>  'q', 'placeholder' =>  'Enter name']) !!}
+        {!! Form::text('q', '', ['class' => 'form-control', 'id' =>  'q', 'placeholder' =>  'i.e. ECE 201 or Kandasamy']) !!}
         {!! Form::submit('Search', array('class' => 'btn btn-success form-control')) !!}
         {!! Form::close() !!}
     </div>
