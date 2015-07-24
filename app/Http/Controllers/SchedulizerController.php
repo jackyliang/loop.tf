@@ -43,8 +43,12 @@ class SchedulizerController extends Controller {
         {
             $results[] = [
                 'id' => $query->crn,
-                'value' => $query->subject_code . '-' . $query->course_no . ' ' . $query->course_title ];
+                'value' => $query->subject_code . '-' .
+                           $query->course_no . ' ' .
+                           $query->course_title . ' ' .
+                           $query->instr_type];
         }
+
         return Response::json($results);
 	}
 
