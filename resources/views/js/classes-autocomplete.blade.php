@@ -10,11 +10,29 @@
                     .append( "<a>" + t + "</a>" )
                     .appendTo( ul );
         };
-        $( "#q" ).autocomplete({
-            source: '{{ URL('autocomplete') }}',
-            minLength: 3,
-            select: function(event, ui) {
-                $('#q').val(ui.item.value);
+
+        // $( "#q" ).autocomplete({
+        //     source: '{{ URL('autocomplete') }}',
+        //     minLength: 3,
+        //     delay: 0,
+        //     select: function(event, ui) {
+        //         $('#q').val(ui.item.value);
+        //     }
+        // });
+
+        // once page loads, make AJAX request to get your autocomplete list and apply to HTML
+        $.ajax({ url: '{{ URL('autocomplete') }}',
+            type: "GET",
+            contentType: "application/json",
+            success: function(tags) {
+                $( "#q" ).autocomplete({
+                    source: tags,
+                    minLength: 3,
+                    delay: 0,
+                    select: function(event, ui) {
+                        $('#q').val(ui.item.value);
+                    }
+                });
             }
         });
     });

@@ -37,12 +37,29 @@ class DrexelClass extends Model {
             $query
                 ->where('course_title', 'like', '%' . $searchTerm . '%')
                 ->orWhere(
-                    DB::raw("subject_code || ' ' ||  course_no"),
+                    DB::raw("subject_code || ' ' ||  course_no || ' ' || course_title"),
                     'like',
                     '%' . $searchTerm . '%'
                 )
-                ->orWhere('instructor', 'like', '%' . $searchTerm . '%');
+                ->orWhere('instructor', 'like', '%' . $searchTerm . '%')
+                ;
         });
+    }
+
+    /**
+     * Get all course codes and titles
+     * Used in the autocomplete search
+     * @param $query
+     * @return mixed
+     */
+    public function scopeAllCourseNo($query) {
+        return $query
+            ->orderBy('course_no')
+            ->groupBy(
+                DB::raw("subject_code || ' ' ||  course_no")
+            )
+            ->get()
+            ;
     }
 
     /**

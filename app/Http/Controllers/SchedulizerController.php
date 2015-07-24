@@ -32,12 +32,9 @@ class SchedulizerController extends Controller {
 	 */
 	public function create()
 	{
-		//
-        $term = \Input::get('term');
-
         $results = array();
 
-        $queries = DrexelClass::search($term)->orderBy('course_no')->take(10)->get();
+        $queries = DrexelClass::allCourseNo();
 
         foreach($queries as $query)
         {
@@ -45,12 +42,32 @@ class SchedulizerController extends Controller {
                 'id' => $query->crn,
                 'value' => $query->subject_code . ' ' .
                            $query->course_no . ' ' .
-                           $query->course_title . ' ' .
-                           $query->instr_type];
+                           $query->course_title . ' ',
+                'desc' => $query->description];
         }
 
         return Response::json($results);
 	}
+
+    public function result() {
+        $term = Input::get('q');
+
+        $results = array();
+
+        $queries = DrexelClass::search($term)->get();
+
+        foreach($queries as $query)
+        {
+            $results[] = [
+                'id' => $query->crn,
+                'value' => $query->subject_code . ' ' .
+                    $query->course_no . ' ' .
+                    $query->course_title . ' ',
+                'desc' => $query->description];
+        }
+
+        return Response::json($results);
+    }
 
 	/**
 	 * Store a newly created resource in storage.
