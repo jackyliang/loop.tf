@@ -37,7 +37,7 @@ class SchedulizerController extends Controller {
 
         $results = array();
 
-        $queries = DrexelClass::search($term)->take(10)->get();
+        $queries = DrexelClass::search($term)->orderBy('course_no')->take(10)->get();
 
         foreach($queries as $query)
         {
