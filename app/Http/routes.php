@@ -41,7 +41,7 @@ Route::get('autocomplete', 'SchedulizerController@autocomplete');
 /**
  * Schedulizer class search results page
  */
-Route::get('schedulizer/result', 'SchedulizerController@result');
+Route::get('schedulizer/results', 'SchedulizerController@results');
 
 /**
  * Authentication
