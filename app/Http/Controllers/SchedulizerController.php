@@ -21,16 +21,21 @@ class SchedulizerController extends Controller {
 		//
 	}
 
+    /**
+     * Display the search page view
+     * @return \Illuminate\View\View
+     */
     public function search() {
         return view('schedulizer.search');
     }
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Gets all the subject code + course # + course titles for the
+     * autocomplete engine in a JSON format
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function autocomplete()
 	{
         $results = array();
 
@@ -48,6 +53,10 @@ class SchedulizerController extends Controller {
         return Response::json($results);
 	}
 
+    /**
+     * Display class search results
+     * @return mixed
+     */
     public function result() {
         $term = Input::get('q');
 
