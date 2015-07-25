@@ -14,17 +14,33 @@
 Route::get('/', 'PagesController@home');
 
 /**
- * Notices
+ * UGC Roster Check form
  */
-
 Route::get('UGC', 'UGCController@create');
 
+/**
+ * UGC Roster Check results
+ */
 Route::post('UGC/verify', 'UGCController@verify');
 
+/**
+ * Schedulizer class search form
+ */
 Route::get('schedulizer/search', 'SchedulizerController@search');
-Route::get('schedulizer', 'SchedulizerController@home');
-Route::get('autocomplete', 'SchedulizerController@create');
 
+/**
+ * TODO: Schedulizer home page
+ */
+Route::get('schedulizer', 'SchedulizerController@home');
+
+/**
+ * Schedulizer autocomplete API
+ */
+Route::get('autocomplete', 'SchedulizerController@autocomplete');
+
+/**
+ * Schedulizer class search results page
+ */
 Route::get('schedulizer/result', 'SchedulizerController@result');
 
 /**
