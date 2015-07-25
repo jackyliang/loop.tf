@@ -21,6 +21,12 @@ Route::get('UGC', 'UGCController@create');
 
 Route::post('UGC/verify', 'UGCController@verify');
 
+Route::get('schedulizer/search', 'SchedulizerController@search');
+Route::get('schedulizer', 'SchedulizerController@home');
+Route::get('autocomplete', 'SchedulizerController@create');
+
+Route::get('schedulizer/result', 'SchedulizerController@result');
+
 /**
  * Authentication
  */

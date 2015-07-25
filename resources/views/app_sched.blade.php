@@ -21,7 +21,7 @@
 
 </head>
 <body>
-    @include('partials.nav')
+    @include('partials.nav_sched')
 
     <div class="container">
 	    @yield('content')
