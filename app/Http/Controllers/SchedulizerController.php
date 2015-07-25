@@ -39,11 +39,10 @@ class SchedulizerController extends Controller {
         foreach($queries as $query)
         {
             $results[] = [
-                'id' => $query->crn,
                 'value' => $query->subject_code . ' ' .
                            $query->course_no . ' ' .
-                           $query->course_title . ' ',
-                'desc' => $query->description];
+                           $query->course_title . ' '
+                ];
         }
 
         return Response::json($results);

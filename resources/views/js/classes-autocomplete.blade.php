@@ -11,15 +11,6 @@
                     .appendTo( ul );
         };
 
-        // $( "#q" ).autocomplete({
-        //     source: '{{ URL('autocomplete') }}',
-        //     minLength: 3,
-        //     delay: 0,
-        //     select: function(event, ui) {
-        //         $('#q').val(ui.item.value);
-        //     }
-        // });
-
         // once page loads, make AJAX request to get your autocomplete list and apply to HTML
         $.ajax({ url: '{{ URL('autocomplete') }}',
             type: "GET",
@@ -29,6 +20,7 @@
                     source: tags,
                     minLength: 3,
                     delay: 0,
+                    autoFocus: true,
                     select: function(event, ui) {
                         $('#q').val(ui.item.value);
                     }

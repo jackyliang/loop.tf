@@ -8,9 +8,16 @@
 
     <div class="form-group">
 
-        {!! Form::label('search_class', 'Search for a class!'); !!}
+        <div class="page-heading">
+            <h1>Search for a Class</h1>
+        </div>
+
         {!! Form::open(['action' => ['SchedulizerController@result'], 'method' => 'GET']) !!}
-        {!! Form::text('q', '', ['class' => 'form-control', 'id' =>  'q', 'placeholder' =>  'i.e. ECE 201 or Digital Logic Design']) !!}
+        {!! Form::text('q', '', [
+            'class' => 'form-control',
+            'id' =>  'q',
+            'placeholder' =>  'i.e. ECE 201, Digital Logic, Kandasamy, or 41045'
+        ]) !!}
         {!! Form::submit('Search', array('class' => 'btn btn-success form-control')) !!}
         {!! Form::close() !!}
     </div>

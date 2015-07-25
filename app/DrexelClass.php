@@ -37,11 +37,12 @@ class DrexelClass extends Model {
             $query
                 ->where('course_title', 'like', '%' . $searchTerm . '%')
                 ->orWhere(
-                    DB::raw("subject_code || ' ' ||  course_no || ' ' || course_title"),
+                    DB::raw("subject_code || ' ' ||  course_no || ' ' || course_title || ' '"),
                     'like',
                     '%' . $searchTerm . '%'
                 )
                 ->orWhere('instructor', 'like', '%' . $searchTerm . '%')
+                ->orWhere('crn', 'like', '%' . $searchTerm . '%')
                 ;
         });
     }
