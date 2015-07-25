@@ -13,25 +13,28 @@
             <table class="table table-striped">
                 <th>Class</th>
                 <th>Section</th>
-                <th>Name</th>
                 <th>CRN</th>
+                <th>Name</th>
                 <th>Day</th>
                 <th>Time</th>
-                <th>Instructor</th>
-                <th>Max Enroll</th>
+                <th>Professor</th>
                 <th>Enroll</th>
+                <th>Max Enroll</th>
+                <th>Credits</th>
                 @foreach ($classes as $class)
-                    <tr>
-                        <td> {{ $class->subject_code . ' ' . $class->course_no}} </td>
-                        <td> {{ $class->section}} </td>
-                        <td> {{ $class->course_title}} </td>
-                        <td> {{ $class->crn}} </td>
-                        <td> {{ $class->day}} </td>
-                        <td> {{ $class->time}} </td>
-                        <td> {{ $class->instructor}} </td>
-                        <td> {{ $class->max_enroll}} </td>
-                        <td> {{ $class->enroll}} </td>
-                    </tr>
+                    {{-- Highlight class with red if they're full --}}
+                    @if(
+                    $class->enroll === $class->max_enroll ||
+                    $class->enroll === "CLOSED"
+                    )
+                        <tr class="danger">
+                            @include('schedulizer.class-rows')
+                        </tr>
+                    @else
+                        <tr>
+                            @include('schedulizer.class-rows')
+                        </tr>
+                    @endif
                 @endforeach
             </table>
         @endforeach

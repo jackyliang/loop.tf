@@ -1,0 +1,20 @@
+{!! Form::open([
+    'action' => ['SchedulizerController@results'],
+    'method' => 'GET',
+    'class' => 'form-inline'
+]) !!}
+    <div class="col-lg-10 col-md-offset-3">
+        <div class="input-group">
+            {!! Form::text('q', '', [
+                'class' => 'form-control',
+                'id' =>  'q',
+                'placeholder' =>  'i.e. ECE 201, Digital Logic, Kandasamy, or 41045'
+            ]) !!}
+        <span class="input-group-btn">
+            {!! Form::submit('Search', array('class' => 'btn btn-default')) !!}
+        </span>
+        </div>
+    </div>
+{!! Form::close() !!}
+
+@include('js.classes-autocomplete')

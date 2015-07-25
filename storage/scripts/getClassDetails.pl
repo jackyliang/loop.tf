@@ -65,8 +65,8 @@ foreach my $thisLine (@fileArray)
 	$body =~ m/Title<\/td>\s+<td class.+>([^<>]+)<\/td>/ and $title = $1;
 	$title =~ s/&amp;/&/g;
 	$body =~ m/Campus<\/td>\s+<td class.+>([^<>]+)<\/td>/ and $campus = $1;
-	$body =~ m/Max Enroll<\/td>\s+<td class.+>([^<>]+)<\/td>/ and $max = $1;
-	$body =~ m/Enroll<\/td>\s+<td class.+>([^<>]+)<\/td>/ and $enroll = $1;
+    $body =~ m/>Max Enroll<\/td>\s+<td class.+>([^<>]+)<\/td>/ and $max = $1;
+    $body =~ m/>Enroll<\/td>\s+<td class.+>([^<>]+)<\/td>/ and $enroll = $1;
 	$body =~ m/Instructor\(s\)<\/td>\s+<td class.+>([^<>]+)<\/td>/ and $prof = $1;
 	$body =~ m/Instruction Type<\/td>\s+<td class.+>([^<>]+)<\/td>/ and $type = $1;
 	$body =~ m/Instruction Method<\/td>\s+<td class.+>([^<>]+)<\/td>/ and $method = $1;
