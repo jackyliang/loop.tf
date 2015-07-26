@@ -89,8 +89,17 @@
 .col-lg-10 {
   width: 100%; }
 
-.li-search {
-  top: 8px; }
+.navbar-default #formID #q {
+  min-width: 325px; }
+
+.navbar-default .navbar-collapse {
+  text-align: center; }
+
+@media (max-width: 768px) {
+  .navbar-default #formID #q {
+    min-width: 100%; }
+  .navbar-default .navbar-collapse {
+    text-align: left; } }
 
 /*# sourceMappingURL=app.css.map */
 /*# sourceMappingURL=all.css.map */

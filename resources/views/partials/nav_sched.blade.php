@@ -14,11 +14,12 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/schedulizer') }}">Home</a></li>
                 <li><a href="{{ url('/schedulizer/search') }}">Search</a></li>
+            </ul>
 
-                {{-- Show search bar if we're in the results page --}}
+            {{-- Show search bar if we're in the results page --}}
+            <ul class="nav navbar-nav navbar-right">
                 @if(Request::url() === URL('schedulizer/results'))
-                    {{-- TODO: Remove in-line style --}}
-                    <li style="top: 8px"> @include('search.form')</li>
+                    @include('search.form')
                 @endif
             </ul>
         </div>
