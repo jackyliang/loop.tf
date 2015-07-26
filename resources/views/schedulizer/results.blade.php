@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <div class="page-heading">
+    <div class="page-heading-results">
         <h1>Results</h1>
         <p class="text-muted">About {{ count($classesByType) }} results </p>
     </div>
