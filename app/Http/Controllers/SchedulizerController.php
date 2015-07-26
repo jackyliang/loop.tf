@@ -70,6 +70,11 @@ class SchedulizerController extends Controller {
         return view('schedulizer.results', compact('classesByType', 'term'));
     }
 
+    public function home()
+    {
+        return view('pages.home_sched');
+    }
+
 	/**
 	 * Store a newly created resource in storage.
 	 *

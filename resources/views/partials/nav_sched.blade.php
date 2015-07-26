@@ -15,8 +15,8 @@
                 <li><a href="{{ url('/schedulizer') }}">Home</a></li>
                 <li><a href="{{ url('/schedulizer/search') }}">Search</a></li>
 
-                {{-- Show search bar if we're not in the search page --}}
-                @if(Request::url() !== URL('schedulizer/search'))
+                {{-- Show search bar if we're in the results page --}}
+                @if(Request::url() === URL('schedulizer/results'))
                     {{-- TODO: Remove in-line style --}}
                     <li style="top: 8px"> @include('search.form')</li>
                 @endif

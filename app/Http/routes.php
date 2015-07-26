@@ -14,14 +14,19 @@
 Route::get('/', 'PagesController@home');
 
 /**
+ * Home page of Schedulizer
+ */
+Route::get('schedulizer', 'SchedulizerController@home');
+
+/**
  * UGC Roster Check form
  */
-Route::get('UGC', 'UGCController@create');
+Route::get('ugc', 'UGCController@create');
 
 /**
  * UGC Roster Check results
  */
-Route::post('UGC/verify', 'UGCController@verify');
+Route::post('ugc/verify', 'UGCController@verify');
 
 /**
  * Schedulizer class search form
