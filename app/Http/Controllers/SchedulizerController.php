@@ -67,7 +67,7 @@ class SchedulizerController extends Controller {
             $classesByType[$class['instr_type']][] = $class;
         }
 
-        return view('schedulizer.results', compact('classesByType'));
+        return view('schedulizer.results', compact('classesByType', 'term'));
     }
 
 	/**

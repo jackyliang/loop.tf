@@ -5,7 +5,11 @@
 @stop
 
 @section('content')
-    <h1 class="page-heading">Results</h1>
+    <div class="page-heading">
+        <h1>Results</h1>
+        <p class="text-muted">About {{ count($classesByType) }} results </p>
+    </div>
+
     <div class="container">
     @if($classesByType)
         @foreach ($classesByType as $type => $classes)

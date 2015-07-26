@@ -15,7 +15,7 @@
     height: 3px;
     display: block;
     background: #F6624A;
-    margin: 10px auto 0; }
+    margin: 18px auto 14px; }
 
 .panel-footer {
   padding-top: 40px;
@@ -68,6 +68,9 @@
       -webkit-border-radius: 0px;
       -moz-border-radius: 0px;
       background-image: none; }
+
+.ui-helper-hidden-accessible {
+  display: none; }
 
 /*# sourceMappingURL=app.css.map */
 /*# sourceMappingURL=all.css.map */

@@ -5,7 +5,7 @@
 ]) !!}
     <div class="col-lg-10 col-md-offset-3">
         <div class="input-group">
-            {!! Form::text('q', '', [
+            {!! Form::text('q', $term, [
                 'class' => 'form-control',
                 'id' =>  'q',
                 'placeholder' =>  'i.e. ECE 201, Digital Logic, Kandasamy, or 41045'
