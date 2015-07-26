@@ -7,6 +7,23 @@ based projects
 
 ### 2015
 
+#### July 25
+
+- Developed page to show results from search
+
+#### July 24 
+
+- Developed page to search for classes
+
+#### July 14
+
+- Developed search engine to pull class information based on user
+  input
+
+#### July 13
+
+- Integrated TMS scraping to the site
+
 #### June 28
 
 - Added TF2 Player Rankings profiles to each user
