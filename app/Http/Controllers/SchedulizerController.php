@@ -1,7 +1,6 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\DrexelClass;
 use DB;
 use Input;
@@ -57,24 +56,18 @@ class SchedulizerController extends Controller {
      * Display class search results
      * @return mixed
      */
-    public function result() {
-        $term = Input::get('q');
+    public function results(Requests\VerifySchedulizerSearch $request) {
+        $term = $request->input('q');
 
-        $results = array();
+        $classes = DrexelClass::search($term)->orderBy('instr_type')->get();
 
-        $queries = DrexelClass::search($term)->get();
+        $classesByType = [];
 
-        foreach($queries as $query)
-        {
-            $results[] = [
-                'id' => $query->crn,
-                'value' => $query->subject_code . ' ' .
-                    $query->course_no . ' ' .
-                    $query->course_title . ' ',
-                'desc' => $query->description];
+        foreach ($classes as $class) {
+            $classesByType[$class['instr_type']][] = $class;
         }
 
-        return Response::json($results);
+        return view('schedulizer.results', compact('classesByType', 'term'));
     }
 
 	/**

@@ -14,6 +14,12 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/schedulizer') }}">Home</a></li>
                 <li><a href="{{ url('/schedulizer/search') }}">Search</a></li>
+
+                {{-- Show search bar if we're not in the search page --}}
+                @if(Request::url() !== URL('schedulizer/search'))
+                    {{-- TODO: Remove in-line style --}}
+                    <li style="top: 8px"> @include('search.form')</li>
+                @endif
             </ul>
         </div>
 

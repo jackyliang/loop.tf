@@ -46,7 +46,6 @@
         {!! Form::submit('Verify', ['class' => 'btn btn-success form-control']) !!}
     </div>
 
-
     @include('errors.list')
 
     {!! Form::close() !!}

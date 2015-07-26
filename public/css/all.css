@@ -15,7 +15,21 @@
     height: 3px;
     display: block;
     background: #F6624A;
-    margin: 10px auto 0; }
+    margin: 18px auto 14px; }
+
+.page-heading-results {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0px;
+  text-align: center;
+  line-height: 1; }
+  .page-heading-results:after {
+    content: '';
+    width: 70px;
+    height: 3px;
+    display: block;
+    background: #F6624A;
+    margin: 18px auto 0px; }
 
 .panel-footer {
   padding-top: 40px;
@@ -68,6 +82,15 @@
       -webkit-border-radius: 0px;
       -moz-border-radius: 0px;
       background-image: none; }
+
+.ui-helper-hidden-accessible {
+  display: none; }
+
+.col-lg-10 {
+  width: 100%; }
+
+.li-search {
+  top: 8px; }
 
 /*# sourceMappingURL=app.css.map */
 /*# sourceMappingURL=all.css.map */
