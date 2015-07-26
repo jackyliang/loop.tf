@@ -81,4 +81,10 @@
 .ui-helper-hidden-accessible {
   display: none; }
 
+.col-lg-10 {
+  width: 100%; }
+
+.li-search {
+  top: 8px; }
+
 /*# sourceMappingURL=app.css.map */

@@ -17,7 +17,8 @@
 
                 {{-- Show search bar if we're not in the search page --}}
                 @if(Request::url() !== URL('schedulizer/search'))
-                    <li> @include('search.form')</li>
+                    {{-- TODO: Remove in-line style --}}
+                    <li style="top: 8px"> @include('search.form')</li>
                 @endif
             </ul>
         </div>
