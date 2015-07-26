@@ -1,9 +1,10 @@
 {!! Form::open([
     'action' => ['SchedulizerController@results'],
     'method' => 'GET',
-    'class' => 'form-inline'
+    'class' => 'navbar-form',
+    'role' => 'search',
+    'id' => 'formID'
 ]) !!}
-    <div class="col-lg-10">
         <div class="input-group">
             {!! Form::text('q', $term, [
                 'class' => 'form-control',
@@ -13,7 +14,6 @@
         <span class="input-group-btn">
             {!! Form::submit('Search', array('class' => 'btn btn-primary')) !!}
         </span>
-        </div>
     </div>
 {!! Form::close() !!}
 
