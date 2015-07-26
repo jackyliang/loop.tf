@@ -12,7 +12,9 @@
                 'placeholder' =>  'i.e. ECE 201, Digital Logic, Kandasamy, or 41045'
             ]) !!}
         <span class="input-group-btn">
-            {!! Form::submit('Search', array('class' => 'btn btn-primary')) !!}
+            <button type="submit" class="btn btn-success">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
         </span>
     </div>
 {!! Form::close() !!}

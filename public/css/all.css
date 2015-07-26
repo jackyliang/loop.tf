@@ -83,9 +83,6 @@
       -moz-border-radius: 0px;
       background-image: none; }
 
-.ui-helper-hidden-accessible {
-  display: none; }
-
 .col-lg-10 {
   width: 100%; }
 
@@ -100,6 +97,34 @@
     min-width: 100%; }
   .navbar-default .navbar-collapse {
     text-align: left; } }
+
+.ui-helper-hidden-accessible {
+  display: none; }
+
+/* center search */
+.global-search {
+  text-align: center;
+  padding: 10px; }
+  .global-search .ui-helper-hidden-accessible {
+    display: none; }
+
+.global-search * {
+  display: inline-block;
+  margin-bottom: 0; }
+
+.global-search .form-control {
+  width: 200px; }
+
+.global-search a {
+  display: block;
+  padding-top: 0px; }
+
+@media (min-width: 500px) {
+  .global-search {
+    padding: 0px 0;
+    text-align: center; }
+  .global-search .form-control {
+    width: 400px; } }
 
 /*# sourceMappingURL=app.css.map */
 /*# sourceMappingURL=all.css.map */

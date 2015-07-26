@@ -10,23 +10,22 @@
         <h1>Search for a Class</h1>
     </div>
 
-    <div class="container half-page">
+
+    </form>
+    <form
+        method="GET"
+        action="{{ URL('schedulizer/results') }}"
+        accept-charset="UTF-8"
+        class="form-inline global-search" role="form">
         <div class="form-group">
-            {!! Form::open(['action' => ['SchedulizerController@results'], 'method' => 'GET']) !!}
-            {!! Form::text('q', '', [
-            'class' => 'form-control',
-            'id' =>  'q',
-            'placeholder' =>  'i.e. ECE 201, Digital Logic, Kandasamy, or 41045'
-            ]) !!}
-
+            <input type="search" class="form-control" id="q" name="q" placeholder="i.e. ECE 201, Digital Logic, Kandasamy, or 41045">
         </div>
-            <div class="text-center">
-                {!! Form::submit('Search', array('class' => 'btn btn-success')) !!}
-                {!! Form::close() !!}
-            </div>
-            @include('errors.list')
-    </div>
+        <button type="submit" id="s" class="btn btn-success">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+    </form>
 
+@include('errors.list')
 @include('js.classes-autocomplete')
 
 @stop

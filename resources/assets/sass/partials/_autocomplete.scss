@@ -48,9 +48,7 @@
   }
 }
 
-.ui-helper-hidden-accessible {
-  display:none;
-}
+
 
 .col-lg-10 {
   width: 100%;
@@ -71,3 +69,40 @@
   }
 }
 
+.ui-helper-hidden-accessible {
+  display:none;
+}
+
+/* center search */
+
+.global-search {
+  text-align:center;
+  padding:10px;
+  .ui-helper-hidden-accessible {
+    display:none;
+  }
+}
+.global-search * {
+  display:inline-block;
+  margin-bottom:0;
+}
+
+.global-search .form-control {
+  width:200px;
+}
+
+.global-search a {
+  display:block;
+  padding-top:0px;
+}
+
+@media (min-width:500px){
+  .global-search {
+    padding: 0px 0;
+    text-align:center;
+  }
+
+  .global-search .form-control {
+    width:400px;
+  }
+}
