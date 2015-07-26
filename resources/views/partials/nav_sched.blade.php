@@ -17,9 +17,11 @@
             </ul>
 
             {{-- Show search bar if we're in the results page --}}
-            @if(Request::url() === URL('schedulizer/results'))
-                @include('search.form')
-            @endif
+            <ul class="nav navbar-nav navbar-right">
+                @if(Request::url() === URL('schedulizer/results'))
+                    @include('search.form')
+                @endif
+            </ul>
         </div>
 
     </div>

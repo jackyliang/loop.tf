@@ -10,7 +10,7 @@
         <p class="text-muted">About {{ $classCount }} result(s) </p>
     </div>
 
-    <div class="container">
+    <div class="container table-responsive">
     @if($classesByType)
         @foreach ($classesByType as $type => $classes)
             <h3>{{ $type }}</h3>
