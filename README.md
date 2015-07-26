@@ -9,11 +9,11 @@ based projects
 
 #### July 25
 
-- Developed page to show results from search
+- Added [Schedulizer Class Results](http://loop.tf/schedulizer/results)
 
 #### July 24 
 
-- Developed page to search for classes
+- Added [Schedulizer Search](http://loop.tf/schedulizer/search)
 
 #### July 14
 
