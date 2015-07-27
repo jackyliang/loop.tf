@@ -21,8 +21,11 @@
 <tr>
     <td colspan="10" class="hiddenRow">
         <div id="demo{{ $i }}" class="collapse">
-            <ul style="margin-top: 7px;">
-              <li class="text-muted">{{ $class->description }}</li>
+            <ul style="margin-top: 7px; list-style-type:none;">
+              <li class="text-muted"><strong>Campus:</strong> {{ $class->campus }}</li>
+              <li class="text-muted"><strong>Description:</strong> {{ $class->description }}</li>
+              <li class="text-muted"><strong>Building:</strong> {{ $class->building . ' ' . $class->room }}</li>
+              <li class="text-muted"><strong>Type:</strong> {{ $class->instr_method }}</li>
             </ul>
         </div>
     </td>
