@@ -32,11 +32,11 @@
                         $class->enroll === $class->max_enroll ||
                         $class->enroll === "CLOSED"
                     )
-                        <tr data-toggle="collapse" data-target="#demo{{ $i }}" class="accordion-toggle danger">
+                        <tr data-toggle="collapse" data-target="#demo{{ $i }}" class="accordion-toggle moreMuted">
                             @include('schedulizer.class-rows')
                         </tr>
                     @else
-                        <tr data-toggle="collapse" data-target="#demo{{ $i }}" class="accordian-toggle">
+                        <tr data-toggle="collapse" data-target="#demo{{ $i }}" class="accordian-toggle info">
                             @include('schedulizer.class-rows')
                         </tr>
                     @endif
