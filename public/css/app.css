@@ -121,4 +121,13 @@
   .global-search .form-control {
     width: 400px; } }
 
+.ui-accordion .ui-accordion-content {
+  border-top: 0 none;
+  margin-bottom: 2px;
+  margin-top: -2px;
+  overflow: auto;
+  padding: 0;
+  position: relative;
+  top: 1px; }
+
 /*# sourceMappingURL=app.css.map */

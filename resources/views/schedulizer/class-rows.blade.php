@@ -18,3 +18,8 @@
 <td> {{ $class->enroll}} </td>
 <td> {{ $class->max_enroll}} </td>
 <td> {{ $class->credits}} </td>
+<tr>
+    <td colspan="10" class="hiddenRow">
+        <div id="demo{{ $i }}" class="collapse"> {{ $class->description }}</div>
+    </td>
+</tr>

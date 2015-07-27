@@ -25,13 +25,14 @@
                 <th>Enroll</th>
                 <th>Max Enroll</th>
                 <th>Credits</th>
+                <?php $i = 1; ?>
                 @foreach ($classes as $class)
                     {{-- Highlight class with red if they're full --}}
                     @if(
-                    $class->enroll === $class->max_enroll ||
-                    $class->enroll === "CLOSED"
+                        $class->enroll === $class->max_enroll ||
+                        $class->enroll === "CLOSED"
                     )
-                        <tr class="danger">
+                        <tr data-toggle="collapse" data-target="#demo{{ $i }}" class="accordion-toggle danger">
                             @include('schedulizer.class-rows')
                         </tr>
                     @else
@@ -39,6 +40,7 @@
                             @include('schedulizer.class-rows')
                         </tr>
                     @endif
+                    <?php $i++; ?>
                 @endforeach
             </table>
         @endforeach
