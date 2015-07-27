@@ -12,6 +12,7 @@
 
     <div class="container table-responsive">
     @if($classesByType)
+        <?php $i = 1; ?>
         @foreach ($classesByType as $type => $classes)
             <h3>{{ $type }}</h3>
             <table class="table table-striped">
@@ -28,17 +29,18 @@
                 @foreach ($classes as $class)
                     {{-- Highlight class with red if they're full --}}
                     @if(
-                    $class->enroll === $class->max_enroll ||
-                    $class->enroll === "CLOSED"
+                        $class->enroll === $class->max_enroll ||
+                        $class->enroll === "CLOSED"
                     )
-                        <tr class="danger">
+                        <tr data-toggle="collapse" data-target="#demo{{ $i }}" class="accordion-toggle danger">
                             @include('schedulizer.class-rows')
                         </tr>
                     @else
-                        <tr>
+                        <tr data-toggle="collapse" data-target="#demo{{ $i }}" class="accordian-toggle">
                             @include('schedulizer.class-rows')
                         </tr>
                     @endif
+                    <?php $i++; ?>
                 @endforeach
             </table>
         @endforeach

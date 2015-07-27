@@ -126,5 +126,17 @@
   .global-search .form-control {
     width: 400px; } }
 
+.hiddenRow {
+  padding: 0 !important;
+  border-top: 0 none;
+  margin-bottom: 2px;
+  margin-top: -2px;
+  overflow: auto;
+  position: relative;
+  top: 1px; }
+
+.ul {
+  margin-top: 7px; }
+
 /*# sourceMappingURL=app.css.map */
 /*# sourceMappingURL=all.css.map */
