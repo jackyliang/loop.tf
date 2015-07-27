@@ -59,11 +59,17 @@ class SchedulizerController extends Controller {
     public function results(Requests\VerifySchedulizerSearch $request) {
         $term = $request->input('q');
 
-        $classes = DrexelClass::search($term)->orderBy('instr_type')->orderBy('course_no')->limit('100')->get();
+        $classes = DrexelClass::search($term)
+            ->orderBy('instr_type')
+            ->orderBy('course_no')
+            ->limit('100')
+            ->get();
 
         $classesByType = [];
 
         foreach ($classes as $class) {
+            // Remove the weird HTML strings stored when scraping
+            $class['pre_reqs'] = str_replace('</span><span>', '', $class['pre_reqs']);
             $classesByType[$class['instr_type']][] = $class;
         }
 
