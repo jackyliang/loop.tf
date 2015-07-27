@@ -59,7 +59,7 @@ class SchedulizerController extends Controller {
     public function results(Requests\VerifySchedulizerSearch $request) {
         $term = $request->input('q');
 
-        $classes = DrexelClass::search($term)->orderBy('instr_type')->orderBy('course_no')->get();
+        $classes = DrexelClass::search($term)->orderBy('instr_type')->orderBy('course_no')->limit('100')->get();
 
         $classesByType = [];
 

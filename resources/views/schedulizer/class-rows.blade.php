@@ -20,6 +20,10 @@
 <td> {{ $class->credits}} </td>
 <tr>
     <td colspan="10" class="hiddenRow">
-        <div id="demo{{ $i }}" class="collapse"> {{ $class->description }}</div>
+        <div id="demo{{ $i }}" class="collapse">
+            <ul style="margin-top: 7px;">
+              <li class="text-muted">{{ $class->description }}</li>
+            </ul>
+        </div>
     </td>
 </tr>
