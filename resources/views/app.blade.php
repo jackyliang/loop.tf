@@ -23,8 +23,4 @@
 </body>
 </html>
 
-<script>
-    $(document).ready(function() {
-        $.material.init();
-    });
-</script>
+@include('js.libs')
