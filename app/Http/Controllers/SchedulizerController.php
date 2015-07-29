@@ -67,8 +67,13 @@ class SchedulizerController extends Controller {
 
         $classesByLabelAndType = [];
         foreach ($classes as $class) {
+            // Remove extraneous HTML markup from DB
             $class['pre_reqs'] = str_replace('</span><span>', '', $class['pre_reqs']);
+
+            // Header is the something like "ECE 201 Digital Logic"
             $label = $class['subject_code'] . " " . $class['course_no'] . " " . $class['course_title'];
+
+            // Sort by instruction type under main header
             $classesByLabelAndType[$label][$class['instr_type']][] = $class;
         }
 
