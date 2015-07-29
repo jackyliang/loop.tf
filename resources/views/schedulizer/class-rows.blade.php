@@ -6,11 +6,10 @@
 </td>
 <td> {{ $class->section}} </td>
 <td> {{ $class->crn}} </td>
-<td> {{ $class->course_title}} </td>
 <td> {{ $class->day}} </td>
 <td> {{ $class->time}} </td>
 <td><a
-        href="{{ URL('schedulizer/results?q=' . $class->instructor) }}"
+        href="{{ 'http://www.ratemyprofessors.com/search.jsp?queryBy=teacherName&queryoption=HEADER&query=' . $class->instructor . '&facetSearch=true&schoolName=drexel+university' }}"
     >
         {{ $class->instructor}}
     </a>

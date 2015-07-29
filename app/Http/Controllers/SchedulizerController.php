@@ -65,17 +65,16 @@ class SchedulizerController extends Controller {
             ->limit('100')
             ->get();
 
-        $classesByType = [];
-
+        $classesByLabelAndType = [];
         foreach ($classes as $class) {
-            // Remove the weird HTML strings stored when scraping
             $class['pre_reqs'] = str_replace('</span><span>', '', $class['pre_reqs']);
-            $classesByType[$class['instr_type']][] = $class;
+            $label = $class['subject_code'] . " " . $class['course_no'] . " " . $class['course_title'];
+            $classesByLabelAndType[$label][$class['instr_type']][] = $class;
         }
 
         $classCount = count($classes);
 
-        return view('schedulizer.results', compact('classesByType', 'term', 'classCount'));
+        return view('schedulizer.results', compact('classesByLabelAndType', 'term', 'classCount'));
     }
 
     public function home()
