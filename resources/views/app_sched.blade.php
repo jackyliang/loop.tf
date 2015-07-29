@@ -9,6 +9,7 @@
     @include('libs.libs')
     @include('google.analytics')
 
+
 </head>
 <body>
     @include('partials.nav_sched')
@@ -22,9 +23,4 @@
     </div>
 </body>
 </html>
-
-<script>
-    $(function() {
-        $.material.init();
-    });
-</script>
+@include('js.libs')
