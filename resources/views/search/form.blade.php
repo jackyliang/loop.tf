@@ -12,7 +12,7 @@
                 'placeholder' =>  'i.e. ECE 201, Digital Logic, Kandasamy, or 41045'
             ]) !!}
         <span class="input-group-btn">
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn btn-material-teal">
                 <span class="glyphicon glyphicon-search"></span>
             </button>
         </span>
