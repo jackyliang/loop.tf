@@ -6,11 +6,18 @@
 </td>
 <td> {{ $class->section}} </td>
 <td> {{ $class->crn}} </td>
-<td> {{ $class->course_title}} </td>
 <td> {{ $class->day}} </td>
 <td> {{ $class->time}} </td>
 <td><a
-        href="{{ URL('schedulizer/results?q=' . $class->instructor) }}"
+        <?php $name = explode(' ', $class->instructor); ?>
+        href=
+        "{{ 'http://www.ratemyprofessors.com/search.jsp?' .
+            'queryBy=teacherName&' .
+            'queryoption=HEADER&' .
+            'query=' . end($name) . '&' .
+            'facetSearch=true&' .
+            'schoolName=drexel+university'
+        }}"
     >
         {{ $class->instructor}}
     </a>
@@ -20,23 +27,29 @@
 <td> {{ $class->credits}} </td>
 <tr>
     <td colspan="10" class="hiddenRow">
-        <div id="demo{{ $i }}" class="collapse">
+
+        <div id="class{{ $i }}" class="collapse">
+
         <div class="col-md-4">
             <h5>Description</h5>
             <p>{{ $class->description }}</p>
         </div>
+
         <div class="col-md-2">
             <h5>Campus</h5>
             <p>{{ $class->campus }}</p>
         </div>
+
         <div class="col-md-2">
             <h5>Building</h5>
             <p>{{ $class->building . ' ' . $class->room }}</p>
         </div>
+
         <div class="col-md-2">
             <h5>Type</h5>
             <p>{{ $class->instr_method }}</p>
         </div>
+
         <div class="col-md-2">
             <h5>Pre-reqs</h5>
             <p>{{ $class->pre_reqs }}</p>
