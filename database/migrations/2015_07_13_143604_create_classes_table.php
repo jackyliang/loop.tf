@@ -23,7 +23,7 @@ class CreateClassesTable extends Migration {
             $table->text('instr_type')->nullable();
             $table->text('instr_method')->nullable();
             $table->text('section')->nullable();
-            $table->increments('crn');
+            $table->integer('crn');
             $table->text('course_title')->nullable();
             $table->float('credits')->nullable();
             $table->text('day')->nullable();
@@ -37,7 +37,8 @@ class CreateClassesTable extends Migration {
             $table->text('description')->nullable();
             $table->text('pre_reqs')->nullable();
             $table->text('co_reqs')->nullable();
-		});
+            $table->timestamp('timestamp')->default(DB::raw('CURRENT_TIMESTAMP'))->nullable();
+        });
 	}
 
 	/**
