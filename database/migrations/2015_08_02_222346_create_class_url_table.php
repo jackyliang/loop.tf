@@ -17,7 +17,8 @@ class CreateClassUrlTable extends Migration {
         {
             $table->integer('year')->nullable();
             $table->text('term')->nullable();
-            $table->integer('crn');
+            $table->integer('crn')->unique();
+            $table->primary('crn');
             $table->text('url')->nullable();
             $table->timestamp('timestamp')->default(DB::raw('CURRENT_TIMESTAMP'))->nullable();
         });

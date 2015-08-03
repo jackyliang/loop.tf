@@ -23,7 +23,8 @@ class CreateClassesTable extends Migration {
             $table->text('instr_type')->nullable();
             $table->text('instr_method')->nullable();
             $table->text('section')->nullable();
-            $table->integer('crn');
+            $table->integer('crn')->unique();
+            $table->primary('crn');
             $table->text('course_title')->nullable();
             $table->float('credits')->nullable();
             $table->text('day')->nullable();
