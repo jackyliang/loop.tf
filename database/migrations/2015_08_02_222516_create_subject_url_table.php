@@ -30,6 +30,6 @@ class CreateSubjectUrlTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('subjects_urls');
+        Schema::drop('subject_urls');
     }
 }
