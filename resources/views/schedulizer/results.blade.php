@@ -29,7 +29,16 @@
                     <h4>
                         <div class="title-container">{{ $type }}
                             <a
-                                href="javascript:void(0)"
+                                onclick="new PNotify({
+                                    text: 'Added {{ $label }} {{ $type }}',
+                                    type: 'success',
+                                    animation: 'slide',
+                                    hide: false,
+                                    buttons: {
+                                        closer_hover: false,
+                                        sticker_hover: false
+                                    }
+                                });"
                                 class="btn btn-material-yellow-600 btn-xs btn-raised cart-button mdi-content-add-circle-outline">
                                 Add Me!
                             </a>
