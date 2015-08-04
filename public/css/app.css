@@ -136,4 +136,13 @@
 .moreMuted {
   color: #bdbdbd; }
 
+.btn.margin-add-to-cart {
+  margin: 10px 20px; }
+
+h3.margin-class-name {
+  margin: 50px 0px 0px 0px; }
+
+.margin-class-type {
+  margin: 0px 0px 0px 30px; }
+
 /*# sourceMappingURL=app.css.map */

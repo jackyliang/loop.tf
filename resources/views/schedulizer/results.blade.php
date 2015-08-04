@@ -15,16 +15,16 @@
         <?php $i = 1; ?>
         @foreach ($classesByLabelAndType as $label => $classesByType)
             <h3
-                style="margin: 50px 0px 0px 0px;">
+                class="margin-class-name"
+            >
                 {{ $label }}
             </h3>
             @foreach ($classesByType as $type => $classes)
-                <div style="margin: 0px 0px 0px 30px;">
+                <div class="margin-class-type">
                     <h4>{{ $type }}
                         <a
                             href="javascript:void(0)"
-                            class="btn btn-primary btn-xs btn-raised mdi-content-add"
-                            style="margin: 10px 20px;">
+                            class="btn btn-primary btn-xs btn-raised margin-add-to-cart di-content-add">
                             Add This!
                         </a>
                     </h4>
@@ -60,5 +60,4 @@
         @endforeach
     @endif
     </div>
-    <button class="btn btn-fab btn-raised btn-material-red"><i class="mdi-navigation-arrow-forward"></i></button>
 @stop
