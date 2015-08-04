@@ -7,7 +7,7 @@
 @section('content')
     <div class="page-heading-results">
         <h1>Results</h1>
-        <p class="text-muted">About {{ $classCount }} result(s) </p>
+        <p class="text-muted">About {{ $classCount }} result(s) last updated {{ $lastUpdated }}</p>
     </div>
 
     <div class="container table-responsive">
