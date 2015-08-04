@@ -101,12 +101,19 @@ class SchedulizerController extends Controller {
             ->limit('100')
             ->get();
 
-        // Get the first CRN's timestamp from the classes_url model
-        $lastUpdatedRaw = DrexelClassURL::timestampOfCRN($classes[0]['crn'])->get();
-        $lastUpdated = $lastUpdatedRaw[0]['timestamp'];
+        // Set default last updated string
+        $lastUpdated = "0 minutes ago";
 
-        // Get the natural elapsed date time string
-        $lastUpdated = self::time_elapsed_string($lastUpdated, true);
+        // If the classes array returns results,
+        // then set the natural time string
+        if(count($classes) == 1) {
+            // Get the first CRN's timestamp from the classes_url model
+            $lastUpdatedRaw = DrexelClassURL::timestampOfCRN($classes[0]['crn'])->get();
+            $lastUpdated = $lastUpdatedRaw[0]['timestamp'];
+
+            // Get the natural elapsed date time string
+            $lastUpdated = self::time_elapsed_string($lastUpdated, true);
+        }
 
         $classesByLabelAndType = [];
         foreach ($classes as $class) {
