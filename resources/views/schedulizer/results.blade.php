@@ -7,7 +7,10 @@
 @section('content')
     <div class="page-heading-results">
         <h1>Results</h1>
-        <p class="text-muted">About {{ $classCount }} result(s) last updated {{ $lastUpdated }}</p>
+        <p
+            class="text-muted">
+            About {{ $classCount }} results last updated {{ $lastUpdated }}
+        </p>
     </div>
 
     <div class="container table-responsive">
@@ -20,15 +23,21 @@
                 {{ $label }}
             </h3>
             @foreach ($classesByType as $type => $classes)
-                <div class="margin-class-type">
-                    <h4>{{ $type }}
-                        <a
-                            href="javascript:void(0)"
-                            class="btn btn-primary btn-xs btn-raised margin-add-to-cart di-content-add">
-                            Add This!
-                        </a>
+                <div
+                    class="margin-class-type"
+                >
+                    <h4>
+                        <div class="title-container">{{ $type }}
+                            <a
+                                href="javascript:void(0)"
+                                class="btn btn-material-yellow-600 btn-xs btn-raised cart-button mdi-content-add-circle-outline">
+                                Add Me!
+                            </a>
+                        </div>
                     </h4>
-                    <table class="table table-striped">
+                    <table
+                        class="table table-striped"
+                    >
                         <th>Class</th>
                         <th>Section</th>
                         <th>CRN</th>
@@ -44,11 +53,19 @@
                                 $class->enroll === $class->max_enroll ||
                                 $class->enroll === "CLOSED"
                             )
-                                <tr data-toggle="collapse" data-target="#class{{ $i }}" class="accordion-toggle moreMuted">
+                                <tr
+                                    data-toggle="collapse"
+                                    data-target="#class{{ $i }}"
+                                    class="accordion-toggle moreMuted"
+                                >
                                     @include('schedulizer.class-rows')
                                 </tr>
                             @else
-                                <tr data-toggle="collapse" data-target="#class{{ $i }}" class="accordian-toggle info">
+                                <tr
+                                    data-toggle="collapse"
+                                    data-target="#class{{ $i }}"
+                                    class="accordian-toggle info"
+                                >
                                     @include('schedulizer.class-rows')
                                 </tr>
                             @endif
