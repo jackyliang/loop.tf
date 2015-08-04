@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\DrexelClass;
 use App\DrexelClassURL;
+use Cart;
 use DB;
 use Input;
 use Response;
