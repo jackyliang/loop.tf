@@ -9,12 +9,13 @@ use strict;
 use warnings;
 use DBI;
 use HTML::Entities;
+use FindBin qw( $RealBin );
 
 #use autodie; #die on file not found
 $|++; #autoflush disk buffer
 
 # This script works directly with our SQLite DB  
-my $dbFile = '../database.sqlite';
+my $dbFile = "$RealBin/../database.sqlite";
 my $dsn      = "dbi:SQLite:dbname=$dbFile";
 my $user     = "";
 my $password = "";
