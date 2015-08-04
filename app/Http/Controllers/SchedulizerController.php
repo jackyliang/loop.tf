@@ -54,6 +54,41 @@ class SchedulizerController extends Controller {
 	}
 
     /**
+     * Determine the time elapsed string
+     * Source: http://stackoverflow.com/a/18602474/1913389
+     * @param $datetime  Any valid DateTime format
+     * @param bool $full To use full string or not
+     * @return string
+     */
+    public function time_elapsed_string($datetime, $full = false) {
+        $now = new \DateTime;
+        $ago = new \DateTime($datetime);
+        $diff = $now->diff($ago);
+
+        $diff->w = floor($diff->d / 7);
+        $diff->d -= $diff->w * 7;
+
+        $string = array(
+            'y' => 'year',
+            'm' => 'month',
+            'w' => 'week',
+            'd' => 'day',
+            'h' => 'hour',
+            'i' => 'minute',
+        );
+        foreach ($string as $k => &$v) {
+            if ($diff->$k) {
+                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+            } else {
+                unset($string[$k]);
+            }
+        }
+
+        if (!$full) $string = array_slice($string, 0, 1);
+        return $string ? implode(', ', $string) . ' ago' : 'just now';
+    }
+
+    /**
      * Display class search results
      * @return mixed
      */
@@ -66,14 +101,17 @@ class SchedulizerController extends Controller {
             ->limit('100')
             ->get();
 
+        // Get the first CRN's timestamp from the classes_url model
         $lastUpdatedRaw = DrexelClassURL::timestampOfCRN($classes[0]['crn'])->get();
         $lastUpdated = $lastUpdatedRaw[0]['timestamp'];
+
+        // Get the natural elapsed date time string
+        $lastUpdated = self::time_elapsed_string($lastUpdated, true);
 
         $classesByLabelAndType = [];
         foreach ($classes as $class) {
             // Remove extraneous HTML markup from DB
             $class['pre_reqs'] = str_replace('</span><span>', '', $class['pre_reqs']);
-
 
             // Header is the something like "ECE 201 Digital Logic"
             $label = $class['subject_code'] . " " . $class['course_no'] . " " . $class['course_title'];
