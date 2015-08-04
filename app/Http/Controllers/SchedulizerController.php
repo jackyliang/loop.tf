@@ -106,7 +106,7 @@ class SchedulizerController extends Controller {
 
         // If the classes array returns results,
         // then set the natural time string
-        if(count($classes) == 1) {
+        if(count($classes) >= 1) {
             // Get the first CRN's timestamp from the classes_url model
             $lastUpdatedRaw = DrexelClassURL::timestampOfCRN($classes[0]['crn'])->get();
             $lastUpdated = $lastUpdatedRaw[0]['timestamp'];
