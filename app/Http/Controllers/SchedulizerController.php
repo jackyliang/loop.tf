@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\DrexelClass;
+use App\DrexelClassURL;
 use DB;
 use Input;
 use Response;
@@ -65,10 +66,14 @@ class SchedulizerController extends Controller {
             ->limit('100')
             ->get();
 
+        $lastUpdatedRaw = DrexelClassURL::timestampOfCRN($classes[0]['crn'])->get();
+        $lastUpdated = $lastUpdatedRaw[0]['timestamp'];
+
         $classesByLabelAndType = [];
         foreach ($classes as $class) {
             // Remove extraneous HTML markup from DB
             $class['pre_reqs'] = str_replace('</span><span>', '', $class['pre_reqs']);
+
 
             // Header is the something like "ECE 201 Digital Logic"
             $label = $class['subject_code'] . " " . $class['course_no'] . " " . $class['course_title'];
@@ -79,7 +84,7 @@ class SchedulizerController extends Controller {
 
         $classCount = count($classes);
 
-        return view('schedulizer.results', compact('classesByLabelAndType', 'term', 'classCount'));
+        return view('schedulizer.results', compact('classesByLabelAndType', 'term', 'classCount', 'lastUpdated'));
     }
 
     public function home()

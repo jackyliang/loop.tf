@@ -117,4 +117,8 @@ class DrexelClass extends Model {
             ->where('instr_type', 'like', LECTURE_AND_REC)
             ;
     }
+
+    public function lastUpdated($query) {
+
+    }
 }
