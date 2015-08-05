@@ -3,10 +3,11 @@
 use App\Http\Requests;
 use App\DrexelClass;
 use App\DrexelClassURL;
-use Cart;
 use DB;
 use Input;
 use Response;
+use Session;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 
@@ -21,6 +22,35 @@ class SchedulizerController extends Controller {
 	{
 		//
 	}
+
+    public function add(Request $request) {
+        // Get all requests
+        $data = $request->all();
+
+        // Fields are required
+        $validator = Validator::make($data, [
+            'class' => 'required'
+        ]);
+
+        if ($validator->fails())
+        {
+            return Response::json(array(
+                'success' => false
+            ));
+        }
+
+        // TODO: check if item already exists in session, otherwise, throw
+        // success: false, and a message
+
+        Session::push('test', $data);
+
+        $data = Session::get('test');
+
+        return Response::json(array(
+            'success' => true,
+            'data'   => $data
+        ));
+    }
 
     /**
      * Display the search page view
@@ -115,6 +145,8 @@ class SchedulizerController extends Controller {
             // Get the natural elapsed date time string
             $lastUpdated = self::time_elapsed_string($lastUpdated, true);
         }
+
+        echo json_encode(Session::get('test'));
 
         $classesByLabelAndType = [];
         foreach ($classes as $class) {
