@@ -20,3 +20,4 @@
 {!! Form::close() !!}
 
 @include('js.classes-autocomplete')
+@include('js.add-class')

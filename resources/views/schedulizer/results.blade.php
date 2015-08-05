@@ -29,16 +29,7 @@
                     <h4>
                         <div class="title-container">{{ $type }}
                             <a
-                                onclick="new PNotify({
-                                    text: 'Added {{ $label }} {{ $type }}',
-                                    type: 'success',
-                                    animation: 'slide',
-                                    animate_speed: 'fast',
-                                    buttons: {
-                                        closer_hover: false,
-                                        sticker_hover: false
-                                    }
-                                });"
+                                data-class-name="{{ $label }} {{ $type}}"
                                 class="btn btn-material-yellow-600 btn-xs btn-raised cart-button mdi-content-add-circle-outline">
                                 Add Me!
                             </a>
@@ -87,3 +78,4 @@
     @endif
     </div>
 @stop
+
