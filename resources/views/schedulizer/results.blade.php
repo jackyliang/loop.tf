@@ -33,7 +33,7 @@
                                     text: 'Added {{ $label }} {{ $type }}',
                                     type: 'success',
                                     animation: 'slide',
-                                    hide: false,
+                                    animate_speed: 'fast',
                                     buttons: {
                                         closer_hover: false,
                                         sticker_hover: false
