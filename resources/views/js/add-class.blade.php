@@ -17,7 +17,7 @@
             new PNotify({
                 text: text,
                 type: type,
-                animation: 'puff',
+                animation: 'slide',
                 delay: 3000,
                 min_height: "16px",
                 animate_speed: 400,
