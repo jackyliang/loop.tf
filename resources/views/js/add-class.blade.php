@@ -20,7 +20,7 @@
                 animation: 'puff',
                 delay: 3000,
                 min_height: "16px",
-                animate_speed: 500,
+                animate_speed: 400,
                 text_escape: true,
                 nonblock: {
                     nonblock: true,
