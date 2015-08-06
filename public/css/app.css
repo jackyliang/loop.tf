@@ -156,4 +156,13 @@ a.cart-button {
   top: -8px;
   right: 0; }
 
+.mdi-action-shopping-cart:before {
+  margin-top: 7px; }
+
+#fixed-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+
 /*# sourceMappingURL=app.css.map */

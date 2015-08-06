@@ -13,6 +13,12 @@
         </p>
     </div>
 
+    <button
+        id="fixed-button"
+        class="btn btn-fab btn-raised btn-material-yellow-600">
+        <i class="mdi-action-shopping-cart"></i>
+    </button>
+
     <div class="container table-responsive">
     @if($classesByLabelAndType)
         <?php $i = 1; ?>
