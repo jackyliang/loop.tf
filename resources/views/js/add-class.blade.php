@@ -45,18 +45,26 @@
             button.text(text);
         }
 
-        // 1. /add/ will return success if item successfully added to cart
-        //        - PNotify would success and say "class X added to cart"
-        //        - Button will change to "remove me!"
-        // 2. /remove/ will return success if successfully taken out of the cart
-        //        - PNotify will succeed and say "class X removed from cart"
-        //        - Button will change to "Add Me!"
-        // 3. /add/ will return fail if item is already in cart
-        //        - PNotify will fail and say "item already in cart"
-        //        - Button will change to "remove me!"
+        /**
+         * Get and change the cart quantity
+         * TODO: Refactor this and views/js/cart-quantity.blade.php
+         */
+        function getCartQuantity() {
+            $('#fixed-button').text('');
+            $.getJSON("{{ url('schedulizer/cart') }}", function(data) {
+                if(data.quantity > 0) {
+                    $('#fixed-button').text(data.quantity);
+                }
+            });
+        }
+
+        /*
+         * TODO: documentation
+         */
         $('.btn-material-yellow-600').click(function(){
             var $localThis = $(this);
             var $className = $(this).data('class-name');
+
             if($(this).text().trim() == ADD) {
                 $.ajax({
                     type: 'post',
@@ -67,6 +75,7 @@
                     },
                     dataType: 'json'
                 }).done(function(data){
+                    getCartQuantity();
                     // If the code is 1, it indicates that the class was
                     // successfully added to cart, so change the button to red,
                     // change the text, and flash a success notification
@@ -108,6 +117,7 @@
                     },
                     dataType: 'json'
                 }).done(function(data){
+                    getCartQuantity();
                     // If the code is 1, it indicates that the class was
                     // successfully removed from the cart, so change the button
                     // back to yellow, change the text, and flash a success notif

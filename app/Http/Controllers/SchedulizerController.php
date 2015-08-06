@@ -24,6 +24,35 @@ class SchedulizerController extends Controller {
 	}
 
     /**
+     * Get class content
+     * Contains success code, quantity, and the classes array
+     * @param Request $request
+     * @return mixed
+     */
+    public function cart() {
+        $count = count(Session::get('class'));
+
+        // Remove the item [if exists]
+        if(Session::has('class')) {
+            return Response::json(array(
+                    'success' => true,
+                    'quantity' => $count,
+                    'classes' => Session::get('class'),
+                    'message' => 'You have a total of ' . $count . ' classes!'
+                )
+            );
+        }
+
+        // Nothing inside
+        return Response::json(array(
+            'success' => true,
+            'quantity' => 0,
+            'classes' => array(),
+            'message' => 'You have added no classes!'
+        ));
+    }
+
+    /**
      * The remove class API
      * Code Definitions:
      * -1   A require key of 'class' in the request is missing.
@@ -219,8 +248,6 @@ class SchedulizerController extends Controller {
             // Get the natural elapsed date time string
             $lastUpdated = self::time_elapsed_string($lastUpdated, true);
         }
-
-        echo json_encode(Session::get('class'));
 
         $classesByLabelAndType = [];
         foreach ($classes as $class) {

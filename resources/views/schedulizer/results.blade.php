@@ -15,8 +15,7 @@
 
     <button
         id="fixed-button"
-        class="btn btn-fab btn-raised btn-material-yellow-600">
-        <i class="mdi-action-shopping-cart"></i>
+        class="btn btn-fab btn-raised btn-material-yellow-600 mdi-action-shopping-cart">
     </button>
 
     <div class="container table-responsive">

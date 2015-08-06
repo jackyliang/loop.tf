@@ -21,3 +21,4 @@
 
 @include('js.classes-autocomplete')
 @include('js.add-class')
+@include('js.cart-quantity')

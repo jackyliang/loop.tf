@@ -44,6 +44,11 @@ Route::post('schedulizer/add', 'SchedulizerController@add');
 Route::post('schedulizer/remove', 'SchedulizerController@remove');
 
 /**
+ * Get cart contents
+ */
+Route::get('schedulizer/cart', 'SchedulizerController@cart');
+
+/**
  * TODO: Schedulizer home page
  */
 Route::get('schedulizer', 'SchedulizerController@home');
