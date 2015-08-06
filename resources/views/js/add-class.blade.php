@@ -52,12 +52,14 @@
         function getCartQuantity() {
             $('#jewel').text('');
             $.getJSON("{{ url('schedulizer/cart') }}", function(data) {
-                $('#jewel')
-                        .hide("slide", { direction: "down" }, 100)
-                        .text(data.quantity);
+
                 if(data.quantity > 0) {
                     $('#jewel')
-                            .show("slide", { direction: "right" }, 1000)
+                            .show("slide", { direction: "up" }, 100)
+                            .text(data.quantity);
+                } else {
+                    $('#jewel')
+                            .hide("slide", { direction: "down" }, 100)
                             .text(data.quantity);
                 }
             });

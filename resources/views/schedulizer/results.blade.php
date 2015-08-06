@@ -50,14 +50,14 @@
                         <th>Day</th>
                         <th>Time</th>
                         <th>Professor</th>
-                        <th>Enroll</th>
+                        <th>Enrolled</th>
                         <th>Max Enroll</th>
                         <th>Credits</th>
                         @foreach ($classes as $class)
                             {{-- Highlight class with grey if they're full --}}
                             @if(
                                 $class->enroll === $class->max_enroll ||
-                                $class->enroll === "CLOSED"
+                                $class->enroll === "FULL"
                             )
                                 <tr
                                     data-toggle="collapse"

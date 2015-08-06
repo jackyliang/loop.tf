@@ -257,6 +257,12 @@ class SchedulizerController extends Controller {
             // Header is the something like "ECE 201 Digital Logic"
             $label = $class['subject_code'] . " " . $class['course_no'] . " " . $class['course_title'];
 
+            // The term "CLOSED" is confusing, since Drexel's meaning for it
+            // is actually just the class is full
+            if($class['enroll'] === 'CLOSED') {
+                $class['enroll'] = 'FULL';
+            }
+
             // Sort by instruction type under main header
             $classesByLabelAndType[$label][$class['instr_type']][] = $class;
         }
