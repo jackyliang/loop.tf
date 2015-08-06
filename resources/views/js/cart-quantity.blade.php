@@ -10,11 +10,11 @@
         }).done(function(data){
             if(data.quantity > 0) {
                 $('#jewel')
-                        .show("slide", { direction: "up" }, 100)
+                        .show("slide", { direction: "up" }, 300)
                         .text(data.quantity);
             } else {
                 $('#jewel')
-                        .hide("slide", { direction: "down" }, 100)
+                        .hide("slide", { direction: "down" }, 300)
                         .text(data.quantity);
             }
         });

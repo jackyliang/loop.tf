@@ -18,9 +18,9 @@
                 text: text,
                 type: type,
                 animation: 'slide',
-                delay: 1500,
+                delay: 4000,
                 min_height: "16px",
-                animate_speed: 100,
+                animate_speed: 500,
                 text_escape: true,
                 nonblock: {
                     nonblock: true,
@@ -55,11 +55,11 @@
 
                 if(data.quantity > 0) {
                     $('#jewel')
-                            .show("slide", { direction: "up" }, 100)
+                            .show("slide", { direction: "up" }, 300)
                             .text(data.quantity);
                 } else {
                     $('#jewel')
-                            .hide("slide", { direction: "down" }, 100)
+                            .hide("slide", { direction: "down" }, 300)
                             .text(data.quantity);
                 }
             });
