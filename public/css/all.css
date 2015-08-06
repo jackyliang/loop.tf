@@ -141,25 +141,23 @@
 .moreMuted {
   color: #bdbdbd; }
 
+/* Style and position of the add to cart button  */
 .btn.margin-add-to-cart {
-  margin: 10px 20px; }
+  margin-top: 6px;
+  margin-left: 19px;
+  margin-bottom: 10px;
+  font-weight: bold; }
 
+.btn.btn-xs.btn-font-12-px {
+  font-size: 12px; }
+
+/* Position of the class name */
 h3.margin-class-name {
   margin: 40px 0px 0px 0px; }
 
+/* Position of the class type*/
 .margin-class-type {
   margin: 0px 0px 0px 30px; }
-
-div.title-container {
-  width: 300px;
-  position: relative;
-  padding-bottom: 8px; }
-
-a.cart-button {
-  display: block;
-  position: absolute;
-  top: -8px;
-  right: 0; }
 
 .mdi-action-shopping-cart:before {
   margin-top: 2px; }

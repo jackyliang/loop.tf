@@ -32,14 +32,12 @@
                 <div
                     class="margin-class-type"
                 >
-                    <h4>
-                        <div class="title-container">{{ $type }}
-                            <a
+                    <h4>{{ $type }}
+                        <a
                                 data-class-name="{{ $label }} {{ $type}}"
-                                class="btn btn-material-yellow-600 btn-xs btn-raised cart-button mdi-content-add-circle-outline">
-                                I want this!
-                            </a>
-                        </div>
+                                class="btn btn-material-yellow-600 btn-xs btn-font-12-px btn-raised margin-add-to-cart mdi-content-add-circle-outline">
+                            I want this!
+                        </a>
                     </h4>
                     <table
                         class="table table-striped"
