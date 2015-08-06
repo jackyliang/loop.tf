@@ -31,7 +31,7 @@
                             <a
                                 data-class-name="{{ $label }} {{ $type}}"
                                 class="btn btn-material-yellow-600 btn-xs btn-raised cart-button mdi-content-add-circle-outline">
-                                Add Me!
+                                I want this!
                             </a>
                         </div>
                     </h4>

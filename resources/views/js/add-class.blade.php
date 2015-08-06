@@ -1,6 +1,10 @@
 <script type="text/javascript">
     $(function()
     {
+        // NOTE: If you change these constants, you have to change the button
+        // string defined in results.blade.php too.
+        var ADD = "I want this!";
+        var REMOVE = "Get rid of it!";
 
         /**
          * PNotification to indicate the status of a class
@@ -14,14 +18,16 @@
                 text: text,
                 type: type,
                 animation: 'slide',
-                animate_speed: 'fast',
-                buttons: {
-                    closer: false,
-                    sticker: false
-                },
+                delay: 1500,
+                min_height: "16px",
+                animate_speed: 100,
+                text_escape: true,
                 nonblock: {
                     nonblock: true,
                     nonblock_opacity: .1
+                },
+                buttons: {
+                    show_on_nonblock: true
                 }
             });
         }
@@ -51,7 +57,7 @@
         $('.btn-material-yellow-600').click(function(){
             var $localThis = $(this);
             var $className = $(this).data('class-name');
-            if($(this).text().trim() == "Add Me!") {
+            if($(this).text().trim() == ADD) {
                 $.ajax({
                     type: 'post',
                     url: '{{ URL('schedulizer/add') }}',
@@ -72,7 +78,7 @@
                             $localThis,
                             'btn-material-yellow-600 mdi-content-add-circle-outline',
                             'btn-danger mdi-content-remove-circle-outline',
-                            '\nRemove Me!'
+                            '\n' + REMOVE
                         );
                     } else if (data.code === 0) {
                         // If the code is 0, it indicates that the item already
@@ -85,14 +91,14 @@
                             $localThis,
                             'btn-material-yellow-600 mdi-content-add-circle-outline',
                             'btn-danger mdi-content-remove-circle-outline',
-                            '\nRemove Me!'
+                            '\n' + REMOVE
                         );
                     } else {
                         notification(data.message, 'error');
                     }
                 });
                 return false;
-            } else if($(this).text().trim() == "Remove Me!"){
+            } else if($(this).text().trim() == REMOVE){
                 $.ajax({
                     type: 'post',
                     url: '{{ URL('schedulizer/remove') }}',
@@ -113,7 +119,7 @@
                             $localThis,
                             'btn-danger mdi-content-remove-circle-outline',
                             'btn-material-yellow-600 mdi-content-add-circle-outline',
-                            '\nAdd Me!'
+                            '\n' + ADD
                         );
                     } else if(data.code === 0) {
                         // If the code is 0, it indicates that the class was not
@@ -126,7 +132,7 @@
                             $localThis,
                             'btn-danger mdi-content-remove-circle-outline',
                             'btn-material-yellow-600 mdi-content-add-circle-outline',
-                            '\nAdd Me!'
+                            '\n' + ADD
                         );
                     } else {
                         // Something else went wrong, and it shouldn't happen,

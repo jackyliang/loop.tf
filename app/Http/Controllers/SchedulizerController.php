@@ -55,7 +55,8 @@ class SchedulizerController extends Controller {
         if(Session::has('class')) {
             foreach(Session::get('class') as $class) {
                 if($data['class'] === $class) {
-                    Session::pull('class', $data['class']);
+                    // TODO: This removes all items in cart.
+                    Session::forget('class', $data['class']);
                     return Response::json(array(
                             'success' => true,
                             'code' => 1,
