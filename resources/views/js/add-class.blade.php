@@ -82,7 +82,6 @@
                     },
                     dataType: 'json'
                 }).done(function(data){
-                    getCartQuantity();
                     // If the code is 1, it indicates that the class was
                     // successfully added to cart, so change the button to red,
                     // change the text, and flash a success notification
@@ -112,6 +111,7 @@
                     } else {
                         notification(data.message, 'error');
                     }
+                    getCartQuantity();
                 });
                 return false;
             } else if($(this).text().trim() == REMOVE){
@@ -124,7 +124,6 @@
                     },
                     dataType: 'json'
                 }).done(function(data){
-                    getCartQuantity();
                     // If the code is 1, it indicates that the class was
                     // successfully removed from the cart, so change the button
                     // back to yellow, change the text, and flash a success notif
@@ -156,6 +155,7 @@
                         // so just flash a notif
                         notification(data.message, 'error');
                     }
+                    getCartQuantity();
                 });
                 return false;
             }

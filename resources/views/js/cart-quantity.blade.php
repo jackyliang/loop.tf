@@ -8,13 +8,14 @@
             type: "GET",
             dataType: 'json'
         }).done(function(data){
-
             if(data.quantity > 0) {
-                $('#jewel').show();
-                $('#jewel').text(data.quantity);
+                $('#jewel')
+                        .show("slide", { direction: "up" }, 100)
+                        .text(data.quantity);
             } else {
-                $('#jewel').text('');
-                $('#jewel').hide();
+                $('#jewel')
+                        .hide("slide", { direction: "down" }, 100)
+                        .text(data.quantity);
             }
         });
     });

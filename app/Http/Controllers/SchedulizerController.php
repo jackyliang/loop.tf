@@ -32,7 +32,7 @@ class SchedulizerController extends Controller {
     public function cart() {
         $count = count(Session::get('class'));
 
-        // Remove the item [if exists]
+        // Get the number of classes
         if(Session::has('class')) {
             return Response::json(array(
                     'success' => true,
@@ -43,7 +43,7 @@ class SchedulizerController extends Controller {
             );
         }
 
-        // Nothing inside
+        // Nothing in the cart
         return Response::json(array(
             'success' => true,
             'quantity' => 0,
@@ -80,12 +80,21 @@ class SchedulizerController extends Controller {
             ));
         }
 
-        // Remove the item [if exists]
+        // Remove the item from cart
+        // 1. Check if `class` session key exists
+        // 2. If so, get it, and loop through it
+        // 3. If that particular index's element (a string) matches the input
+        // string (from an AJAX request), unset it, and put the new unsetted
+        // array back to the session
         if(Session::has('class')) {
-            foreach(Session::get('class') as $class) {
+            $classes = Session::get('class');
+            foreach($classes as $index => $class) {
                 if($data['class'] === $class) {
-                    // TODO: This removes all items in cart.
-                    Session::forget('class', $data['class']);
+                    unset($classes[$index]);
+                    // Re-index the array (pretty important)
+                    $newClass = array_values($classes);
+                    Session::put('class', $newClass);
+
                     return Response::json(array(
                             'success' => true,
                             'code' => 1,
