@@ -145,7 +145,6 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
-        'Gloudemans\Shoppingcart\ShoppingcartServiceProvider',
 
 	],
 
@@ -195,7 +194,6 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
         'Form'      => 'Illuminate\Html\FormFacade',
-        'Cart'      => 'Gloudemans\Shoppingcart\Facades\Cart',
 	],
 
 ];
