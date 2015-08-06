@@ -15,7 +15,8 @@
 
     <button
         id="fixed-button"
-        class="btn btn-fab btn-raised btn-material-yellow-600 mdi-action-shopping-cart">
+        class="btn btn-fab btn-raised btn-material-yellow-600 mdi-action-list">
+        <span id="jewel" class="jewel"></span>
     </button>
 
     <div class="container table-responsive">

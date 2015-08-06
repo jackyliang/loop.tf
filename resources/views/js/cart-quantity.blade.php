@@ -8,9 +8,11 @@
             type: "GET",
             dataType: 'json'
         }).done(function(data){
-            $('#fixed-button').text('');
+            $('#jewel').text('');
+            $('#jewel').hide();
             if(data.quantity > 0) {
-                $('#fixed-button').text(data.quantity);
+                $('#jewel').show();
+                $('#jewel').text(data.quantity);
             }
         });
     });

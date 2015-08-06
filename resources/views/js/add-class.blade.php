@@ -50,10 +50,15 @@
          * TODO: Refactor this and views/js/cart-quantity.blade.php
          */
         function getCartQuantity() {
-            $('#fixed-button').text('');
+            $('#jewel').text('');
             $.getJSON("{{ url('schedulizer/cart') }}", function(data) {
+                $('#jewel')
+                        .hide("slide", { direction: "down" }, 100)
+                        .text(data.quantity);
                 if(data.quantity > 0) {
-                    $('#fixed-button').text(data.quantity);
+                    $('#jewel')
+                            .show("slide", { direction: "right" }, 1000)
+                            .text(data.quantity);
                 }
             });
         }
