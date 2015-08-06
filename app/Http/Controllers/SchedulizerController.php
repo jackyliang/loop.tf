@@ -23,6 +23,65 @@ class SchedulizerController extends Controller {
 		//
 	}
 
+    /**
+     * The remove class API
+     * Code Definitions:
+     * -1   A require key of 'class' in the request is missing.
+     *  0   Class not found in the cart
+     *  1   Successfully removed from cart
+     * @param Request $request
+     * @return mixed
+     */
+    public function remove(Request $request) {
+        // Get all requests
+        $data = $request->all();
+
+        // Fields are required
+        $validator = Validator::make($data, [
+            'class' => 'required'
+        ]);
+
+        // Ensures there's an input
+        if ($validator->fails())
+        {
+            return Response::json(array(
+                'success' => false,
+                'code' => -1,
+                'message' => 'Something went wrong and it shouldn\'t happen.'
+            ));
+        }
+
+        // Remove the item [if exists]
+        if(Session::has('class')) {
+            foreach(Session::get('class') as $class) {
+                if($data['class'] === $class) {
+                    Session::pull('class', $data['class']);
+                    return Response::json(array(
+                            'success' => true,
+                            'code' => 1,
+                            'message' => $data['class'] . ' removed from cart'
+                        )
+                    );
+                }
+            }
+        }
+
+        return Response::json(array(
+            'success' => false,
+            'code' => 0,
+            'message' => $data['class'] . ' is not in the cart.'
+        ));
+    }
+
+    /**
+     * The add class API.
+     * Code Definitions:
+     * -1   A required key of 'class' in the request is missing
+     *  0   Class already in the cart
+     *  1   Successfully added to cart
+     * @param Request $request
+     * @return mixed
+     */
     public function add(Request $request) {
         // Get all requests
         $data = $request->all();
@@ -32,23 +91,37 @@ class SchedulizerController extends Controller {
             'class' => 'required'
         ]);
 
+        // Ensures there's an input
         if ($validator->fails())
         {
             return Response::json(array(
-                'success' => false
+                'success' => false,
+                'code' => -1,
+                'message' => 'Something went wrong and it shouldn\'t happen.'
             ));
         }
 
-        // TODO: check if item already exists in session, otherwise, throw
-        // success: false, and a message
+        // Ensures no duplicate entries in the session
+        if(Session::has('class')) {
+            foreach(Session::get('class') as $class) {
+                if($data['class'] === $class) {
+                    return Response::json(array(
+                            'success' => false,
+                            'code' => 0,
+                            'message' => $data['class'] . ' already in the cart'
+                        )
+                    );
+                }
+            }
+        }
 
-        Session::push('test', $data);
-
-        $data = Session::get('test');
+        // Push the class to the session
+        Session::push('class', $data['class']);
 
         return Response::json(array(
             'success' => true,
-            'data'   => $data
+            'code' => 1,
+            'message'   => $data['class'] . ' successfully added to cart'
         ));
     }
 
@@ -146,7 +219,7 @@ class SchedulizerController extends Controller {
             $lastUpdated = self::time_elapsed_string($lastUpdated, true);
         }
 
-        echo json_encode(Session::get('test'));
+        echo json_encode(Session::get('class'));
 
         $classesByLabelAndType = [];
         foreach ($classes as $class) {

@@ -16,8 +16,12 @@
                 animation: 'slide',
                 animate_speed: 'fast',
                 buttons: {
-                    closer_hover: false,
-                    sticker_hover: false
+                    closer: false,
+                    sticker: false
+                },
+                nonblock: {
+                    nonblock: true,
+                    nonblock_opacity: .1
                 }
             });
         }
@@ -57,39 +61,78 @@
                     },
                     dataType: 'json'
                 }).done(function(data){
-                    // TODO: If /add/ returns failure and message, then it
-                    // indicates item is already in cart, so throw PNotify fail,
-                    // and change button text to "remove me"
-                    notification('Added ' + $className, 'success');
+                    // If the code is 1, it indicates that the class was
+                    // successfully added to cart, so change the button to red,
+                    // change the text, and flash a success notification
+                    if(data.code === 1) {
+                        notification(data.message, 'success');
 
-                    // Change the button to the "Remove Me!" style
-                    changeButton(
-                        $localThis,
-                        'btn-material-yellow-600 mdi-content-add-circle-outline',
-                        'btn-danger mdi-content-remove-circle-outline',
-                        '\nRemove Me!'
-                    );
+                        // Change the button to the "Remove Me!" style
+                        changeButton(
+                            $localThis,
+                            'btn-material-yellow-600 mdi-content-add-circle-outline',
+                            'btn-danger mdi-content-remove-circle-outline',
+                            '\nRemove Me!'
+                        );
+                    } else if (data.code === 0) {
+                        // If the code is 0, it indicates that the item already
+                        // exists in the cart, so change the button to red,
+                        // change the text, and flash an error message
+                        notification(data.message, 'error');
+
+                        // Change the button to the "Remove Me!" style
+                        changeButton(
+                            $localThis,
+                            'btn-material-yellow-600 mdi-content-add-circle-outline',
+                            'btn-danger mdi-content-remove-circle-outline',
+                            '\nRemove Me!'
+                        );
+                    } else {
+                        notification(data.message, 'error');
+                    }
                 });
                 return false;
             } else if($(this).text().trim() == "Remove Me!"){
                 $.ajax({
                     type: 'post',
-                    url: '{{ URL('schedulizer/add') }}',
+                    url: '{{ URL('schedulizer/remove') }}',
                     data: {
                         "class": $className,
                         _token: "{{ csrf_token() }}"
                     },
                     dataType: 'json'
                 }).done(function(data){
-                    notification('Removed ' + $className, 'error');
+                    // If the code is 1, it indicates that the class was
+                    // successfully removed from the cart, so change the button
+                    // back to yellow, change the text, and flash a success notif
+                    if(data.code === 1) {
+                        notification(data.message, 'success');
 
-                    // Change the button to the "Add Me!" style
-                    changeButton(
-                        $localThis,
-                        'btn-danger mdi-content-remove-circle-outline',
-                        'btn-material-yellow-600 mdi-content-add-circle-outline',
-                        '\nAdd Me!'
-                    );
+                        // Change the button to the "Add Me!" style
+                        changeButton(
+                            $localThis,
+                            'btn-danger mdi-content-remove-circle-outline',
+                            'btn-material-yellow-600 mdi-content-add-circle-outline',
+                            '\nAdd Me!'
+                        );
+                    } else if(data.code === 0) {
+                        // If the code is 0, it indicates that the class was not
+                        // found in the cart, so change the button to yellow,
+                        // change the text, and flash an error message
+                        notification(data.message, 'error');
+
+                        // Change the button to the "Add Me!" style
+                        changeButton(
+                            $localThis,
+                            'btn-danger mdi-content-remove-circle-outline',
+                            'btn-material-yellow-600 mdi-content-add-circle-outline',
+                            '\nAdd Me!'
+                        );
+                    } else {
+                        // Something else went wrong, and it shouldn't happen,
+                        // so just flash a notif
+                        notification(data.message, 'error');
+                    }
                 });
                 return false;
             }

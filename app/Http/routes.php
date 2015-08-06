@@ -39,6 +39,11 @@ Route::get('schedulizer/search', 'SchedulizerController@search');
 Route::post('schedulizer/add', 'SchedulizerController@add');
 
 /**
+ * Remove class from session
+ */
+Route::post('schedulizer/remove', 'SchedulizerController@remove');
+
+/**
  * TODO: Schedulizer home page
  */
 Route::get('schedulizer', 'SchedulizerController@home');
