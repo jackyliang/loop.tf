@@ -6,6 +6,8 @@ use App\DrexelClassURL;
 use DB;
 use Input;
 use Response;
+use Session;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 
@@ -20,6 +22,147 @@ class SchedulizerController extends Controller {
 	{
 		//
 	}
+
+    /**
+     * Get class content
+     * Contains success code, quantity, and the classes array
+     * @param Request $request
+     * @return mixed
+     */
+    public function cart() {
+        $count = count(Session::get('class'));
+
+        // Get the number of classes
+        if(Session::has('class')) {
+            return Response::json(array(
+                    'success' => true,
+                    'quantity' => $count,
+                    'classes' => Session::get('class'),
+                    'message' => 'You have a total of ' . $count . ' classes!'
+                )
+            );
+        }
+
+        // Nothing in the cart
+        return Response::json(array(
+            'success' => true,
+            'quantity' => 0,
+            'classes' => array(),
+            'message' => 'You have added no classes!'
+        ));
+    }
+
+    /**
+     * The remove class API
+     * Code Definitions:
+     * -1   A require key of 'class' in the request is missing.
+     *  0   Class not found in the cart
+     *  1   Successfully removed from cart
+     * @param Request $request
+     * @return mixed
+     */
+    public function remove(Request $request) {
+        // Get all requests
+        $data = $request->all();
+
+        // Fields are required
+        $validator = Validator::make($data, [
+            'class' => 'required'
+        ]);
+
+        // Ensures there's an input
+        if ($validator->fails())
+        {
+            return Response::json(array(
+                'success' => false,
+                'code' => -1,
+                'message' => 'Something went wrong and it shouldn\'t happen.'
+            ));
+        }
+
+        // Remove the item from cart
+        // 1. Check if `class` session key exists
+        // 2. If so, get it, and loop through it
+        // 3. If that particular index's element (a string) matches the input
+        // string (from an AJAX request), unset it, and put the new unsetted
+        // array back to the session
+        if(Session::has('class')) {
+            $classes = Session::get('class');
+            foreach($classes as $index => $class) {
+                if($data['class'] === $class) {
+                    unset($classes[$index]);
+                    // Re-index the array (pretty important)
+                    $newClass = array_values($classes);
+                    Session::put('class', $newClass);
+
+                    return Response::json(array(
+                            'success' => true,
+                            'code' => 1,
+                            'message' => $data['class'] . ' removed from cart'
+                        )
+                    );
+                }
+            }
+        }
+
+        return Response::json(array(
+            'success' => false,
+            'code' => 0,
+            'message' => $data['class'] . ' is not in the cart.'
+        ));
+    }
+
+    /**
+     * The add class API.
+     * Code Definitions:
+     * -1   A required key of 'class' in the request is missing
+     *  0   Class already in the cart
+     *  1   Successfully added to cart
+     * @param Request $request
+     * @return mixed
+     */
+    public function add(Request $request) {
+        // Get all requests
+        $data = $request->all();
+
+        // Fields are required
+        $validator = Validator::make($data, [
+            'class' => 'required'
+        ]);
+
+        // Ensures there's an input
+        if ($validator->fails())
+        {
+            return Response::json(array(
+                'success' => false,
+                'code' => -1,
+                'message' => 'Something went wrong and it shouldn\'t happen.'
+            ));
+        }
+
+        // Ensures no duplicate entries in the session
+        if(Session::has('class')) {
+            foreach(Session::get('class') as $class) {
+                if($data['class'] === $class) {
+                    return Response::json(array(
+                            'success' => false,
+                            'code' => 0,
+                            'message' => $data['class'] . ' already in the cart'
+                        )
+                    );
+                }
+            }
+        }
+
+        // Push the class to the session
+        Session::push('class', $data['class']);
+
+        return Response::json(array(
+            'success' => true,
+            'code' => 1,
+            'message'   => $data['class'] . ' successfully added to cart'
+        ));
+    }
 
     /**
      * Display the search page view
@@ -122,6 +265,12 @@ class SchedulizerController extends Controller {
 
             // Header is the something like "ECE 201 Digital Logic"
             $label = $class['subject_code'] . " " . $class['course_no'] . " " . $class['course_title'];
+
+            // The term "CLOSED" is confusing, since Drexel's meaning for it
+            // is actually just the class is full
+            if($class['enroll'] === 'CLOSED') {
+                $class['enroll'] = 'FULL';
+            }
 
             // Sort by instruction type under main header
             $classesByLabelAndType[$label][$class['instr_type']][] = $class;

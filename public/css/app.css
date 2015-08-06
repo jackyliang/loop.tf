@@ -136,4 +136,80 @@
 .moreMuted {
   color: #bdbdbd; }
 
+.btn.margin-add-to-cart {
+  margin: 10px 20px; }
+
+h3.margin-class-name {
+  margin: 40px 0px 0px 0px; }
+
+.margin-class-type {
+  margin: 0px 0px 0px 30px; }
+
+div.title-container {
+  width: 300px;
+  position: relative;
+  padding-bottom: 8px; }
+
+a.cart-button {
+  display: block;
+  position: absolute;
+  top: -8px;
+  right: 0; }
+
+.mdi-action-shopping-cart:before {
+  margin-top: 2px; }
+
+#fixed-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: right;
+  /* keep the text to right */
+  font-size: 11px;
+  /* reduce the font-size to accomodate */
+  padding-top: 0px;
+  padding-right: 6px;
+  /* adjust the padding to keep the text on top-left */ }
+
+#fixed-button::before {
+  display: block;
+  position: absolute;
+  /* position relative to the parent button */
+  top: 0%;
+  left: 50%;
+  /* position to center with enough space for text */
+  font-size: 26px;
+  padding-top: 15px;
+  /* reset the changed properties of parent */
+  color: black;
+  -webkit-transform: translate(-50%, 0%);
+      -ms-transform: translate(-50%, 0%);
+          transform: translate(-50%, 0%);
+  /* to make it centered */ }
+
+#fixed-button:empty::before {
+  left: 50%; }
+
+.jewel {
+  position: absolute;
+  display: block;
+  top: 0px;
+  right: -2px;
+  height: 16px;
+  width: 16px;
+  font-family: Tahoma, Verdana;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 150% !important;
+  color: White;
+  background-color: Red;
+  border-radius: 16px;
+  overflow: hidden; }
+
+.jewel:empty::before {
+  left: 50%; }
+
 /*# sourceMappingURL=app.css.map */

@@ -15,3 +15,28 @@
 .moreMuted{
   color: $moreMuted;
 }
+
+.btn.margin-add-to-cart {
+  margin: 10px 20px;
+}
+
+h3.margin-class-name {
+  margin: 40px 0px 0px 0px;
+}
+
+.margin-class-type {
+  margin: 0px 0px 0px 30px;
+}
+
+div.title-container{
+  width:300px;
+  position:relative;
+  padding-bottom: 8px;
+}
+
+a.cart-button{
+  display:block;
+  position:absolute;
+  top:-8px;
+  right:0;
+}

@@ -16,7 +16,7 @@
         accept-charset="UTF-8"
         class="form-inline global-search" role="form">
         <div class="form-group">
-            <input type="search" class="form-control" id="q" name="q" placeholder="i.e. ECE 201, Digital Logic, Kandasamy, or 41045">
+            <input type="search" class="form-control floating-label" id="q" name="q" placeholder="i.e. ECE 201, Digital Logic, Kandasamy, or 41045">
         </div>
         <button type="submit" id="s" class="btn btn-material-teal">
             <span class="glyphicon glyphicon-search"></span>
