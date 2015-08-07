@@ -105,6 +105,7 @@ class SchedulizerController extends Controller {
             }
         }
 
+        // Item wasn't in the cart
         return Response::json(array(
             'success' => false,
             'code' => 0,
