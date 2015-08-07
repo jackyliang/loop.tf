@@ -13,11 +13,7 @@
         </p>
     </div>
 
-    <button
-        id="fixed-button"
-        class="btn btn-fab btn-raised btn-material-yellow-600 mdi-action-list">
-        <span id="jewel" class="jewel"></span>
-    </button>
+    @include('schedulizer.cart-fixed-button')
 
     <div class="container table-responsive">
     @if($classesByLabelAndType)

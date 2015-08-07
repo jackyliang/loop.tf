@@ -10,6 +10,8 @@
         <h1>Search for a Class</h1>
     </div>
 
+    @include('schedulizer.cart-fixed-button')
+
     <form
         method="GET"
         action="{{ URL('schedulizer/results') }}"
@@ -25,6 +27,7 @@
 
 @include('errors.list')
 @include('js.classes-autocomplete')
+@include('js.cart-quantity')
 
 @stop
 
