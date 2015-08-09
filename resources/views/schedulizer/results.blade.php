@@ -19,8 +19,9 @@
     @if($classesByLabelAndType)
         <?php $i = 1; ?>
         @foreach ($classesByLabelAndType as $label => $classesByType)
+                <div class="panel panel-primary">
             <h3
-                class="margin-class-name"
+                class="margin-class-name panel-heading"
             >
                 {{ $label }}
             </h3>
@@ -74,6 +75,7 @@
                     </table>
                 </div>
             @endforeach
+                    </div>
         @endforeach
     @endif
     </div>
