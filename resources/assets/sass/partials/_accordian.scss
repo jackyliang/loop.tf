@@ -12,7 +12,11 @@
   margin-top: 7px;
 }
 
-.moreMuted{
+.moreMuted {
+  color: $moreMuted;
+}
+
+.moreMuted:hover {
   color: $moreMuted;
 }
 
@@ -37,6 +41,7 @@ h3.margin-class-name {
   margin: 0px 20px 0px 20px;
 }
 
+/* Remove the panel padding */
 .panel-body{
   padding: 0px;
 }

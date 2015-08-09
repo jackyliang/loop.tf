@@ -31,13 +31,15 @@
                     >
                         <h4>{{ $type }}
                             <a
-                                    data-class-name="{{ $label }} {{ $type}}"
-                                    class="btn btn-material-yellow-600 btn-xs btn-font-12-px btn-raised margin-add-to-cart mdi-content-add-circle-outline">
-                                I want this!
+                                data-class-name="{{ $label }} {{ $type}}"
+                                class="btn btn-material-yellow-600 btn-xs
+                                btn-font-12-px btn-raised margin-add-to-cart
+                                mdi-content-add-circle-outline">
+                                Add This!
                             </a>
                         </h4>
                         <table
-                            class="table table-striped"
+                            class="table table-striped table-hover"
                         >
                             <th>Class</th>
                             <th>Section</th>
@@ -49,7 +51,7 @@
                             <th>Max Enroll</th>
                             <th>Credits</th>
                             @foreach ($classes as $class)
-                                {{-- Highlight class with grey if they're full --}}
+                                {{-- Mute the text if class is full --}}
                                 @if(
                                     $class->enroll === $class->max_enroll ||
                                     $class->enroll === "FULL"

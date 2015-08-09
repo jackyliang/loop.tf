@@ -136,6 +136,9 @@
 .moreMuted {
   color: #bdbdbd; }
 
+.moreMuted:hover {
+  color: #bdbdbd; }
+
 /* Style and position of the add to cart button  */
 .btn.margin-add-to-cart {
   margin-left: 15px;
@@ -153,17 +156,15 @@ h3.margin-class-name {
 .margin-class-type {
   margin: 0px 20px 0px 20px; }
 
+/* Remove the panel padding */
 .panel-body {
   padding: 0px; }
 
-.mdi-action-shopping-cart:before {
-  margin-top: 2px; }
-
 #fixed-button {
   position: fixed;
+  color: white;
   bottom: 20px;
   right: 20px;
-  color: white;
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: right;
   /* keep the text to right */
@@ -183,7 +184,7 @@ h3.margin-class-name {
   font-size: 26px;
   padding-top: 15px;
   /* reset the changed properties of parent */
-  color: black;
+  color: white;
   -webkit-transform: translate(-50%, 0%);
       -ms-transform: translate(-50%, 0%);
           transform: translate(-50%, 0%);
