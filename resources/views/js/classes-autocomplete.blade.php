@@ -18,7 +18,7 @@
             success: function(tags) {
                 $( "#q" ).autocomplete({
                     source: tags,
-                    minLength: 3,
+                    minLength: 2,
                     delay: 0,
                     autoFocus: true,
                     select: function(event, ui) {
