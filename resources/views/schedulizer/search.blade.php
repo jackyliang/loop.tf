@@ -23,8 +23,6 @@
                 class="form-control floating-label"
                 id="q"
                 name="q"
-                onfocus="this.select();"
-                onmouseup="return false;"
                 placeholder="i.e. ECE 201, Digital Logic, Kandasamy, or 41045"
             >
         </div>
@@ -33,9 +31,10 @@
         </button>
     </form>
 
-@include('errors.list')
-@include('js.classes-autocomplete')
-@include('js.cart-quantity')
+    @include('errors.list')
+    @include('js.classes-autocomplete')
+    @include('js.cart-quantity')
+    @include('js.select-all')
 
 @stop
 

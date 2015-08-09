@@ -8,8 +8,6 @@
         <div class="input-group">
             {!! Form::text('q', $term, [
                 'class' => 'form-control',
-                'onfocus' => 'this.select();',
-                'onmouseup' => 'return false;',
                 'id' =>  'q',
                 'placeholder' =>  'i.e. ECE 201, Digital Logic, Kandasamy, or 41045'
             ]) !!}
