@@ -138,8 +138,7 @@
 
 /* Style and position of the add to cart button  */
 .btn.margin-add-to-cart {
-  margin-top: 6px;
-  margin-left: 19px;
+  margin-left: 15px;
   margin-bottom: 10px;
   font-weight: bold; }
 
@@ -148,11 +147,14 @@
 
 /* Position of the class name */
 h3.margin-class-name {
-  margin: 40px 0px 0px 0px; }
+  margin: 20px 0px 0px 0px; }
 
 /* Position of the class type*/
 .margin-class-type {
-  margin: 0px 0px 0px 30px; }
+  margin: 0px 20px 0px 20px; }
+
+.panel-body {
+  padding: 0px; }
 
 .mdi-action-shopping-cart:before {
   margin-top: 2px; }
