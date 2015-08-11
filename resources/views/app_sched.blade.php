@@ -19,7 +19,7 @@
     </div>
 
     <div class="panel-footer navbar-bottom">
-        @include('partials.footer')
+        @include('partials.footer-sched')
     </div>
 </body>
 </html>

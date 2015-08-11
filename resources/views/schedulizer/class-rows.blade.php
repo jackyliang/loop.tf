@@ -1,5 +1,13 @@
 <td><a
         href="{{ URL('schedulizer/results?q=' . $class->subject_code . ' ' . $class->course_no) }}"
+
+        {{-- TODO: Refactor this duplicate if-statement --}}
+        @if(
+            $class->enroll === $class->max_enroll ||
+            $class->enroll === "FULL"
+        )
+            class="moreMuted"
+        @endif
     >
         {{ $class->subject_code . ' ' . $class->course_no}}
     </a>
@@ -18,6 +26,13 @@
             'facetSearch=true&' .
             'schoolName=drexel+university'
         }}"
+        {{-- TODO: Refactor this duplicate if-statement --}}
+        @if(
+            $class->enroll === $class->max_enroll ||
+            $class->enroll === "FULL"
+        )
+            class="moreMuted"
+        @endif
     >
         {{ $class->instructor}}
     </a>

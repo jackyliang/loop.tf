@@ -3,8 +3,8 @@
     {
         // NOTE: If you change these constants, you have to change the button
         // string defined in results.blade.php too.
-        var ADD = "I want this!";
-        var REMOVE = "Get rid of it!";
+        var ADD = "Add This!";
+        var REMOVE = "Remove This!";
 
         /**
          * PNotification to indicate the status of a class
