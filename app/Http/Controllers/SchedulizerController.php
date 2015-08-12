@@ -68,7 +68,7 @@ class SchedulizerController extends Controller {
             array_push($list, $section);
         }
 
-        return Response::json($list);
+//        return Response::json($list);
 
         #initialize the array which will contain arrays of possible class
         #combinations

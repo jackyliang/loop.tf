@@ -53,6 +53,9 @@ class Generate {
     }
 
     public function time_zone_overlap($course, $zone) {
+        if ($course->times == "") {
+            return false;
+        }
         $start1 = $this->convert(explode(" - ", $course->times)[0]);
         $end1 = $this->convert(explode(" - ", $course->times)[1]);
         if ($zone == "M") {
@@ -110,6 +113,9 @@ class Generate {
 
     #compares days to see if there are any overlapping days
     public function cmp_days($str1, $str2) {
+        if ($str1 == "TBD" || $str2 == "TBD") {
+            return false;
+        }
         $len1 = strlen($str1);
         $len2 = strlen($str2);
         for ($i = 0; $i < $len1; $i = $i + 1) {
