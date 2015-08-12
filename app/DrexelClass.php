@@ -48,6 +48,25 @@ class DrexelClass extends Model {
     }
 
     /**
+     * Search for course title with instruction type. This is primarily
+     * used in the class generation algorithm.
+     * @param $query
+     * @param $searchTerm Full course title with instruction type
+     * @return mixed      The course day, time, and CRN
+     */
+    public function scopeSearchWithType($query, $searchTerm) {
+        return $query->where(
+            DB::raw("subject_code || ' ' ||  course_no || ' ' || course_title || ' ' || instr_type"),
+            'like',
+            '%' . $searchTerm . '%'
+        )->select(
+            'day',
+            'time',
+            'crn'
+        );
+    }
+
+    /**
      * Get all course codes and titles
      * Used in the autocomplete search
      * @param $query
