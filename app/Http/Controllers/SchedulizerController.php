@@ -27,19 +27,66 @@ class SchedulizerController extends Controller {
 
     /**
      * API to generate the classes based on what's in the session
+     * Takes in put params of:
+     * 'limit' - day of the week limits such as 'MWF'
+     * 'tz'    - don't show classes within this time zone such as 'N'
      * @return mixed
      */
-    public function classDetails() {
-        // The array of courses the user has selected
-        $courseSelection = array();
+    public function classDetails(Request $request) {
+        // Get all requests
+        $data = $request->all();
+
+        // Validate the inputs
+        $validator = Validator::make($data, [
+            'limit' => 'max:5|regex:/^[\pL\s]+$/u',
+            'tz' => 'max:2|regex:/^[\pL\s]+$/u'
+        ]);
+
+        // Throw message if not validated
+        if ($validator->fails())
+        {
+            return Response::json(array(
+                'success' => false,
+                'code' => -1,
+                'quantity' => 0,
+                'classes' => [],
+                'message' => 'Stop trying to test my API'
+            ));
+        }
+
+        // Limit results to particular days
+        // i.e. MWF for Monday Wednesday Friday
+        $limit = '';
+        if (Input::has('limit'))
+        {
+            $limit = Input::get('limit');
+        }
+
+        // Choose what timezones to have classes in ex (MA = Mornings and Afternoons)
+        // If it doesn't matter leave it blank
+        $zones = '';
+        if (Input::has('tz'))
+        {
+            $zones = Input::get('tz');
+        }
 
         // The array of detailed course information that contains the CRN,
         // date, time, and name
         $listOfCourseInfo = array();
 
-        // Get the selection of classes
+        // Get the selection of classes if there is stuff in it
         if(Session::has('class')) {
             $courseSelection = Session::get('class');
+        } else {
+            // Otherwise return this JSON
+            return Response::json(array(
+                    'success' => true,
+                    'code' => 0,
+                    'quantity' => 0,
+                    'classes' => [],
+                    'message' => 'There are no classes in your cart'
+                )
+            );
         }
 
         // Format the selection of classes so the class name
@@ -68,29 +115,28 @@ class SchedulizerController extends Controller {
             array_push($list, $section);
         }
 
-//        return Response::json($list);
-
         #initialize the array which will contain arrays of possible class
         #combinations
-        $list_combos = array();
+        $listOfSchedules = array();
 
-        // Limit results to particular days
-        // i.e. MWF for Monday Wednesday Friday
-        // TODO: API/interface to define this parameter
-        $limit = '';
+        $generate = new Generate();
 
-        // Choose what timezones to have classes in ex (MA = Mornings and Afternoons)
-        // If it doesn't matter leave it blank
-        // TODO: API/interface to define this parameter
-        $zones = '';
-
-        $blah = new Generate();
-        #For loop to decipher the combinations
+        // Permutate and generate the classes
         for ($i = 0; $i < count($list); $i++) {
-            $list_combos = $blah->multiply($list[$i], $list_combos, $limit, $zones);
+            $listOfSchedules = $generate->multiply($list[$i], $listOfSchedules, $limit, $zones);
         }
 
-        return Response::json($list_combos);
+        // Number of schedules generated
+        $numOfSchedules = count($listOfSchedules);
+
+        return Response::json(array(
+                'success' => true,
+                'code' => 1,
+                'quantity' => $numOfSchedules,
+                'classes' => $listOfSchedules,
+                'message' => $numOfSchedules . ' schedule[s] were generated'
+            )
+        );
     }
 
     /**
