@@ -32,7 +32,7 @@ class SchedulizerController extends Controller {
      * 'tz'    - don't show classes within this time zone such as 'N'
      * @return mixed
      */
-    public function classDetails(Request $request) {
+    public function generate(Request $request) {
         // Get all requests
         $data = $request->all();
 
