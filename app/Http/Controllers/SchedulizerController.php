@@ -3,6 +3,8 @@
 use App\Http\Requests;
 use App\DrexelClass;
 use App\DrexelClassURL;
+use App\Services\Schedulizer\Generate;
+use App\Services\Schedulizer\Course;
 use DB;
 use Input;
 use Response;
@@ -27,7 +29,7 @@ class SchedulizerController extends Controller {
      * API to generate the classes based on what's in the session
      * @return mixed
      */
-    public function generate() {
+    public function classDetails() {
         // The array of courses the user has selected
         $courseSelection = array();
 
@@ -35,21 +37,60 @@ class SchedulizerController extends Controller {
         // date, time, and name
         $listOfCourseInfo = array();
 
-        // Get the number of classes
+        // Get the selection of classes
         if(Session::has('class')) {
             $courseSelection = Session::get('class');
         }
 
+        // Format the selection of classes so the class name
+        // contains a header in the form of the full class name
         foreach($courseSelection as $course) {
-            $name = $course;
+            $class = DrexelClass::searchWithType($course)->get();
 
-            $class = DrexelClass::searchWithType($course)
-                ->get();
-
-            $listOfCourseInfo[$name][] = $class;
+            // Assign the course name as the key to the section arrays
+            $listOfCourseInfo[$course] = $class;
         }
 
-        return Response::json($listOfCourseInfo);
+        // A list of classes is the total distribution of classes including
+        // all its instruction types
+        $list = array();
+        foreach($listOfCourseInfo as $key => $courses) {
+            // One section can contain multiple classes of the same instruction
+            // type.
+            $section = array();
+            foreach($courses as $course) {
+                // Create a new class with the name, day, time, and CRN
+                $oneCourse = new Course($key, $course['day'], $course['time'], $course['crn']);
+
+                // Push the class to the sections array
+                array_push($section, $oneCourse);
+            }
+            array_push($list, $section);
+        }
+
+//        return Response::json($list);
+
+        #initialize the array which will contain arrays of possible class
+        #combinations
+        $list_combos = array();
+
+        // Limit results to particular days
+        // i.e. MWF for Monday Wednesday Friday
+        // TODO: API/interface to define this parameter
+        $limit = '';
+
+        // Choose what timezones to have classes in ex (MA = Mornings and Afternoons)
+        // If it doesn't matter leave it blank
+        // TODO: API/interface to define this parameter
+        $zones = '';
+
+        $blah = new Generate();
+        #For loop to decipher the combinations
+        for ($i = 0; $i < count($list); $i++) {
+            $list_combos = $blah->multiply($list[$i], $list_combos, $limit, $zones);
+        }
+
+        return Response::json($list_combos);
     }
 
     /**

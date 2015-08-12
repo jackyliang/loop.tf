@@ -46,7 +46,7 @@ Route::post('schedulizer/remove', 'SchedulizerController@remove');
 /**
  * API for classes generated
  */
-Route::get('schedulizer/generate', 'SchedulizerController@generate');
+Route::get('schedulizer/gen', 'SchedulizerController@classDetails');
 
 /**
  * Get cart contents

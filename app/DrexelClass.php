@@ -58,7 +58,7 @@ class DrexelClass extends Model {
         return $query->where(
             DB::raw("subject_code || ' ' ||  course_no || ' ' || course_title || ' ' || instr_type"),
             'like',
-            '%' . $searchTerm . '%'
+            '%' . $searchTerm
         )->select(
             'day',
             'time',
