@@ -38,8 +38,8 @@ class SchedulizerController extends Controller {
 
         // Validate the inputs
         $validator = Validator::make($data, [
-            'limit' => 'max:5|regex:/^[\pL\s]+$/u',
-            'tz' => 'max:2|regex:/^[\pL\s]+$/u'
+            'limit' => 'max:5|regex:/^[\pL\s]+$/u', // Alphabet only. Max 5 items
+            'tz' => 'max:2|regex:/^[\pL\s]+$/u' // Alphabet only. Max 2 items
         ]);
 
         // Throw message if not validated
