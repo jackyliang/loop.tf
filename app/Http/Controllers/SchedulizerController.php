@@ -24,6 +24,35 @@ class SchedulizerController extends Controller {
 	}
 
     /**
+     * API to generate the classes based on what's in the session
+     * @return mixed
+     */
+    public function generate() {
+        // The array of courses the user has selected
+        $courseSelection = array();
+
+        // The array of detailed course information that contains the CRN,
+        // date, time, and name
+        $listOfCourseInfo = array();
+
+        // Get the number of classes
+        if(Session::has('class')) {
+            $courseSelection = Session::get('class');
+        }
+
+        foreach($courseSelection as $course) {
+            $name = $course;
+
+            $class = DrexelClass::searchWithType($course)
+                ->get();
+
+            $listOfCourseInfo[$name][] = $class;
+        }
+
+        return Response::json($listOfCourseInfo);
+    }
+
+    /**
      * Get class content
      * Contains success code, quantity, and the classes array
      * @param Request $request
