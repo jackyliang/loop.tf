@@ -62,7 +62,11 @@ class DrexelClass extends Model {
         )->select(
             'day',
             'time',
-            'crn'
+            'crn',
+            'campus',
+            'enroll',
+            'max_enroll',
+            'building'
         );
     }
 

@@ -26,6 +26,72 @@ class SchedulizerController extends Controller {
 	}
 
     /**
+     * Clear the cart
+     */
+    public function clear() {
+
+        // Clear cart if there is stuff in it
+        if(Session::has('class')) {
+            Session::flush();
+            return Response::json(array(
+                    'success' => true,
+                    'code' => 1,
+                    'message' => 'Your cart has been cleared'
+                )
+            );
+        }
+
+        // Nothing in the cart
+        return Response::json(array(
+            'success' => true,
+            'code' => 0,
+            'message' => 'There is nothing in the cart to clear'
+        ));
+    }
+
+
+
+    /**
+     * Shows all the classes with their detailed information
+     * TODO: Remove this test API
+     * @return mixed
+     */
+    public function classes() {
+        // The array of detailed course information that contains the CRN,
+        // date, time, and name
+        $listOfCourseInfo = array();
+
+        // Get the selection of classes if there is stuff in it
+        if(Session::has('class')) {
+            $courseSelection = Session::get('class');
+        } else {
+            // Otherwise return this JSON
+            return Response::json(array(
+                    'success' => true,
+                    'code' => 0,
+                    'classes' => []
+                )
+            );
+        }
+
+        // Format the selection of classes so the class name
+        // contains a header in the form of the full class name
+        foreach($courseSelection as $course) {
+            $class = DrexelClass::searchWithType($course)->get();
+
+            // Assign the course name as the key to the section arrays
+            $listOfCourseInfo[$course] = $class;
+        }
+
+        return Response::json(array(
+                'success' => true,
+                'code' => 1,
+                'classes' => $listOfCourseInfo
+            )
+        );
+    }
+
+    /**
      * API to generate the classes based on what's in the session
      * Takes in put params of:
      * 'limit' - day of the week limits such as 'MWF'
