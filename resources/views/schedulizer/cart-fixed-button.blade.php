@@ -1,5 +1,5 @@
 <button
         id="fixed-button"
-        class="btn btn-fab btn-raised btn-primary mdi-action-shopping-cart">
-    <span id="jewel" class="jewel"></span>
+        class="btn btn-fab btn-raised btn-material-red-600 btn-primary mdi-action-event">
+    <span id="jewel" class="jewel shadow-z-2"></span>
 </button>

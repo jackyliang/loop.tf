@@ -26,7 +26,7 @@
                 placeholder="i.e. ECE 201, Digital Logic, Kandasamy, or 41045"
             >
         </div>
-        <button type="submit" class="btn btn-material-teal">
+        <button type="submit" class="btn btn-material-teal shadow-z-1">
             <span class="glyphicon glyphicon-search"></span>
         </button>
     </form>

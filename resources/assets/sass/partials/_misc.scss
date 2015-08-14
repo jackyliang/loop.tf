@@ -27,7 +27,7 @@
   position: absolute;
   display: block;
   top: 0px;
-  right: -2px;
+  right: -15px;
   height: 16px;
   width: 16px;
   font-family: Tahoma, Verdana;
@@ -36,7 +36,7 @@
   text-align: center;
   line-height: 150% !important;
   color: White;
-  background-color: Red;
+  background-color: $material-design-red-600;
   -webkit-border-radius: 16px;
   -moz-border-radius: 16px;
   border-radius: 16px;

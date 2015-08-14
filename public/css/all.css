@@ -202,7 +202,7 @@ h3.margin-class-name {
   position: absolute;
   display: block;
   top: 0px;
-  right: -2px;
+  right: -15px;
   height: 16px;
   width: 16px;
   font-family: Tahoma, Verdana;
@@ -211,7 +211,7 @@ h3.margin-class-name {
   text-align: center;
   line-height: 150% !important;
   color: White;
-  background-color: Red;
+  background-color: #E53945;
   border-radius: 16px;
   overflow: hidden; }
 
