@@ -5,8 +5,7 @@
     </p>
     <h6 class="text-muted text-center">
         <small>
-            <a href="https://github.com/jackyliang/loop.tf/issues/new">Report a Bug</a>  |
-            <a href="https://github.com/jackyliang/loop.tf#release-notes">Release Notes</a>
+            <a href="http://www.jackyliang.com/contact-jacky/">Report a Bug</a>
         </small>
     </h6>
 </div>
