@@ -69,10 +69,10 @@
     line-height: 18px;
     color: #555555;
     white-space: nowrap; }
-    .ui-autocomplete .ui-menu-item > a.ui-corner-all.ui-state-hover, .ui-autocomplete .ui-menu-item > a.ui-corner-all.ui-state-active {
+    .ui-autocomplete .ui-menu-item > a.ui-corner-all.ui-state-hover, .ui-autocomplete .ui-menu-item > a.ui-corner-all.ui-state-active, .ui-autocomplete .ui-menu-item > a.ui-corner-all.ui-state-focus {
       color: #ffffff;
       text-decoration: none;
-      background-color: #0088cc;
+      background-color: #009688;
       border-radius: 0px;
       -webkit-border-radius: 0px;
       -moz-border-radius: 0px;
