@@ -1,7 +1,7 @@
 @extends('app_sched')
 
 @section('title')
-    loop.tf
+    Schedulizer
 @stop
 
 @section('content')
