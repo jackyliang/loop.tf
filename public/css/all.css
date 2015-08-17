@@ -218,5 +218,9 @@ h3.margin-class-name {
 .jewel:empty::before {
   left: 50%; }
 
+/* Remove the panel padding */
+.panel-body.panel-options {
+  padding: 15px; }
+
 /*# sourceMappingURL=app.css.map */
 /*# sourceMappingURL=all.css.map */

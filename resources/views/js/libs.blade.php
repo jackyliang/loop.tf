@@ -7,5 +7,6 @@
 <script>
     $(function() {
         $.material.init();
+
     });
 </script>

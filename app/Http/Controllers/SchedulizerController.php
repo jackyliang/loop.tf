@@ -25,6 +25,11 @@ class SchedulizerController extends Controller {
 		//
 	}
 
+    public function schedule() {
+
+        return view('schedulizer.schedule');
+    }
+
     /**
      * Clear the cart
      */

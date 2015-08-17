@@ -46,3 +46,8 @@
 .jewel:empty::before {
   left:50%;
 }
+
+/* Remove the panel padding */
+.panel-body.panel-options{
+  padding: 15px;
+}
