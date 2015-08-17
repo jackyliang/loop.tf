@@ -1,7 +1,7 @@
 @extends('app_sched')
 
 @section('title')
-
+    Schedule
 @stop
 
 @section('content')

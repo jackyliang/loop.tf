@@ -25,9 +25,31 @@ class SchedulizerController extends Controller {
 		//
 	}
 
-    public function schedule() {
+    /**
+     * This generates an array of time strings from 7 AM to midnight
+     * @return array  A string array of time spans
+     */
+    public function time_span() {
+        $timeIncrements = array();
+        $start = "7:00";
+        $end = "24:00";
 
-        return view('schedulizer.schedule');
+        $tStart = strtotime($start);
+        $tEnd = strtotime($end);
+        $tNow = $tStart;
+
+        while($tNow <= $tEnd){
+            array_push($timeIncrements, date("h:i A",$tNow));
+            $tNow = strtotime('+30 minutes',$tNow);
+        }
+
+        return $timeIncrements;
+    }
+
+    public function schedule() {
+        $timeIncrements = $this->time_span();
+
+        return view('schedulizer.schedule', compact('timeIncrements'));
     }
 
     /**

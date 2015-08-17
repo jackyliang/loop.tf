@@ -222,5 +222,11 @@ h3.margin-class-name {
 .panel-body.panel-options {
   padding: 15px; }
 
+.dropdown-menu.time-span {
+  max-height: 300px;
+  /*Provide height in pixels or in other units as per your layout*/
+  overflow-y: auto;
+  /*Provide an auto overflow to diaply scroll*/ }
+
 /*# sourceMappingURL=app.css.map */
 /*# sourceMappingURL=all.css.map */
