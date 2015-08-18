@@ -48,10 +48,14 @@ class SchedulizerController extends Controller {
         return $timeIncrements;
     }
 
-    public function schedule() {
+    public function schedule(Request $request) {
+        // Generate the time span increments of 30 minutes
         $timeIncrements = $this->time_span();
 
-        return view('schedulizer.schedule', compact('timeIncrements'));
+        // TODO: Fix the `q` key for search queries
+        $term = $request->input('q');
+
+        return view('schedulizer.schedule', compact('timeIncrements', 'term'));
     }
 
     /**

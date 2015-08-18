@@ -8,8 +8,7 @@
     <div class="page-heading-results">
         <h1>Schedule</h1>
         <p
-            class="text-muted">
-            This many schedules were generated
+            id="num-results" class="text-muted">
         </p>
     </div>
 

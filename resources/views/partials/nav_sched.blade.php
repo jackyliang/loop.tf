@@ -21,7 +21,7 @@
 
             {{-- Show search bar if we're in the results page --}}
             <ul class="nav navbar-nav navbar-right">
-                @if(Request::is('schedulizer/results'))
+                @if(Request::is('schedulizer/results') || Request::is('schedulizer/schedule'))
                     @include('search.form')
                 @endif
             </ul>
