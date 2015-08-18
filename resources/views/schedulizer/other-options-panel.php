@@ -5,12 +5,12 @@
     <div class="panel-body panel-options">
         <div id="full" class="checkbox">
             <label>
-                <input type="checkbox" checked=""> Include Full Classes
+                <input id="full-checkbox" type="checkbox" checked=""> Include Full Classes
             </label>
         </div>
         <div id="cc" class="checkbox">
             <label>
-                <input type="checkbox" checked=""> Show Only Center City Campus
+                <input id="cc-checkbox" type="checkbox" checked=""> Show Only Center City Campus
             </label>
         </div>
     </div>
