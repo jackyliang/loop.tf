@@ -14,8 +14,14 @@
     </div>
 
     <div class="col-md-4">
-        @include('schedulizer.cart-panel')
+        @include('schedulizer.classes-panel')
+        @include('schedulizer.time-span-options-panel')
+        @include('schedulizer.other-options-panel')
     </div>
 
-    @include('js.time-slider')
+    <div class="col-md-8">
+        @include('schedulizer.schedule-panel')
+    </div>
+
+    @include('js.schedule-options-panel')
 @stop

@@ -18,5 +18,17 @@
                 }
             });
         });
+
+        $.ajax({
+            url: '{{ URL('schedulizer/schedules') }}',
+            type: "GET",
+            dataType: 'json'
+        }).done(function(data){
+            // Get the hash
+            window.location.hash = '#1';
+            var type = window.location.hash.substr(1);
+            console.log(JSON.stringify(data.classes[type]));
+            $("#classes").html(JSON.stringify(data.classes[type]));
+        });
     });
 </script>

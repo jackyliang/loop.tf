@@ -31,7 +31,7 @@ class SchedulizerController extends Controller {
      */
     public function time_span() {
         $timeIncrements = array();
-        $start = "7:00";
+        $start = "07:00";
         $end = "24:00";
 
         $tStart = strtotime($start);
@@ -40,6 +40,8 @@ class SchedulizerController extends Controller {
 
         while($tNow <= $tEnd){
             array_push($timeIncrements, date("h:i A",$tNow));
+            // TODO: Fix military and standard time
+//            $timeIncrements[date("hi", $tNow)] = date("h:i A",$tNow);
             $tNow = strtotime('+30 minutes',$tNow);
         }
 
