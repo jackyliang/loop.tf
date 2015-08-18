@@ -233,7 +233,7 @@ class SchedulizerController extends Controller {
                 'code' => 1,
                 'quantity' => $numOfSchedules,
                 'classes' => $listOfSchedules,
-                'message' => $numOfSchedules . ' schedule[s] were generated'
+                'message' => $numOfSchedules . ' schedule(s) were generated'
             )
         );
     }

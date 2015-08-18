@@ -5,19 +5,19 @@
     <div class="panel-body panel-options">
         <div id="days" class="checkbox">
             <label>
-                <input value="M" type="checkbox"> Mon
+                <input data-date="M" type="checkbox"> Mon
             </label>
             <label>
-                <input value="T" type="checkbox"> Tues
+                <input data-date="T" type="checkbox"> Tues
             </label>
             <label>
-                <input value="W" type="checkbox"> Wed
+                <input data-date="W" type="checkbox"> Wed
             </label>
             <label>
-                <input value="R" type="checkbox"> Thurs
+                <input data-date="R" type="checkbox"> Thurs
             </label>
             <label>
-                <input value="F" type="checkbox"> Fri
+                <input data-date="F" type="checkbox"> Fri
             </label>
         </div>
         <div class="btn-group">

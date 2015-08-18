@@ -1,8 +1,32 @@
 <script type="text/javascript">
     $(function()
     {
+        /**
+         * Stores the generate schedule array from our API
+         **/
         var result;
+
+        /**
+         * The starting index for the URL hash
+         **/
         var index = 0;
+
+        /**
+         * This generates the URL which will query our schedule generation API
+         * It contains:
+         * 'from'   - from what time you don't want classes
+         * 'to'     - to what time you don't want classes
+         * 'days'   - days you don't want classes
+         * 'full'   - include full classes
+         * 'cc'     - show only center city campus classes
+         **/
+        var from = '';
+        var to = '';
+        var days = '';
+        var full = '';
+        var cc = '';
+        var url = '';
+
 
         $('#from li').on('click', function(){
             $('#from-text').text($(this).text());
@@ -12,15 +36,23 @@
             $('#to-text').text($(this).text());
         });
 
+        /**
+         * This generates the `days` value from the day of the week checkboxes
+         **/
         $(function(){
             $("input[type='checkbox']").change(function(){
-                var item=$(this);
-                if(item.is(":checked"))
-                {
-                    console.log($('#days').attr('value'));
-                }
+                var searchIDs = $("input:checkbox:checked").map(function(){
+                    return $(this).data('date');
+                }).toArray();
+                days = searchIDs.join('');
             });
         });
+
+        /**
+         * The API URL to the generated class schedules with custom parameters
+         **/
+        url = '{{ URL('schedulizer/generate') }}' + '?from=' + from + '&to=' + to + '&days=' + days + '&full=' + full + '&cc=' + cc;
+        console.log(url);
 
         /**
          * This generates the HTML list of classes
@@ -29,21 +61,20 @@
          */
         function formatList(result) {
             if(result.quantity === 0) {
-                return text = 'You have not added any classes! Click <a href="{{ URL('schedulizer/search') }}">here</a> to add some classes';
+                return 'Add some classes on the top right corner first!';
             }
             // Build the list of classes with their name and CRN
             var text = '';
             text += '<ul class="list-group">';
             for (i = 0; i < result.classes[index].length; i++) {
                 text += '<li class="list-group-item">' + result.classes[index][i]['name'] + ' ' + result.classes[index][i]['crn'] + '</li>';
-                console.log(result.classes[index][i]);
             }
             text += '</ul>';
             return text;
         }
 
         $.ajax({
-            url: '{{ URL('schedulizer/schedules') }}',
+            url: '{{ URL('schedulizer/generate') }}',
             type: "GET",
             dataType: 'json'
         }).done(function(data){
