@@ -2,7 +2,7 @@
     $(function()
     {
         /**
-         * Stores the generate schedule array from our API
+         * Stores the generated schedule array from our API
          **/
         var result;
 
@@ -27,25 +27,42 @@
         var cc = '';
         var url = '';
 
-
-        $('#from li').on('click', function(){
-            $('#from-text').text($(this).text());
-        });
-
-        $('#to li').on('click', function(){
-            $('#to-text').text($(this).text());
-        });
-
         /**
-         * This generates the `days` value from the day of the week checkboxes
+         * This generates the `days` value from the day of the week checkboxes,
+         * the 'from' time span, the 'to' time span, the 'full' classes flag, and
+         * show only center city campus
          **/
         $(function(){
-            $("input[type='checkbox']").change(function(){
+            // Generates the 'days' string
+            $("#days").change(function(){
                 var searchIDs = $("input:checkbox:checked").map(function(){
                     return $(this).data('date');
                 }).toArray();
                 days = searchIDs.join('');
             });
+
+            // Generates the military time for 'from'
+            $('#from li a').on('click', function(){
+                from = $(this).data('military');
+            });
+
+            // Generate the military time for 'to'
+            $('#to li a').on('click', function(){
+                to = $(this).data('military');
+            });
+
+            // Generate the bool
+            // TODO: Fix this full checkbox
+            $('#full').change(function(){
+                $(this).is(':checked')
+                if($(this).is(':checked')){
+                    console.log("Checkbox is checked.");
+                }
+                else if($(this).prop("checked") == false){
+                    console.log("Checkbox is unchecked.");
+                }
+            });
+
         });
 
         /**
@@ -56,8 +73,9 @@
 
         /**
          * This generates the HTML list of classes
-         * @param result
-         * @returns {*}
+         * @param result  The array from the class generation JSON API
+         * @returns {*}   The HTML for the list of classes used to generate
+         *                the schedules
          */
         function formatList(result) {
             if(result.quantity === 0) {
@@ -73,6 +91,10 @@
             return text;
         }
 
+        /**
+         * Show number of results in header as well as append the list of
+         * classes to the cart panel
+         */
         $.ajax({
             url: '{{ URL('schedulizer/generate') }}',
             type: "GET",
@@ -87,6 +109,9 @@
             $("#num-results").html(result.message);
         });
 
+        /**
+         * Button behaviors for cycling through the generated schedules
+         */
         $('.btn.btn-default').click(function(e) {
             // Prevent the page redirect to another page, as you have href on it.
             // Or you can remove the href on the anchors.

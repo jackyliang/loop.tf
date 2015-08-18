@@ -31,6 +31,10 @@ class SchedulizerController extends Controller {
      */
     public function time_span() {
         $timeIncrements = array();
+
+        $tempMilTime = array();
+        $tempStandardTime = array();
+
         $start = "07:00";
         $end = "24:00";
 
@@ -39,11 +43,13 @@ class SchedulizerController extends Controller {
         $tNow = $tStart;
 
         while($tNow <= $tEnd){
-            array_push($timeIncrements, date("h:i A",$tNow));
-            // TODO: Fix military and standard time
-//            $timeIncrements[date("hi", $tNow)] = date("h:i A",$tNow);
+            array_push($tempMilTime, date("Hi", $tNow));
+            array_push($tempStandardTime, date("h:i A",$tNow));
+
             $tNow = strtotime('+30 minutes',$tNow);
         }
+
+        $timeIncrements = array_combine($tempMilTime, $tempStandardTime);
 
         return $timeIncrements;
     }
@@ -233,7 +239,7 @@ class SchedulizerController extends Controller {
                 'code' => 1,
                 'quantity' => $numOfSchedules,
                 'classes' => $listOfSchedules,
-                'message' => $numOfSchedules . ' schedule(s) were generated'
+                'message' => $numOfSchedules . ($numOfSchedules === 1 ? ' schedule was generated' : ' schedules were generated')
             )
         );
     }

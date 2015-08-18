@@ -26,7 +26,7 @@
             <a data-target="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
             <ul id="from" class="dropdown-menu time-span">
                 @foreach ($timeIncrements as $military => $standard)
-                    <li><a href="#">{{ $standard }}</a></li>
+                    <li><a data-military="{{ $military }}" href="#">{{ $standard }}</a></li>
                 @endforeach
             </ul>
         </div>
@@ -37,7 +37,7 @@
             <a data-target="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
             <ul id="to" class="dropdown-menu time-span">
                 @foreach ($timeIncrements as $military => $standard)
-                    <li><a href="#">{{ $standard }}</a></li>
+                    <li><a data-military="{{ $military }}" href="#">{{ $standard }}</a></li>
                 @endforeach
             </ul>
         </div>
