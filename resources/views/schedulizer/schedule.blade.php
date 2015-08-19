@@ -23,4 +23,5 @@
     </div>
 
     @include('js.schedule-options-panel')
+    @include('js.schedule-fullcalendar')
 @stop

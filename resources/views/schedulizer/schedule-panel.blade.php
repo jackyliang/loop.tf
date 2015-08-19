@@ -8,5 +8,6 @@
             <a data-direction="left" class="btn btn-default"><</a>
             <a data-direction="right" class="btn btn-default">></a>
         </div>
+        <div id="calendar"></div>
     </div>
 </div>
