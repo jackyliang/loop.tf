@@ -31,7 +31,6 @@
 
         $('#refresh').on('click', function(){
             updateResults();
-
         });
 
         /**
@@ -89,6 +88,14 @@
         });
 
         /**
+         * TODO: Fix this focus
+         **/
+        $('#focus').change(function() {
+            console.log('yeah');
+            $("#q").focus();
+        });
+
+        /**
          * Updates the global URL that's used to query the class generation API
          */
         function getUpdatedURL() {
@@ -104,7 +111,8 @@
          */
         function formatList(result) {
             if(result.quantity === 0) {
-                return 'Either no filters matched your requirements or your cart is empty!';
+                // TODO: Fix this focus
+                return 'Oops! Looks like no schedules were generated. <a id="focus">Add</a> some classes or widen your filter options!';
             }
             // Build the unordered list of classes with their name and CRN
             var text = '';
@@ -115,6 +123,7 @@
             text += '</ul>';
             return text;
         }
+
 
         /**
          * Show number of results in header as well as append the list of

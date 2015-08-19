@@ -1,6 +1,8 @@
 <script type="text/javascript">
     $(function()
     {
+        'use strict';
+
         // NOTE: If you change these constants, you have to change the button
         // string defined in results.blade.php too.
         var ADD = "Add This!";
@@ -39,10 +41,11 @@
          * @param add    The class to add
          * @param text   The text to replace on the button
          */
-        function changeButton(button, remove, add, text) {
+        function changeButton(button, remove, add, text, action) {
             button.removeClass(remove);
             button.addClass(add);
             button.text(text);
+            button.data('action', action);
         }
 
         /**
@@ -81,7 +84,7 @@
             var $className = $(this).data('class-name');
 
             // "Add to cart" is clicked
-            if($(this).text().trim() == ADD) {
+            if($(this).data('action') === 'add') {
                 $.ajax({
                     type: 'post',
                     url: '{{ URL('schedulizer/add') }}',
@@ -94,7 +97,8 @@
                 }).done(function(data){
                     // If the code is 1, it indicates that the class was
                     // successfully added to cart, so change the button to red,
-                    // change the text, and flash a success notification
+                    // change the text, flash a success notification, and change
+                    // the data attribute to remove
                     if(data.code === 1) {
                         notification(data.message, 'success');
 
@@ -103,12 +107,14 @@
                             $localThis,
                             'btn-material-yellow-600 mdi-content-add-circle-outline',
                             'btn-danger mdi-content-remove-circle-outline',
-                            '\n' + REMOVE
+                            '\n' + REMOVE,
+                            'remove'
                         );
                     } else if (data.code === 0) {
                         // If the code is 0, it indicates that the item already
                         // exists in the cart, so change the button to red,
-                        // change the text, and flash an error message
+                        // change the text, flash an error message, and change
+                        // the data attribute to remove
                         notification(data.message, 'error');
 
                         // Change the button to the "Remove Me!" style
@@ -116,7 +122,8 @@
                             $localThis,
                             'btn-material-yellow-600 mdi-content-add-circle-outline',
                             'btn-danger mdi-content-remove-circle-outline',
-                            '\n' + REMOVE
+                            '\n' + REMOVE,
+                            'remove'
                         );
                     } else {
                         notification(data.message, 'error');
@@ -125,7 +132,7 @@
                 });
                 return false;
             // "Remove from cart" is clicked
-            } else if($(this).text().trim() == REMOVE){
+            } else if($(this).data('action') === 'remove'){
                 $.ajax({
                     type: 'post',
                     url: '{{ URL('schedulizer/remove') }}',
@@ -138,7 +145,8 @@
                 }).done(function(data){
                     // If the code is 1, it indicates that the class was
                     // successfully removed from the cart, so change the button
-                    // back to yellow, change the text, and flash a success notif
+                    // back to yellow, change the text, flash a success notif,
+                    // and change the data attribute to add
                     if(data.code === 1) {
                         notification(data.message, 'success');
 
@@ -147,12 +155,14 @@
                             $localThis,
                             'btn-danger mdi-content-remove-circle-outline',
                             'btn-material-yellow-600 mdi-content-add-circle-outline',
-                            '\n' + ADD
+                            '\n' + ADD,
+                            'add'
                         );
                     } else if(data.code === 0) {
                         // If the code is 0, it indicates that the class was not
                         // found in the cart, so change the button to yellow,
-                        // change the text, and flash an error message
+                        // change the text, flash an error message, and change
+                        // the data attribute to add
                         notification(data.message, 'error');
 
                         // Change the button to the "Add Me!" style
@@ -160,7 +170,8 @@
                             $localThis,
                             'btn-danger mdi-content-remove-circle-outline',
                             'btn-material-yellow-600 mdi-content-add-circle-outline',
-                            '\n' + ADD
+                            '\n' + ADD,
+                            'add'
                         );
                     } else {
                         // Something else went wrong, and it shouldn't happen,
