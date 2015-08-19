@@ -142,22 +142,37 @@
                 text = formatList(result);
                 $("#classes").html(text);
                 updateIndexOfSchedule();
-                new PNotify({
-                    text: result.message,
-                    type: 'info',
-                    animation: 'slide',
-                    delay: 3000,
-                    min_height: "16px",
-                    animate_speed: 400,
-                    text_escape: true,
-                    nonblock: {
-                        nonblock: true,
-                        nonblock_opacity: .1
-                    },
-                    buttons: {
-                        show_on_nonblock: true
-                    }
-                });
+                if(data.quantity === 0) {
+                    notification(result.message, 'error');
+                } else {
+                    notification(result.message, 'success');
+                }
+            });
+        }
+
+        /**
+         * PNotification to indicate the status of a class
+         * @param text The text to display on the notification
+         * @param type The type of notification (success.. error.. etc)
+         *
+         * PNotification to indicate the status of a class
+         */
+        function notification(text, type) {
+            new PNotify({
+                text: text,
+                type: type,
+                animation: 'slide',
+                delay: 3000,
+                min_height: "16px",
+                animate_speed: 400,
+                text_escape: true,
+                nonblock: {
+                    nonblock: true,
+                    nonblock_opacity: .1
+                },
+                buttons: {
+                    show_on_nonblock: true
+                }
             });
         }
 

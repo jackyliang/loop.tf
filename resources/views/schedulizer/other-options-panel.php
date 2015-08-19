@@ -16,5 +16,8 @@
                 <input id="cc-checkbox" type="checkbox"> Show Only University City Campus
             </label>
         </div>
+        <a id="refresh" class="btn refresh btn-xs btn-flat btn-primary mdi-navigation-check">
+            Apply Filters
+        </a>
     </div>
 </div>

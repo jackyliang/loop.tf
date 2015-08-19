@@ -277,12 +277,16 @@ class SchedulizerController extends Controller {
         // Number of schedules generated
         $numOfSchedules = count($listOfSchedules);
 
+        $message = ($numOfSchedules === 0 ?
+            'No schedules were generated' :
+            'I have generated ' . $numOfSchedules . ' schedules for you');
+
         return Response::json(array(
                 'success' => true,
                 'code' => 1,
                 'quantity' => $numOfSchedules,
                 'classes' => $listOfSchedules,
-                'message' => $numOfSchedules . ($numOfSchedules === 1 ? ' schedule was generated' : ' schedules were generated')
+                'message' => $message
             )
         );
     }
