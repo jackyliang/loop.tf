@@ -132,7 +132,6 @@
                 result = data;
                 text = formatList(result);
                 $("#classes").html(text);
-                $("#num-results").html(result.message);
                 updateIndexOfSchedule();
                 new PNotify({
                     text: result.message,

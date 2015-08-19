@@ -4,9 +4,8 @@
     </div>
     <div id="schedule" class="panel-body panel-options">
         <div class="btn-group">
-            {{-- TODO: Dynamically increment and decrement buttons --}}
-            <a data-direction="left" class="btn btn-default"><</a>
-            <a data-direction="right" class="btn btn-default">></a>
+            <a data-direction="left" class="btn btn-default mdi-hardware-keyboard-arrow-left"></a>
+            <a data-direction="right" class="btn btn-default mdi-hardware-keyboard-arrow-right"></a>
         </div>
         <div id="calendar"></div>
     </div>

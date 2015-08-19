@@ -15,6 +15,7 @@
                 handleWindowResize: true,
                 weekends: false,
                 defaultView: 'agendaWeek',
+                header: false,
 
                 events: [{
                     start: '2015-08-26',

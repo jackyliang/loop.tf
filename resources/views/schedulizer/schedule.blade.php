@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="page-heading-results">
-        <h1>Schedule
+        <h1>Your Schedule
             <a id="refresh" class="btn btn-xs btn-flat btn-primary">
                 <span
                         class="mdi-notification-sync"
@@ -14,6 +14,8 @@
                 </span>
             </a>
         </h1>
+
+        @include('schedulizer.cart-fixed-button')
         <p
             id="num-results" class="text-muted">
         </p>
