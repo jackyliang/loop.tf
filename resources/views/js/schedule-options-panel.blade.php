@@ -29,6 +29,11 @@
         // Updates the URL to query the generated schedule API
         var url = getUpdatedURL();
 
+        $('#refresh').on('click', function(){
+            updateResults();
+
+        });
+
         /**
          * Updates the dropdown text for 'from'
          **/
@@ -57,35 +62,30 @@
             // TODO: Figure out a way to this without calling getUpdatedURL()
             // and updateResults() five times
             getUpdatedURL();
-            updateResults();
         });
 
         // Get the military time for 'from'
         $('#from li a').on('click', function(){
             from = $(this).data('military');
             getUpdatedURL();
-            updateResults();
         });
 
         // Get the military time for 'to'
         $('#to li a').on('click', function(){
             to = $(this).data('military');
             getUpdatedURL();
-            updateResults();
         });
 
         // Show full classes or not
         $('#full').change(function(){
             full = $("#full-checkbox").is(':checked') ? 1 : 0 ;
             getUpdatedURL();
-            updateResults();
         });
 
         // Show only University City classes or not
         $('#cc').change(function(){
             campus = $("#cc-checkbox").is(':checked') ? 1 : 0 ;
             getUpdatedURL();
-            updateResults();
         });
 
         /**
@@ -133,11 +133,39 @@
                 text = formatList(result);
                 $("#classes").html(text);
                 $("#num-results").html(result.message);
+                updateIndexOfSchedule();
+                new PNotify({
+                    text: result.message,
+                    type: 'info',
+                    animation: 'slide',
+                    delay: 3000,
+                    min_height: "16px",
+                    animate_speed: 400,
+                    text_escape: true,
+                    nonblock: {
+                        nonblock: true,
+                        nonblock_opacity: .1
+                    },
+                    buttons: {
+                        show_on_nonblock: true
+                    }
+                });
             });
         }
 
         // Update the results on page-load
         updateResults();
+
+        /**
+         * Updates the title text of the schedule
+         **/
+        function updateIndexOfSchedule(){
+            if(result.quantity === 0) {
+                $("#schedule-panel-title").html('Schedule');
+            } else {
+                $("#schedule-panel-title").html('Schedule ' + (index + 1) + ' of ' + result.quantity);
+            }
+        }
 
         /**
          * Button behaviors for cycling through the generated schedules
@@ -162,6 +190,8 @@
             }
             // Add hash.
             window.location.hash = '#' + (index + 1);
+
+            updateIndexOfSchedule();
 
             text = formatList(result);
             $("#classes").html(text);

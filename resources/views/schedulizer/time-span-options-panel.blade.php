@@ -1,6 +1,8 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="panel-title">Times You Don't Want Classes</h3>
+        <h3
+            class="panel-title">Times You Don't Want Classes
+        </h3>
     </div>
     <div class="panel-body panel-options">
         <div id="limit" class="checkbox">

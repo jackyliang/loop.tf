@@ -1,6 +1,6 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="panel-title">Schedule</h3>
+        <h3 id="schedule-panel-title" class="panel-title"></h3>
     </div>
     <div id="schedule" class="panel-body panel-options">
         <div class="btn-group">
