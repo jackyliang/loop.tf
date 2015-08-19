@@ -21,7 +21,15 @@ class Generate {
      * @param $zones
      * @return array
      */
-    public function multiply($course_1, $course_combos, $limit, $zones) {
+    public function multiply(
+        $course_1,
+        $course_combos,
+        $limit,
+        $from,
+        $to,
+        $campus,
+        $full
+    ) {
         $combined = array();
         $new_combos = array();
         $count = 0;
@@ -29,9 +37,10 @@ class Generate {
         #array course_1 making each element an array of its own
         if (empty($course_combos)) {
             for ($i = 0; $i < count($course_1); $i = $i + 1) {
-                if ($this->compareDays($limit, $course_1[$i]->days) == false)
-                    if ($this->checkTimezoneOverlap($course_1[$i], $zones) == false)
-                        array_push($new_combos, array($course_1[$i]));
+                if ($this->timeDayConstraint($course_1[$i], $limit, $from, $to) == true)
+                    if ($this->campusCheck($campus, $course_1[$i]) == true)
+                        if ($this->closedCheck($full, $course_1[$i]) == true)
+                            array_push($new_combos, array($course_1[$i]));
             }
             $count = 1;
         } else {
@@ -40,11 +49,13 @@ class Generate {
                     #If there is no overlap between elements in the array
                     #and the new element push it into the array
                     if ($this->overlap($course_combos[$i], $course_1[$j]) == false) {
-                        if ($this->compareDays($limit, $course_1[$j]->days) == false) {
-                            if ($this->checkTimezoneOverlap($course_1[$j], $zones) == false) {
-                                array_push($new_combos, $course_combos[$i]);
-                                array_push($new_combos[$count], $course_1[$j]);
-                                $count = $count + 1;
+                        if ($this->timeDayConstraint($course_1[$j],$limit,$from,$to) == true) {
+                            if ($this->campusCheck($campus, $course_1[$j]) == true){
+                                if ($this->closedCheck($campus, $course_1[$j]) ==true) {
+                                    array_push($new_combos, $course_combos[$i]);
+                                    array_push($new_combos[$count], $course_1[$j]);
+                                    $count = $count + 1;
+                                }
                             }
                         }
                     }
@@ -60,59 +71,59 @@ class Generate {
     }
 
     /**
-     * Check whether classes fall into a particular timezone
+     * Determines whether a class falls in or out of the time and day constraints
+     * set by the user
      * @param $course
-     * @param $zone
+     * @param $limit
+     * @param $from
+     * @param $to
      * @return bool
      */
-    public function checkTimezoneOverlap($course, $zone) {
-        if ($course->times == "") {
+    function timeDayConstraint($course, $limit, $from, $to) {
+        if ($this->compareDays($limit, $course->days) == false)
+            return true;
+        elseif ($from == "" || $to == "")
             return false;
-        }
-        $start1 = $this->convert(explode(" - ", $course->times)[0]);
-        $end1 = $this->convert(explode(" - ", $course->times)[1]);
-        // Documentation for the time zones
-        // M - morning
-        // A - afternoon
-        // N - night
-        if ($zone == "M") {
-            $start2 = 1200;
-            $end2 = 2400;
-            return $this->timeOverlap($start1, $end1, $start2, $end2);
-        } elseif ($zone == "AN") {
-            $start2 = 800;
-            $end2 = 1150;
-            return $this->timeOverlap($start1, $end1, $start2, $end2);
-        } elseif ($zone == "N") {
-            $start2 = 800;
-            $end2 = 1750;
-            return $this->timeOverlap($start1, $end1, $start2, $end2);
-        } elseif ($zone == "MN") {
-            $start2 = 1200;
-            $end2 = 1750;
-            return $this->timeOverlap($start1, $end1, $start2, $end2);
-        } elseif ($zone == "MA") {
-            $start2 = 1800;
-            $end2 = 2400;
-            return $this->timeOverlap($start1, $end1, $start2, $end2);
-        } elseif ($zone == "A") {
-            $start2 = 800;
-            $end2 = 1150;
-            $start3 = 1800;
-            $end3 = 2400;
-            if ($this->timeOverlap($start1, $end1, $start2, $end2) == false) {
-                if (($this->timeOverlap($start1, $end1, $start3, $end3) == false)) {
-                    return false;
-                }
-                else {
-                    return true;
-                }
-            } else {
+        else {
+            $start = $this->convert(explode(" - ", $course->times)[0]);
+            $end = $this->convert(explode(" - ", $course->times)[1]);
+            if ($this->timeOverlap($start, $end, $from, $to) == false)
                 return true;
-            }
-        } else {
-            return false;
+            else
+                return false;
         }
+    }
+
+    /**
+     * Determines whether a class falls into the user-defined campuses
+     * @param $campus
+     * @param $course
+     * @return bool
+     */
+    function campusCheck($campus, $course) {
+        if ($campus == 0 || $campus == "")
+            return true;
+        elseif ($campus == 1 && $course->campus == "University City")
+            return true;
+        elseif ($course->campus == "" || $course->campus == "TBD")
+            return true;
+        else return false;
+    }
+
+    /**
+     * Determines whether a class is under a full/closed section or not
+     * @param $close
+     * @param $course
+     * @return bool
+     */
+    function closedCheck($close, $course) {
+        if ($close == 1 || $close == "")
+            return true;
+        elseif ($course->enrollment != "CLOSED")
+            return true;
+        elseif ($course->enrollment == "" || $course->enrollment == "TBD")
+            return true;
+        else return false;
     }
 
     /**

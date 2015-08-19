@@ -18,13 +18,13 @@
          * 'to'     - to what time you don't want classes. Default - 12 PM
          * 'limit'   - days you don't want classes. Default - none
          * 'full'   - include full classes. Default - true
-         * 'cc'     - show only center city campus classes. Default - true
+         * 'campus'     - show only university city campus classes. Default - true
          **/
         var from = 1000;
         var to = 1200;
         var limit = '';
         var full = 1;
-        var cc = 1;
+        var campus = 0;
 
         // Updates the URL to query the generated schedule API
         var url = getUpdatedURL();
@@ -81,9 +81,9 @@
             updateResults();
         });
 
-        // Show only Center City classes or not
+        // Show only University City classes or not
         $('#cc').change(function(){
-            cc = $("#cc-checkbox").is(':checked') ? 1 : 0 ;
+            campus = $("#cc-checkbox").is(':checked') ? 1 : 0 ;
             getUpdatedURL();
             updateResults();
         });
@@ -92,7 +92,7 @@
          * Updates the global URL that's used to query the class generation API
          */
         function getUpdatedURL() {
-            url = '{{ URL('schedulizer/generate') }}' + '?from=' + from + '&to=' + to + '&limit=' + limit + '&full=' + full + '&cc=' + cc;
+            url = '{{ URL('schedulizer/generate') }}' + '?from=' + from + '&to=' + to + '&limit=' + limit + '&full=' + full + '&campus=' + campus;
             return url;
         }
 
@@ -104,7 +104,7 @@
          */
         function formatList(result) {
             if(result.quantity === 0) {
-                return 'Add some classes on the top right corner first!';
+                return 'Either no filters matched your requirements or your cart is empty!';
             }
             // Build the unordered list of classes with their name and CRN
             var text = '';

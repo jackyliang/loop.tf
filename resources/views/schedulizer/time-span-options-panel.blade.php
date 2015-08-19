@@ -38,7 +38,6 @@
         </div>
         to
         <div class="btn-group">
-            {{-- TODO: Attribute military time values --}}
             <a id="to-text" class="btn btn-default">12:00 PM</a>
             <a
                 class="btn btn-default dropdown-toggle"

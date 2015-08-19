@@ -144,7 +144,10 @@ class SchedulizerController extends Controller {
         // Validate the inputs
         $validator = Validator::make($data, [
             'limit' => 'max:5|regex:/^[\pL\s]+$/u', // Alphabet only. Max 5 items
-            'tz' => 'max:2|regex:/^[\pL\s]+$/u' // Alphabet only. Max 2 items
+            'from' => 'numeric', // to - time. Integers only
+            'to' => 'numeric', // to - time. Integers only
+            'campus' => 'integer', // campuses. Alphabets only
+            'full' => 'integer' // include full classes (closed == full). Alphabet only
         ]);
 
         // Throw message if not validated
@@ -167,12 +170,31 @@ class SchedulizerController extends Controller {
             $limit = Input::get('limit');
         }
 
-        // Choose what timezones to have classes in ex (MA = Mornings and Afternoons)
-        // If it doesn't matter leave it blank
-        $zones = '';
-        if (Input::has('tz'))
+        // The 'from' time of the event
+        $from = '';
+        if(Input::has('from'))
         {
-            $zones = Input::get('tz');
+            $from = Input::get('from');
+        }
+
+        // The 'to' time of the event
+        $to = '';
+        if (Input::has('to'))
+        {
+            $to = Input::get('to');
+        }
+
+        // Show only center city campuses
+        $campus = '';
+        if (Input::has('campus'))
+        {
+            $campus = Input::get('campus');
+        }
+
+        $full = '';
+        if (Input::has('full'))
+        {
+            $full = Input::get('full');
         }
 
         // The array of detailed course information that contains the CRN,
@@ -211,8 +233,16 @@ class SchedulizerController extends Controller {
             // type.
             $section = array();
             foreach($courses as $course) {
-                // Create a new class with the name, day, time, and CRN
-                $oneCourse = new Course($key, $course['day'], $course['time'], $course['crn']);
+                // Create a new class with the name, day, time, CRN, campus, and
+                // enroll
+                $oneCourse = new Course(
+                    $key,
+                    $course['day'],
+                    $course['time'],
+                    $course['crn'],
+                    $course['campus'],
+                    $course['enroll']
+                );
 
                 // Push the class to the sections array
                 array_push($section, $oneCourse);
@@ -228,8 +258,15 @@ class SchedulizerController extends Controller {
 
         // Permutate and generate the classes
         for ($i = 0; $i < count($list); $i++) {
-            $listOfSchedules = $generate->multiply($list[$i], $listOfSchedules, $limit, $zones);
+            $listOfSchedules = $generate->multiply($list[$i], $listOfSchedules, $limit, $from, $to, $campus, $full);
         }
+
+        $listOfSchedulesFinal = array();
+        for ($i = 0; $i < count($listOfSchedules); $i = $i + 1)
+            if (count($listOfSchedules[$i]) == count($list))
+                array_push($listOfSchedulesFinal, $listOfSchedules[$i]);
+
+        $listOfSchedules = $listOfSchedulesFinal;
 
         // Number of schedules generated
         $numOfSchedules = count($listOfSchedules);

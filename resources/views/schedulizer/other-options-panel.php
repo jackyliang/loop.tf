@@ -10,7 +10,7 @@
         </div>
         <div id="cc" class="checkbox">
             <label>
-                <input id="cc-checkbox" type="checkbox" checked=""> Show Only Center City Campus
+                <input id="cc-checkbox" type="checkbox"> Show Only University City Campus
             </label>
         </div>
     </div>
