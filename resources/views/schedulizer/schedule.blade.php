@@ -16,9 +16,6 @@
         </h1>
 
         @include('schedulizer.cart-fixed-button')
-        <p
-            id="num-results" class="text-muted">
-        </p>
     </div>
 
     <div class="col-md-4">
@@ -27,7 +24,7 @@
         @include('schedulizer.other-options-panel')
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-8 col-centered">
         @include('schedulizer.schedule-panel')
     </div>
 

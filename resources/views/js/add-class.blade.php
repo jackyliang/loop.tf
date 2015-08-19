@@ -47,12 +47,10 @@
 
         /**
          * Get and change the cart quantity
-         * TODO: Refactor this and views/js/cart-quantity.blade.php
          */
         function getCartQuantity() {
             $('#jewel').text('');
             $.getJSON("{{ url('schedulizer/cart') }}", function(data) {
-
                 if(data.quantity > 0) {
                     $('#jewel')
                             .show("slide", { direction: "up" }, 300)
@@ -65,20 +63,32 @@
             });
         }
 
-        /*
-         * TODO: documentation
-         */
+        // Get the cart quantity on page load and display the notification
+        // jewel
+        getCartQuantity();
+
+        /**
+         * Performs the add/remove action, the resulting notification prompts and
+         * button visual characteristics
+         *
+         * It POSTs to the cart API to add/remove from cart, and there are a
+         * set of conditions that are set which are better explained in the docs
+         * for the API under /app/Http/Controllers/SchedulizerController.php in
+         * the add() and remove() method
+         **/
         $('.btn-material-yellow-600').click(function(){
             var $localThis = $(this);
             var $className = $(this).data('class-name');
 
+            // "Add to cart" is clicked
             if($(this).text().trim() == ADD) {
                 $.ajax({
                     type: 'post',
                     url: '{{ URL('schedulizer/add') }}',
                     data: {
                         "class": $className,
-                        _token: "{{ csrf_token() }}"
+                        _token: "{{ csrf_token() }}" // Laravel needs a csrf
+                                                     // token for all POSTs
                     },
                     dataType: 'json'
                 }).done(function(data){
@@ -114,13 +124,15 @@
                     getCartQuantity();
                 });
                 return false;
+            // "Remove from cart" is clicked
             } else if($(this).text().trim() == REMOVE){
                 $.ajax({
                     type: 'post',
                     url: '{{ URL('schedulizer/remove') }}',
                     data: {
                         "class": $className,
-                        _token: "{{ csrf_token() }}"
+                        _token: "{{ csrf_token() }}" // Laravel needs a csrf
+                                                     // token for all POST
                     },
                     dataType: 'json'
                 }).done(function(data){

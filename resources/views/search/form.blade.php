@@ -21,5 +21,4 @@
 
 @include('js.classes-autocomplete')
 @include('js.add-class')
-@include('js.cart-quantity')
 @include('js.select-all')
