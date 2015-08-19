@@ -3,7 +3,7 @@
         <h3 class="panel-title">Times You Don't Want Classes</h3>
     </div>
     <div class="panel-body panel-options">
-        <div id="days" class="checkbox">
+        <div id="limit" class="checkbox">
             <label>
                 <input data-date="M" type="checkbox"> Mon
             </label>

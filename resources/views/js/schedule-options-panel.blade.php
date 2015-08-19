@@ -16,13 +16,13 @@
          * It contains:
          * 'from'   - from what time you don't want classes. Default - 10 AM
          * 'to'     - to what time you don't want classes. Default - 12 PM
-         * 'days'   - days you don't want classes. Default - none
+         * 'limit'   - days you don't want classes. Default - none
          * 'full'   - include full classes. Default - true
          * 'cc'     - show only center city campus classes. Default - true
          **/
         var from = 1000;
         var to = 1200;
-        var days = '';
+        var limit = '';
         var full = 1;
         var cc = 1;
 
@@ -49,11 +49,11 @@
         * show only center city campus
         **/
         // Generates the 'days' string i.e. MWF
-        $("#days").change(function(){
+        $("#limit").change(function(){
             var searchIDs = $("input:checkbox:checked").map(function(){
                 return $(this).data('date');
             }).toArray();
-            days = searchIDs.join('');
+            limit = searchIDs.join('');
             // TODO: Figure out a way to this without calling getUpdatedURL()
             // and updateResults() five times
             getUpdatedURL();
@@ -92,7 +92,7 @@
          * Updates the global URL that's used to query the class generation API
          */
         function getUpdatedURL() {
-            url = '{{ URL('schedulizer/generate') }}' + '?from=' + from + '&to=' + to + '&days=' + days + '&full=' + full + '&cc=' + cc;
+            url = '{{ URL('schedulizer/generate') }}' + '?from=' + from + '&to=' + to + '&limit=' + limit + '&full=' + full + '&cc=' + cc;
             return url;
         }
 
