@@ -15,13 +15,15 @@ class Course {
     public $crn;
     public $campus;
     public $enrollment;
+    public $short_name;
 
-    public function __construct($name, $days, $times, $crn, $campus, $full) {
+    public function __construct($name, $days, $times, $crn, $campus, $full, $shortName) {
         $this->name = $name;
         $this->days = $days;
         $this->times = $times;
         $this->crn = $crn;
         $this->campus = $campus;
         $this->enrollment = $full;
+        $this->short_name = $shortName;
     }
 }

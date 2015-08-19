@@ -246,7 +246,8 @@ class SchedulizerController extends Controller {
                     $course['time'],
                     $course['crn'],
                     $course['campus'],
-                    $course['enroll']
+                    $course['enroll'],
+                    $course['short_name']
                 );
 
                 // Push the class to the sections array

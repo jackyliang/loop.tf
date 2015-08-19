@@ -110,7 +110,7 @@
             var text = '';
             text += '<ul class="list-group">';
             for (i = 0; i < result.classes[index].length; i++) {
-                text += '<li class="list-group-item">' + result.classes[index][i]['name'] + ' (' + result.classes[index][i]['crn'] + ')</li>';
+                text += '<li class="list-group-item">' + result.classes[index][i]['short_name'] + ' (' + result.classes[index][i]['crn'] + ')</li>';
             }
             text += '</ul>';
             return text;
