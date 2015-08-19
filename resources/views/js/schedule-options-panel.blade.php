@@ -193,7 +193,7 @@
         /**
          * Button behaviors for cycling through the generated schedules
          */
-        $('.btn.btn-default').click(function(e) {
+        $('.btn.btn-default.toggle-schedules').click(function(e) {
             // Prevent the page redirect to another page, as you have href on it.
             // Or you can remove the href on the anchors.
             e.preventDefault();
