@@ -9,7 +9,8 @@
         <h1>Results</h1>
         <p
             class="text-muted">
-            About {{ $classCount }} results last updated {{ $lastUpdated }}
+            About {{ $classCount }} {{$classCount === 1 ? ' result' : ' results'}} last updated {{ $lastUpdated }}
+
         </p>
     </div>
 

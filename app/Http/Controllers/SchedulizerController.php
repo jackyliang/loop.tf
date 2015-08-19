@@ -58,8 +58,13 @@ class SchedulizerController extends Controller {
         // Generate the time span increments of 30 minutes
         $timeIncrements = $this->time_span();
 
-        // TODO: Fix the `q` key for search queries
-        $term = $request->input('q');
+        // Get the last queried item and save it to session
+        // This is used when cycling between the 'Schedule' and 'Results' page
+        $term = '';
+        if(Session::has('q')){
+            $query = Session::get('q');
+            $term = $query;
+        }
 
         return view('schedulizer.schedule', compact('timeIncrements', 'term'));
     }
@@ -158,7 +163,7 @@ class SchedulizerController extends Controller {
                 'code' => -1,
                 'quantity' => 0,
                 'classes' => [],
-                'message' => 'Stop trying to test my API'
+                'message' => 'Something went wrong! The code monkeys are on it. Try refreshing the page in the mean time.'
             ));
         }
 
@@ -502,6 +507,10 @@ class SchedulizerController extends Controller {
             ->orderBy('course_no')
             ->limit('100')
             ->get();
+
+        // Store the query into session so when user cycles between the Results
+        // and Schedule page, the search results are saved
+        Session::put('q', $term);
 
         // Set default last updated string
         $lastUpdated = "0 minutes ago";

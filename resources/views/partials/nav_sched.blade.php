@@ -14,14 +14,14 @@
             <ul class="nav navbar-nav">
                 <li class="{{ Request::is('schedulizer/search') ? 'active' : '' }}"><a href="{{ url('/schedulizer/search') }}">Search</a></li>
                 @if(Request::is('schedulizer/results') || Request::is('schedulizer/schedule'))
-                    <li class="{{ Request::is('schedulizer/results') ? 'active' : '' }}"><a href="{{ url('/schedulizer/results') }}">Results</a></li>
+                    <li class="{{ Request::is('schedulizer/results') ? 'active' : '' }}"><a href="{{ url('/schedulizer/results') }}?q={{ $term }}">Results</a></li>
                     <li class="{{ Request::is('schedulizer/schedule') ? 'active' : '' }}"><a href="{{ url('/schedulizer/schedule') }}">Schedule</a></li>
                 @endif
             </ul>
 
             {{-- Show search bar if we're in the results page --}}
             <ul class="nav navbar-nav navbar-right">
-                @if(Request::is('schedulizer/results'))
+                @if(Request::is('schedulizer/results') || Request::is('schedulizer/schedule'))
                     @include('search.form')
                 @endif
             </ul>
