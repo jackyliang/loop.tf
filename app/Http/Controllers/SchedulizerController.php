@@ -36,7 +36,7 @@ class SchedulizerController extends Controller {
         $tempStandardTime = array();
 
         $start = "07:00";
-        $end = "24:00";
+        $end = "23:30";
 
         $tStart = strtotime($start);
         $tEnd = strtotime($end);

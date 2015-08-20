@@ -29,6 +29,12 @@
         // Updates the URL to query the generated schedule API
         var url = getUpdatedURL();
 
+        var date = new Date();
+
+        /**
+         * End FullCalendar Code
+         **/
+
         $('#refresh').on('click', function(){
             updateResults();
         });
@@ -142,12 +148,119 @@
                 text = formatList(result);
                 $("#classes").html(text);
                 updateIndexOfSchedule();
+                // Render the calendar on page-load
+                renderCalendar(index);
                 if(data.quantity === 0) {
                     notification(result.message, 'error');
                 } else {
                     notification(result.message, 'success');
                 }
             });
+        }
+
+
+        function renderCalendar(index) {
+
+            var myDataset = result;
+
+            $('#calendar').fullCalendar({
+                editable: false,
+                weekMode: 'liquid',
+                handleWindowResize: true,
+                weekends: false, // Hide weekends
+                defaultView: 'agendaWeek', // Only show week view
+                header: false, // Hide buttons/titles
+                minTime: '07:00:00', // Start time for the calendar
+                columnFormat: {
+                    week: 'dddd' // Only show day of the week names
+                }
+            });
+
+            function GetDateString(myDate){
+                // GET CURRENT DATE
+                var date = new Date(myDate);
+
+                // GET YYYY, MM AND DD FROM THE DATE OBJECT
+                var yyyy = date.getFullYear().toString();
+                var mm = (date.getMonth()+1).toString();
+                var dd  = date.getDate().toString();
+
+                // CONVERT mm AND dd INTO chars
+                var mmChars = mm.split('');
+                var ddChars = dd.split('');
+
+                // CONCAT THE STRINGS IN YYYY-MM-DD FORMAT
+                var datestring = yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
+
+                return datestring;
+            }
+
+            // Clear all events to prepare for the next set of events.
+            $('#calendar').fullCalendar('removeEvents');
+
+            $('#calendar').fullCalendar('addEventSource',
+                    function(start, end, timezone, callback) {
+                        var events = [];
+
+                        for (loop = start.toDate().getTime(); loop <= end.toDate().getTime(); loop = loop + (24 * 60 * 60 * 1000)) {
+                            var test_date = new Date(loop);
+                            var obj = myDataset.classes[index];
+
+                            for (j = 0; j < obj.length; j++) {
+
+                                var days = obj[j].days;
+                                if(days === 'TBD') {
+                                    continue;
+                                }
+                                var times = obj[j].times.split('-');
+                                var daysArray = days.split('');
+
+                                for (k = 0; k < daysArray.length; k++) {
+
+                                    var startDate = GetDateString(loop) + ' ' + times[0].trim();
+                                    var endDate = GetDateString(loop) + ' ' + times[1].trim();
+
+
+                                    if (daysArray[k] == 'M' && test_date.is().monday()) {
+                                        events.push({
+                                            title: obj[j].name,
+                                            start: startDate,
+                                            end: endDate
+                                        });
+                                    } else if (daysArray[k] == 'T' && test_date.is().tuesday()) {
+                                        events.push({
+                                            title: obj[j].name,
+                                            start: startDate,
+                                            end: endDate
+                                        });
+                                    } else if (daysArray[k] == 'W' && test_date.is().wednesday()) {
+                                        events.push({
+                                            title: obj[j].name,
+                                            start: startDate,
+                                            end: endDate
+                                        });
+                                    } else if (daysArray[k] == 'R' && test_date.is().thursday()) {
+                                        events.push({
+                                            title: obj[j].name,
+                                            start: startDate,
+                                            end: endDate
+                                        });
+                                    } else if (daysArray[k] == 'F' && test_date.is().friday()) {
+                                        events.push({
+                                            title: obj[j].name,
+                                            start: startDate,
+                                            end: endDate
+                                        });
+                                    }
+                                }
+//
+
+                            }
+                        }
+                        // return events generated
+                        callback(events);
+                    }
+            );
         }
 
         /**
@@ -218,6 +331,8 @@
 
             text = formatList(result);
             $("#classes").html(text);
+
+            renderCalendar(index);
         });
     });
 </script>
