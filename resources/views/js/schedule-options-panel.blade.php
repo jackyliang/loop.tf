@@ -158,7 +158,6 @@
             });
         }
 
-
         function renderCalendar(index) {
 
             var myDataset = result;
@@ -199,67 +198,66 @@
             $('#calendar').fullCalendar('removeEvents');
 
             $('#calendar').fullCalendar('addEventSource',
-                    function(start, end, timezone, callback) {
-                        var events = [];
+                function(start, end, timezone, callback) {
+                    var events = [];
 
-                        for (loop = start.toDate().getTime(); loop <= end.toDate().getTime(); loop = loop + (24 * 60 * 60 * 1000)) {
-                            var test_date = new Date(loop);
-                            var obj = myDataset.classes[index];
+                    for (loop = start.toDate().getTime(); loop <= end.toDate().getTime(); loop = loop + (24 * 60 * 60 * 1000)) {
+                        var test_date = new Date(loop);
+                        var obj = myDataset.classes[index];
 
-                            for (j = 0; j < obj.length; j++) {
+                        for (j = 0; j < obj.length; j++) {
 
-                                var days = obj[j].days;
-                                if(days === 'TBD') {
-                                    continue;
+                            var days = obj[j].days;
+                            if(days === 'TBD') {
+                                continue;
+                            }
+                            var times = obj[j].times.split('-');
+                            var daysArray = days.split('');
+
+                            for (k = 0; k < daysArray.length; k++) {
+
+                                var startDate = GetDateString(loop) + ' ' + times[0].trim();
+                                var endDate = GetDateString(loop) + ' ' + times[1].trim();
+
+                                if (daysArray[k] == 'M' && test_date.is().monday()) {
+                                    events.push({
+                                        title: obj[j].name,
+                                        start: startDate,
+                                        end: endDate
+                                    });
+                                } else if (daysArray[k] == 'T' && test_date.is().tuesday()) {
+                                    events.push({
+                                        title: obj[j].name,
+                                        start: startDate,
+                                        end: endDate
+                                    });
+                                } else if (daysArray[k] == 'W' && test_date.is().wednesday()) {
+                                    events.push({
+                                        title: obj[j].name,
+                                        start: startDate,
+                                        end: endDate
+                                    });
+                                } else if (daysArray[k] == 'R' && test_date.is().thursday()) {
+                                    events.push({
+                                        title: obj[j].name,
+                                        start: startDate,
+                                        end: endDate
+                                    });
+                                } else if (daysArray[k] == 'F' && test_date.is().friday()) {
+                                    events.push({
+                                        title: obj[j].name,
+                                        start: startDate,
+                                        end: endDate
+                                    });
                                 }
-                                var times = obj[j].times.split('-');
-                                var daysArray = days.split('');
-
-                                for (k = 0; k < daysArray.length; k++) {
-
-                                    var startDate = GetDateString(loop) + ' ' + times[0].trim();
-                                    var endDate = GetDateString(loop) + ' ' + times[1].trim();
-
-
-                                    if (daysArray[k] == 'M' && test_date.is().monday()) {
-                                        events.push({
-                                            title: obj[j].name,
-                                            start: startDate,
-                                            end: endDate
-                                        });
-                                    } else if (daysArray[k] == 'T' && test_date.is().tuesday()) {
-                                        events.push({
-                                            title: obj[j].name,
-                                            start: startDate,
-                                            end: endDate
-                                        });
-                                    } else if (daysArray[k] == 'W' && test_date.is().wednesday()) {
-                                        events.push({
-                                            title: obj[j].name,
-                                            start: startDate,
-                                            end: endDate
-                                        });
-                                    } else if (daysArray[k] == 'R' && test_date.is().thursday()) {
-                                        events.push({
-                                            title: obj[j].name,
-                                            start: startDate,
-                                            end: endDate
-                                        });
-                                    } else if (daysArray[k] == 'F' && test_date.is().friday()) {
-                                        events.push({
-                                            title: obj[j].name,
-                                            start: startDate,
-                                            end: endDate
-                                        });
-                                    }
-                                }
+                            }
 //
 
-                            }
                         }
-                        // return events generated
-                        callback(events);
                     }
+                    // return events generated
+                    callback(events);
+                }
             );
         }
 
