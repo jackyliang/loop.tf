@@ -164,7 +164,6 @@
 
             $('#calendar').fullCalendar({
                 editable: false,
-                weekMode: 'liquid',
                 handleWindowResize: true,
                 weekends: false, // Hide weekends
                 defaultView: 'agendaWeek', // Only show week view

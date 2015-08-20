@@ -51,7 +51,7 @@ class Generate {
                     if ($this->overlap($course_combos[$i], $course_1[$j]) == false) {
                         if ($this->timeDayConstraint($course_1[$j],$limit,$from,$to) == true) {
                             if ($this->campusCheck($campus, $course_1[$j]) == true){
-                                if ($this->closedCheck($campus, $course_1[$j]) ==true) {
+                                if ($this->closedCheck($full, $course_1[$j]) ==true) {
                                     array_push($new_combos, $course_combos[$i]);
                                     array_push($new_combos[$count], $course_1[$j]);
                                     $count = $count + 1;
