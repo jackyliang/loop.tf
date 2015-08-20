@@ -116,7 +116,7 @@
             }
             // Build the unordered list of classes with their name and CRN
             var text = '';
-            text += '<ul class="list-group">';
+            text += '<ul class="list-group class-cart">';
             for (i = 0; i < result.classes[index].length; i++) {
                 text += '<li class="list-group-item">' + result.classes[index][i]['short_name'] + ' (' + result.classes[index][i]['crn'] + ')</li>';
             }

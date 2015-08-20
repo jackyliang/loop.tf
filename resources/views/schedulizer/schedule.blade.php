@@ -4,7 +4,7 @@
     Schedule
 @stop
 
-@section('content')
+@section('schedule')
     <div class="page-heading-results">
         <h1>Your Schedule
 
@@ -13,13 +13,13 @@
         @include('schedulizer.cart-fixed-button')
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
         @include('schedulizer.classes-panel')
         @include('schedulizer.time-span-options-panel')
         @include('schedulizer.other-options-panel')
     </div>
 
-    <div class="col-md-8 col-centered">
+    <div class="col-md-9 col-centered">
         @include('schedulizer.schedule-panel')
     </div>
 

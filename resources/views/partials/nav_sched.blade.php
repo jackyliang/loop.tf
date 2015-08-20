@@ -13,10 +13,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="{{ Request::is('schedulizer/search') ? 'active' : '' }}"><a href="{{ url('/schedulizer/search') }}">Search</a></li>
-                @if(Request::is('schedulizer/results') || Request::is('schedulizer/schedule'))
-                    <li class="{{ Request::is('schedulizer/results') ? 'active' : '' }}"><a href="{{ url('/schedulizer/results') }}?q={{ $term }}">Results</a></li>
-                    <li class="{{ Request::is('schedulizer/schedule') ? 'active' : '' }}"><a href="{{ url('/schedulizer/schedule') }}">Schedule</a></li>
+                @if(Session::has('q'))
+                    <li class="{{ Request::is('schedulizer/results') ? 'active' : '' }}"><a href="{{ url('/schedulizer/results') }}?q={{ Session::get('q') }}">Results</a></li>
                 @endif
+                <li class="{{ Request::is('schedulizer/schedule') ? 'active' : '' }}"><a href="{{ url('/schedulizer/schedule') }}">Schedule</a></li>
             </ul>
 
             {{-- Show search bar if we're in the results page --}}
