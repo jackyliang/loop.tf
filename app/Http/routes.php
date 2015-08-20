@@ -34,6 +34,11 @@ Route::post('ugc/verify', 'UGCController@verify');
 Route::get('schedulizer/search', 'SchedulizerController@search');
 
 /**
+ * Schedulizer generated schedules
+ */
+Route::get('schedulizer/schedule', 'SchedulizerController@schedule');
+
+/**
  * Add class to session
  */
 Route::post('schedulizer/add', 'SchedulizerController@add');
@@ -46,7 +51,7 @@ Route::post('schedulizer/remove', 'SchedulizerController@remove');
 /**
  * API for classes generated
  */
-Route::get('schedulizer/schedules', 'SchedulizerController@generate');
+Route::get('schedulizer/generate', 'SchedulizerController@generate');
 
 /**
  * Clear the cart

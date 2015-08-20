@@ -213,4 +213,21 @@ h3.margin-class-name {
 .jewel:empty::before {
   left: 50%; }
 
+/* Remove the panel padding */
+.panel-body.panel-options {
+  padding: 15px; }
+
+.dropdown-menu.time-span {
+  max-height: 300px;
+  /*Provide height in pixels or in other units as per your layout*/
+  overflow-y: auto;
+  /*Provide an auto overflow to diaply scroll*/ }
+
+.btn.refresh {
+  float: right;
+  margin: 0px 0px; }
+
+.list-group.class-cart {
+  margin-bottom: 0px; }
+
 /*# sourceMappingURL=app.css.map */

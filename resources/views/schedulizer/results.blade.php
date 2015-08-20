@@ -9,7 +9,8 @@
         <h1>Results</h1>
         <p
             class="text-muted">
-            About {{ $classCount }} results last updated {{ $lastUpdated }}
+            About {{ $classCount }} {{$classCount === 1 ? ' result' : ' results'}} last updated {{ $lastUpdated }}
+
         </p>
     </div>
 
@@ -32,6 +33,7 @@
                         <h4>{{ $type }}
                             <a
                                 data-class-name="{{ $label }} {{ $type}}"
+                                data-action="add"
                                 class="btn btn-material-yellow-600 btn-xs
                                 btn-font-12-px btn-raised margin-add-to-cart
                                 mdi-content-add-circle-outline">

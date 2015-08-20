@@ -13,19 +13,17 @@ class Course {
     public $days;
     public $times;
     public $crn;
+    public $campus;
+    public $enrollment;
+    public $short_name;
 
-    public function __construct($name, $days, $times, $crn) {
+    public function __construct($name, $days, $times, $crn, $campus, $full, $shortName) {
         $this->name = $name;
         $this->days = $days;
         $this->times = $times;
         $this->crn = $crn;
-    }
-
-    public function print_course() {
-        echo "Name:$this->name\n";
-        echo "Days:$this->days\n";
-        echo "Times:$this->times\n";
-        echo "CRN:$this->crn\n";
-        echo "------------------------------\n";
+        $this->campus = $campus;
+        $this->enrollment = $full;
+        $this->short_name = $shortName;
     }
 }

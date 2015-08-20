@@ -33,7 +33,6 @@
 
     @include('errors.list')
     @include('js.classes-autocomplete')
-    @include('js.cart-quantity')
     @include('js.select-all')
 
 @stop
