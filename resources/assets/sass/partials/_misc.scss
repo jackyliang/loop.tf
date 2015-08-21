@@ -83,15 +83,15 @@
 
 /* Remove the header border from Schedule */
 .fc td, .fc th {
-  border-style: none;
-  border-width: 1px;
-  padding: 0;
-  vertical-align: top;
+  border-style: none !important;
+  border-width: 1px !important;
+  padding: 0 !important;
+  vertical-align: top !important;
 }
 
 /* Inherits background for each event from Schedule */
 .fc-event .fc-bg {
-  z-index: 1;
-  background: inherit;
-  opacity: .25;
+  z-index: 1 !important;
+  background: inherit !important;
+  opacity: .25 !important;
 }
