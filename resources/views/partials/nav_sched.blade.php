@@ -16,7 +16,20 @@
                 @if(Session::has('q'))
                     <li class="{{ Request::is('schedulizer/results') ? 'active' : '' }}"><a href="{{ url('/schedulizer/results') }}?q={{ Session::get('q') }}">Results</a></li>
                 @endif
-                <li class="{{ Request::is('schedulizer/schedule') ? 'active' : '' }}"><a href="{{ url('/schedulizer/schedule') }}">Schedule</a></li>
+                <li
+                    class="{{ Request::is('schedulizer/schedule') ? 'active' : '' }}"
+                >
+                    <a
+                        href="{{ url('/schedulizer/schedule') }}"
+                    >
+                    Schedule
+                        <li
+                            id="jewel"
+                            class="jewel"
+                        >
+                        </li>
+                    </a>
+                </li>
             </ul>
 
             {{-- Show search bar if we're in the results page --}}

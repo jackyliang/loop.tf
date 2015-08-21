@@ -160,6 +160,7 @@ h3.margin-class-name {
 .panel-body {
   padding: 0px; }
 
+/*  */
 #fixed-button {
   position: fixed;
   color: white;
@@ -197,8 +198,8 @@ h3.margin-class-name {
 .jewel {
   position: absolute;
   display: block;
-  top: 0px;
-  right: -15px;
+  top: 5px;
+  right: 5px;
   height: 16px;
   width: 16px;
   font-family: Tahoma, Verdana;
@@ -235,7 +236,7 @@ h3.margin-class-name {
 .list-group.class-cart {
   margin-bottom: 0px; }
 
-/* Remove that awful yellow color from today */
+/* Remove that awful yellow color and border from today in Schedule */
 .fc-today {
   opacity: 0;
   border: none; }
@@ -253,7 +254,7 @@ h3.margin-class-name {
   padding: 0 !important;
   vertical-align: top !important; }
 
-/* Inherits background for each event from Schedule */
+/* Inherits background for each event from Schedule. */
 .fc-event .fc-bg {
   z-index: 1 !important;
   background: inherit !important;
