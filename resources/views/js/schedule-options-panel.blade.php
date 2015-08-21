@@ -241,31 +241,31 @@
                                 if (daysArray[k] == 'M' && test_date.is().monday()) {
                                     console.log(startDate);
                                     events.push({
-                                        title: obj[j].name,
+                                        title: obj[j].short_name,
                                         start: startDate,
                                         end: endDate
                                     });
                                 } else if (daysArray[k] == 'T' && test_date.is().tuesday()) {
                                     events.push({
-                                        title: obj[j].name,
+                                        title: obj[j].short_name,
                                         start: startDate,
                                         end: endDate
                                     });
                                 } else if (daysArray[k] == 'W' && test_date.is().wednesday()) {
                                     events.push({
-                                        title: obj[j].name,
+                                        title: obj[j].short_name,
                                         start: startDate,
                                         end: endDate
                                     });
                                 } else if (daysArray[k] == 'R' && test_date.is().thursday()) {
                                     events.push({
-                                        title: obj[j].name,
+                                        title: obj[j].short_name,
                                         start: startDate,
                                         end: endDate
                                     });
                                 } else if (daysArray[k] == 'F' && test_date.is().friday()) {
                                     events.push({
-                                        title: obj[j].name,
+                                        title: obj[j].short_name,
                                         start: startDate,
                                         end: endDate
                                     });
