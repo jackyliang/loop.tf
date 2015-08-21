@@ -20,6 +20,7 @@
                     source: tags,
                     minLength: 2,
                     delay: 0,
+                    autoFocus: true,
                     select: function(event, ui) {
                         $('#q').val(ui.item.value);
                     }
