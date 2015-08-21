@@ -29,7 +29,11 @@
         // Updates the URL to query the generated schedule API
         var url = getUpdatedURL();
 
+        // FUllCalendar date initialization
         var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
 
         /**
          * End FullCalendar Code
@@ -164,15 +168,17 @@
 
             $('#calendar').fullCalendar({
                 editable: false,
-                weekMode: 'liquid',
                 handleWindowResize: true,
                 weekends: false, // Hide weekends
                 defaultView: 'agendaWeek', // Only show week view
                 header: false, // Hide buttons/titles
-                minTime: '07:00:00', // Start time for the calendar
+                minTime: '08:00:00', // Start time for the calendar
+                maxTime: '22:00:00', // End time for the calendar
                 columnFormat: {
                     week: 'dddd' // Only show day of the week names
-                }
+                },
+                displayEventTime: false,
+                allDayText: 'Online/TBD'
             });
 
             function GetDateString(myDate){
@@ -201,6 +207,11 @@
                 function(start, end, timezone, callback) {
                     var events = [];
 
+                    // Don't run the code if there is no data
+                    if(myDataset.classes.length === 0) {
+                        return;
+                    }
+
                     for (loop = start.toDate().getTime(); loop <= end.toDate().getTime(); loop = loop + (24 * 60 * 60 * 1000)) {
                         var test_date = new Date(loop);
                         var obj = myDataset.classes[index];
@@ -208,7 +219,15 @@
                         for (j = 0; j < obj.length; j++) {
 
                             var days = obj[j].days;
-                            if(days === 'TBD') {
+                            var campus = obj[j].campus;
+                            // TODO: Fix multiple events added to the same slot
+                            if(days === 'TBD' || campus === 'ONLINE') {
+                                events.push({
+                                    title: obj[j].name,
+                                    allDay: true,
+                                    start: new Date(y, m, d - 5),
+                                    end: new Date(y, m, d + 5)
+                                });
                                 continue;
                             }
                             var times = obj[j].times.split('-');
@@ -220,32 +239,33 @@
                                 var endDate = GetDateString(loop) + ' ' + times[1].trim();
 
                                 if (daysArray[k] == 'M' && test_date.is().monday()) {
+                                    console.log(startDate);
                                     events.push({
-                                        title: obj[j].name,
+                                        title: obj[j].short_name,
                                         start: startDate,
                                         end: endDate
                                     });
                                 } else if (daysArray[k] == 'T' && test_date.is().tuesday()) {
                                     events.push({
-                                        title: obj[j].name,
+                                        title: obj[j].short_name,
                                         start: startDate,
                                         end: endDate
                                     });
                                 } else if (daysArray[k] == 'W' && test_date.is().wednesday()) {
                                     events.push({
-                                        title: obj[j].name,
+                                        title: obj[j].short_name,
                                         start: startDate,
                                         end: endDate
                                     });
                                 } else if (daysArray[k] == 'R' && test_date.is().thursday()) {
                                     events.push({
-                                        title: obj[j].name,
+                                        title: obj[j].short_name,
                                         start: startDate,
                                         end: endDate
                                     });
                                 } else if (daysArray[k] == 'F' && test_date.is().friday()) {
                                     events.push({
-                                        title: obj[j].name,
+                                        title: obj[j].short_name,
                                         start: startDate,
                                         end: endDate
                                     });
