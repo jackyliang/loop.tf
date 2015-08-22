@@ -281,6 +281,42 @@ class SchedulizerController extends Controller {
             'No schedules were generated' :
             'I have generated ' . $numOfSchedules . ' schedules for you');
 
+        // Material Design Color Palette for each individual class:
+        // Source: https://www.google.com/design/spec/style/color.html#color-color-palette
+        // An opacity level of .5 is applied to these colors.
+        $materialDesignColorSwatch = array(
+            '#689F38',
+            '#FFA000',
+            '#E64A19',
+            '#388E3C',
+            '#0288D1',
+            '#512DA8',
+            '#D32F2F',
+            '#7B1FA2',
+            '#1976D2',
+            '#00796B',
+            '#AFB42B',
+            '#C2185B',
+            '#303F9F',
+            '#0097A7',
+            '#689F38',
+            '#FFA000',
+            '#E64A19',
+            '#388E3C',
+            '#0288D1',
+            '#512DA8',
+            '#D32F2F',
+            '#7B1FA2',
+            '#1976D2',
+        );
+
+        // Set the color of the class depending on the index
+        foreach($listOfSchedules as $listOfSchedule) {
+            foreach($listOfSchedule as $key => $schedule) {
+                $schedule->setColor($materialDesignColorSwatch[$key]);
+            }
+        }
+
         return Response::json(array(
                 'success' => true,
                 'code' => 1,

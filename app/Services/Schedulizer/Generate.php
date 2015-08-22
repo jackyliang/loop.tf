@@ -36,25 +36,25 @@ class Generate {
         #if 2-D array course_combos is empty fill it up with the
         #array course_1 making each element an array of its own
         if (empty($course_combos)) {
-            for ($i = 0; $i < count($course_1); $i = $i + 1) {
-                if ($this->timeDayConstraint($course_1[$i], $limit, $from, $to) == true)
-                    if ($this->campusCheck($campus, $course_1[$i]) == true)
-                        if ($this->closedCheck($full, $course_1[$i]) == true)
+            for ($i = 0; $i < count($course_1); $i++) {
+                if ($this->timeDayConstraint($course_1[$i], $limit, $from, $to))
+                    if ($this->campusCheck($campus, $course_1[$i]))
+                        if ($this->closedCheck($full, $course_1[$i]))
                             array_push($new_combos, array($course_1[$i]));
             }
             $count = 1;
         } else {
-            for ($i = 0; $i < count($course_combos); $i = $i + 1) {
-                for ($j = 0; $j < count($course_1); $j = $j + 1) {
+            for ($i = 0; $i < count($course_combos); $i++) {
+                for ($j = 0; $j < count($course_1); $j++) {
                     #If there is no overlap between elements in the array
                     #and the new element push it into the array
-                    if ($this->overlap($course_combos[$i], $course_1[$j]) == false) {
-                        if ($this->timeDayConstraint($course_1[$j],$limit,$from,$to) == true) {
-                            if ($this->campusCheck($campus, $course_1[$j]) == true){
-                                if ($this->closedCheck($full, $course_1[$j]) ==true) {
+                    if (!$this->overlap($course_combos[$i], $course_1[$j])) {
+                        if ($this->timeDayConstraint($course_1[$j],$limit,$from,$to)) {
+                            if ($this->campusCheck($campus, $course_1[$j])){
+                                if ($this->closedCheck($full, $course_1[$j])) {
                                     array_push($new_combos, $course_combos[$i]);
                                     array_push($new_combos[$count], $course_1[$j]);
-                                    $count = $count + 1;
+                                    $count++;
                                 }
                             }
                         }

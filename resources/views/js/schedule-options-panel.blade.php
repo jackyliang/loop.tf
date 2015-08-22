@@ -172,12 +172,12 @@
                 weekends: false, // Hide weekends
                 defaultView: 'agendaWeek', // Only show week view
                 header: false, // Hide buttons/titles
-                minTime: '08:00:00', // Start time for the calendar
+                minTime: '07:30:00', // Start time for the calendar
                 maxTime: '22:00:00', // End time for the calendar
                 columnFormat: {
-                    week: 'dddd' // Only show day of the week names
+                    week: 'ddd' // Only show day of the week names
                 },
-                displayEventTime: false,
+                displayEventTime: true,
                 allDayText: 'Online/TBD'
             });
 
@@ -243,31 +243,36 @@
                                     events.push({
                                         title: obj[j].short_name,
                                         start: startDate,
-                                        end: endDate
+                                        end: endDate,
+                                        color: obj[j].color
                                     });
                                 } else if (daysArray[k] == 'T' && test_date.is().tuesday()) {
                                     events.push({
                                         title: obj[j].short_name,
                                         start: startDate,
-                                        end: endDate
+                                        end: endDate,
+                                        color: obj[j].color
                                     });
                                 } else if (daysArray[k] == 'W' && test_date.is().wednesday()) {
                                     events.push({
                                         title: obj[j].short_name,
                                         start: startDate,
-                                        end: endDate
+                                        end: endDate,
+                                        color: obj[j].color
                                     });
                                 } else if (daysArray[k] == 'R' && test_date.is().thursday()) {
                                     events.push({
                                         title: obj[j].short_name,
                                         start: startDate,
-                                        end: endDate
+                                        end: endDate,
+                                        color: obj[j].color
                                     });
                                 } else if (daysArray[k] == 'F' && test_date.is().friday()) {
                                     events.push({
                                         title: obj[j].short_name,
                                         start: startDate,
-                                        end: endDate
+                                        end: endDate,
+                                        color: obj[j].color
                                     });
                                 }
                             }
@@ -324,7 +329,7 @@
         /**
          * Button behaviors for cycling through the generated schedules
          */
-        $('.btn.btn-default.toggle-schedules').click(function(e) {
+        $('.btn.btn-primary.toggle-schedules').click(function(e) {
             // Prevent the page redirect to another page, as you have href on it.
             // Or you can remove the href on the anchors.
             e.preventDefault();
