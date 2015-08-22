@@ -27,3 +27,4 @@
 </body>
 </html>
 @include('js.libs')
+@include('js.add-class')
