@@ -36,9 +36,8 @@
         var y = date.getFullYear();
 
         /**
-         * End FullCalendar Code
+         * Refresh the calendar
          **/
-
         $('#refresh').on('click', function(){
             updateResults();
         });
@@ -97,11 +96,10 @@
             getUpdatedURL();
         });
 
-        /**
-         * TODO: Fix this focus
-         **/
-        $('#focus').change(function() {
-            console.log('yeah');
+        /*
+        * Focus on the search bar when clicked
+        */
+        $(document).on('click', '#focus', function(){
             $("#q").focus();
         });
 
@@ -114,28 +112,83 @@
         }
 
         /**
-         * This generates the HTML list of classes
+         * This generates the HTML list of classes, adds a colored circle before
+         * the name of each class, and adds a remove button
          * @param result  The array from the class generation JSON API
          * @returns {*}   The HTML for the list of classes used to generate
          *                the schedules
          */
         function formatList(result) {
             if(result.quantity === 0) {
-                // TODO: Fix this focus
                 return 'Oops! Looks like no schedules were generated. <a id="focus">Add</a> some classes or widen your filter options!';
             }
             // Build the unordered list of classes with their name and CRN
             // HACK Aug 21 2015: Yes. I used in-line style. But I am not sure
             //                   how to assign from JSON a `color` variable
             //                   dynamically to the unicode circle item.
+            //                   This section of code is NASTY. I am sorry.
             var text = '';
             text += '<ul class="list-group class-cart">';
             for (i = 0; i < result.classes[index].length; i++) {
-                text += '<li class="list-group-item">' + '<span style="font-size: 10px; opacity: 0.65; color:'+ result.classes[index][i]['color'] +'">&#11044;</span> ' + result.classes[index][i]['short_name'] + ' (' + result.classes[index][i]['crn'] + ')</li>';
+                text += '<li class="list-group-item">' +
+                '<span style="font-size: 10px; opacity: 0.65; color:' +
+                result.classes[index][i]['color'] +'">&#11044;</span> ' +
+                result.classes[index][i]['short_name'] +
+                ' (' + result.classes[index][i]['crn'] + ')' +
+                '<a data-action="remove" data-class-name="' +
+                result.classes[index][i]['name'] + '"class="btn btn-default remove-item btn-xs btn-font-12-px btn-raised margin-add-to-cart mdi-content-remove-circle-outline"></a>' +
+                '</li>'
+                ;
             }
             text += '</ul>';
             return text;
         }
+
+        /**
+         * Performs the remove action, the resulting notification prompts and
+         * button visual characteristics
+         *
+         * It POSTs to the cart API to remove from cart, and there are a
+         * set of conditions that are set which are better explained in the docs
+         * for the API under /app/Http/Controllers/SchedulizerController.php in
+         * the remove() method
+         **/
+        $(document).on('click','.btn.remove-item', function(){
+            var $localThis = $(this);
+            var $className = $(this).data('class-name');
+
+            if($(this).data('action') === 'remove'){
+                $.ajax({
+                    type: 'post',
+                    url: '{{ URL('schedulizer/remove') }}',
+                    data: {
+                        "class": $className,
+                        _token: "{{ csrf_token() }}" // Laravel needs a csrf
+                                                     // token for all POST
+                    },
+                    dataType: 'json'
+                }).done(function(data){
+                    // If the code is 1, it indicates that the class was
+                    // successfully removed from the cart, so refresh and
+                    // regenerate the results and schedule
+                    if(data.code === 1) {
+                        notification(data.message, 'success');
+                        updateResults();
+                    } else if(data.code === 0) {
+                        // If the code is 0, it indicates that the class was not
+                        // found in the cart, so refresh and regenerate the
+                        // results
+                        notification(data.message, 'error');
+                        updateResults();
+                    } else {
+                        // Something else went wrong, and it shouldn't happen,
+                        // so just flash a notif
+                        notification(data.message, 'error');
+                    }
+                });
+                return false;
+            }
+        });
 
         /**
          * Show number of results in header as well as append the list of
@@ -151,6 +204,7 @@
                 window.location.hash = '#' + (index + 1);
                 // Save the response data to hash
                 result = data;
+                console.log(data);
                 text = formatList(result);
                 $("#classes").html(text);
                 updateIndexOfSchedule();
