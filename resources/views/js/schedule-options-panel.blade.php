@@ -125,15 +125,17 @@
                 return 'Oops! Looks like no schedules were generated. <a id="focus">Add</a> some classes or widen your filter options!';
             }
             // Build the unordered list of classes with their name and CRN
+            // HACK Aug 21 2015: Yes. I used in-line style. But I am not sure
+            //                   how to assign from JSON a `color` variable
+            //                   dynamically to the unicode circle item.
             var text = '';
             text += '<ul class="list-group class-cart">';
             for (i = 0; i < result.classes[index].length; i++) {
-                text += '<li class="list-group-item">' + result.classes[index][i]['short_name'] + ' (' + result.classes[index][i]['crn'] + ')</li>';
+                text += '<li class="list-group-item">' + '<span style="font-size: 10px; opacity: 0.65; color:'+ result.classes[index][i]['color'] +'">&#11044;</span> ' + result.classes[index][i]['short_name'] + ' (' + result.classes[index][i]['crn'] + ')</li>';
             }
             text += '</ul>';
             return text;
         }
-
 
         /**
          * Show number of results in header as well as append the list of
@@ -162,6 +164,9 @@
             });
         }
 
+        /*
+         * Render the calendar onto the view
+         */
         function renderCalendar(index) {
 
             var myDataset = result;
@@ -172,12 +177,12 @@
                 weekends: false, // Hide weekends
                 defaultView: 'agendaWeek', // Only show week view
                 header: false, // Hide buttons/titles
-                minTime: '08:00:00', // Start time for the calendar
+                minTime: '07:30:00', // Start time for the calendar
                 maxTime: '22:00:00', // End time for the calendar
                 columnFormat: {
-                    week: 'dddd' // Only show day of the week names
+                    week: 'ddd' // Only show day of the week names
                 },
-                displayEventTime: false,
+                displayEventTime: true,
                 allDayText: 'Online/TBD'
             });
 
@@ -200,12 +205,23 @@
                 return datestring;
             }
 
+            function containsObject(obj, list) {
+                var i;
+                for (i = 0; i < list.length; i++) {
+                    if (list[i] === obj) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
             // Clear all events to prepare for the next set of events.
             $('#calendar').fullCalendar('removeEvents');
 
             $('#calendar').fullCalendar('addEventSource',
                 function(start, end, timezone, callback) {
                     var events = [];
+                    var overlap = [];
 
                     // Don't run the code if there is no data
                     if(myDataset.classes.length === 0) {
@@ -220,16 +236,20 @@
 
                             var days = obj[j].days;
                             var campus = obj[j].campus;
-                            // TODO: Fix multiple events added to the same slot
                             if(days === 'TBD' || campus === 'ONLINE') {
-                                events.push({
-                                    title: obj[j].name,
-                                    allDay: true,
-                                    start: new Date(y, m, d - 5),
-                                    end: new Date(y, m, d + 5)
-                                });
+                                if(!containsObject(obj[j].crn, overlap)) {
+                                    overlap.push(obj[j].crn);
+                                    events.push({
+                                        title: obj[j].short_name,
+                                        allDay: true,
+                                        start: new Date(y, m, d - 5),
+                                        end: new Date(y, m, d + 5),
+                                        color: obj[j].color
+                                    });
+                                }
                                 continue;
                             }
+
                             var times = obj[j].times.split('-');
                             var daysArray = days.split('');
 
@@ -239,40 +259,42 @@
                                 var endDate = GetDateString(loop) + ' ' + times[1].trim();
 
                                 if (daysArray[k] == 'M' && test_date.is().monday()) {
-                                    console.log(startDate);
                                     events.push({
                                         title: obj[j].short_name,
                                         start: startDate,
-                                        end: endDate
+                                        end: endDate,
+                                        color: obj[j].color
                                     });
                                 } else if (daysArray[k] == 'T' && test_date.is().tuesday()) {
                                     events.push({
                                         title: obj[j].short_name,
                                         start: startDate,
-                                        end: endDate
+                                        end: endDate,
+                                        color: obj[j].color
                                     });
                                 } else if (daysArray[k] == 'W' && test_date.is().wednesday()) {
                                     events.push({
                                         title: obj[j].short_name,
                                         start: startDate,
-                                        end: endDate
+                                        end: endDate,
+                                        color: obj[j].color
                                     });
                                 } else if (daysArray[k] == 'R' && test_date.is().thursday()) {
                                     events.push({
                                         title: obj[j].short_name,
                                         start: startDate,
-                                        end: endDate
+                                        end: endDate,
+                                        color: obj[j].color
                                     });
                                 } else if (daysArray[k] == 'F' && test_date.is().friday()) {
                                     events.push({
                                         title: obj[j].short_name,
                                         start: startDate,
-                                        end: endDate
+                                        end: endDate,
+                                        color: obj[j].color
                                     });
                                 }
                             }
-//
-
                         }
                     }
                     // return events generated
@@ -324,7 +346,7 @@
         /**
          * Button behaviors for cycling through the generated schedules
          */
-        $('.btn.btn-default.toggle-schedules').click(function(e) {
+        $('.btn.btn-primary.toggle-schedules').click(function(e) {
             // Prevent the page redirect to another page, as you have href on it.
             // Or you can remove the href on the anchors.
             e.preventDefault();

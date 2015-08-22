@@ -16,6 +16,7 @@ class Course {
     public $campus;
     public $enrollment;
     public $short_name;
+    public $color;
 
     public function __construct($name, $days, $times, $crn, $campus, $full, $shortName) {
         $this->name = $name;
@@ -25,5 +26,9 @@ class Course {
         $this->campus = $campus;
         $this->enrollment = $full;
         $this->short_name = $shortName;
+    }
+
+    public function setColor($color) {
+        $this->color = $color;
     }
 }
