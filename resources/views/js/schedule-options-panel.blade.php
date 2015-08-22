@@ -134,7 +134,6 @@
             return text;
         }
 
-
         /**
          * Show number of results in header as well as append the list of
          * classes to the cart panel. Uses the dynamically updated URL
@@ -200,12 +199,23 @@
                 return datestring;
             }
 
+            function containsObject(obj, list) {
+                var i;
+                for (i = 0; i < list.length; i++) {
+                    if (list[i] === obj) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
             // Clear all events to prepare for the next set of events.
             $('#calendar').fullCalendar('removeEvents');
 
             $('#calendar').fullCalendar('addEventSource',
                 function(start, end, timezone, callback) {
                     var events = [];
+                    var overlap = [];
 
                     // Don't run the code if there is no data
                     if(myDataset.classes.length === 0) {
@@ -220,16 +230,20 @@
 
                             var days = obj[j].days;
                             var campus = obj[j].campus;
-                            // TODO: Fix multiple events added to the same slot
                             if(days === 'TBD' || campus === 'ONLINE') {
-                                events.push({
-                                    title: obj[j].name,
-                                    allDay: true,
-                                    start: new Date(y, m, d - 5),
-                                    end: new Date(y, m, d + 5)
-                                });
+                                if(!containsObject(obj[j].crn, overlap)) {
+                                    overlap.push(obj[j].crn);
+                                    events.push({
+                                        title: obj[j].short_name,
+                                        allDay: true,
+                                        start: new Date(y, m, d - 5),
+                                        end: new Date(y, m, d + 5),
+                                        color: obj[j].color
+                                    });
+                                }
                                 continue;
                             }
+
                             var times = obj[j].times.split('-');
                             var daysArray = days.split('');
 
@@ -239,7 +253,6 @@
                                 var endDate = GetDateString(loop) + ' ' + times[1].trim();
 
                                 if (daysArray[k] == 'M' && test_date.is().monday()) {
-                                    console.log(startDate);
                                     events.push({
                                         title: obj[j].short_name,
                                         start: startDate,
@@ -276,8 +289,6 @@
                                     });
                                 }
                             }
-//
-
                         }
                     }
                     // return events generated

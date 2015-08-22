@@ -272,8 +272,15 @@ h3.margin-class-name {
   background: inherit !important;
   opacity: .25 !important; }
 
+/* Normal font weight for the time in each event */
 .fc-time-grid-event .fc-time {
   font-weight: normal !important; }
+
+/* Apply same opacity and */
+.fc-ltr .fc-h-event.fc-not-end, .fc-rtl .fc-h-event.fc-not-start {
+  opacity: .65 !important;
+  margin-left: 12px !important;
+  padding: 5px !important; }
 
 /*# sourceMappingURL=app.css.map */
 /*# sourceMappingURL=all.css.map */
