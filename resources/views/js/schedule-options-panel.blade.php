@@ -125,10 +125,13 @@
                 return 'Oops! Looks like no schedules were generated. <a id="focus">Add</a> some classes or widen your filter options!';
             }
             // Build the unordered list of classes with their name and CRN
+            // HACK Aug 21 2015: Yes. I used in-line style. But I am not sure
+            //                   how to assign from JSON a `color` variable
+            //                   dynamically to the unicode circle item.
             var text = '';
             text += '<ul class="list-group class-cart">';
             for (i = 0; i < result.classes[index].length; i++) {
-                text += '<li class="list-group-item">' + result.classes[index][i]['short_name'] + ' (' + result.classes[index][i]['crn'] + ')</li>';
+                text += '<li class="list-group-item">' + '<span style="font-size: 10px; opacity: 0.65; color:'+ result.classes[index][i]['color'] +'">&#11044;</span> ' + result.classes[index][i]['short_name'] + ' (' + result.classes[index][i]['crn'] + ')</li>';
             }
             text += '</ul>';
             return text;
@@ -161,6 +164,9 @@
             });
         }
 
+        /*
+         * Render the calendar onto the view
+         */
         function renderCalendar(index) {
 
             var myDataset = result;
