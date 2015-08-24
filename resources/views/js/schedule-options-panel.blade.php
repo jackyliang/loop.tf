@@ -259,6 +259,9 @@
                 return datestring;
             }
 
+            /*
+            * Checks if an item is in an array
+            */
             function containsObject(obj, list) {
                 var i;
                 for (i = 0; i < list.length; i++) {
@@ -290,17 +293,32 @@
 
                             var days = obj[j].days;
                             var campus = obj[j].campus;
+                            // Add online or TBA-time classes once to the calendar
+                            // A list of CRNs has to be saved because this loop
+                            // runs a total of six times for the number of days
+                            // in a week that we check [to add events depending
+                            // on the week].
                             if(days === 'TBD' || campus === 'ONLINE') {
+                                // Class is online or TBD, and there is no
+                                // no re-occurence detected
                                 if(!containsObject(obj[j].crn, overlap)) {
                                     overlap.push(obj[j].crn);
+                                    // Generate an all-day event by spanning an
+                                    // event from 6 days ago from today to 6 days
+                                    // from now.
+                                    var lastWeek = moment().subtract(6, 'days').format("YYYY-MM-DD hh:mm a");
+                                    var nextWeek = moment().add(6, 'days').format("YYYY-MM-DD hh:mm a");
+
                                     events.push({
                                         title: obj[j].short_name,
                                         allDay: true,
-                                        start: new Date(y, m, d - 7),
-                                        end: new Date(y, m, d + 7),
+                                        start: lastWeek,
+                                        end: nextWeek,
                                         color: obj[j].color
                                     });
                                 }
+                                // End THIS iteration of the for-loop but don't
+                                // end ALL iterations of the for-loop.
                                 continue;
                             }
 
