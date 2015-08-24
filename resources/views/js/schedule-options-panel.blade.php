@@ -296,8 +296,8 @@
                                     events.push({
                                         title: obj[j].short_name,
                                         allDay: true,
-                                        start: new Date(y, m, d - 5),
-                                        end: new Date(y, m, d + 5),
+                                        start: new Date(y, m, d - 7),
+                                        end: new Date(y, m, d + 7),
                                         color: obj[j].color
                                     });
                                 }
