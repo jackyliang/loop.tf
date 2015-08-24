@@ -34,6 +34,7 @@
     @include('errors.list')
     @include('js.classes-autocomplete')
     @include('js.select-all')
+    @include('js.footer')
 
 @stop
 

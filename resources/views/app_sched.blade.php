@@ -15,7 +15,7 @@
 <body>
     @include('partials.nav_sched')
 
-    <div class="container">
+    <div class="container contentHeight">
 	    @yield('content')
     </div>
 
