@@ -351,6 +351,13 @@
                             }
                         }
                     }
+                    // Convert strings to moment objects because of deprecation
+                    // risks
+                    for(var i in events){
+                        events[i].start = moment(events[i].start,"YYYY-MM-DD hh:mm a");
+                        events[i].end = moment(events[i].end,"YYYY-MM-DD hh:mm a");
+                    }
+
                     // return events generated
                     callback(events);
                 }
