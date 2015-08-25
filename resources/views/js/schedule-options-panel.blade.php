@@ -275,6 +275,7 @@
             // Clear all events to prepare for the next set of events.
             $('#calendar').fullCalendar('removeEvents');
 
+            // Add events from JSON data
             $('#calendar').fullCalendar('addEventSource',
                 function(start, end, timezone, callback) {
                     var events = [];
