@@ -7,7 +7,6 @@
         "use strict";
         var canvasHeight = $(window).height();
         var navHeight = $('.navbar.navbar-default').height();
-        //'nav' this should be replaced with class name which your navigation has in original
         var footerHeight = $('.panel-footer').height();
         var container = $('.container').height();
         var pageHeading = $('.page-heading').height();
