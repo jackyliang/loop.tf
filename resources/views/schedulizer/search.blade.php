@@ -10,8 +10,6 @@
         <h1>Search for Fall 2015 Classes</h1>
     </div>
 
-    @include('schedulizer.cart-fixed-button')
-
     <form
         method="GET"
         action="{{ URL('schedulizer/results') }}"
