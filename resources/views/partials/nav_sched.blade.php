@@ -12,9 +12,27 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="{{ Request::is('schedulizer/search') ? 'active' : '' }}"><a href="{{ url('/schedulizer/search') }}">Search</a></li>
+                <li
+                    class="{{ Request::is('schedulizer/search') ? 'active' : '' }}"
+                >
+                    <a
+                        href="{{ url('/schedulizer/search') }}"
+                    >
+                        <span class="glyphicon glyphicon-search"></span>
+                        Search
+                    </a>
+                </li>
                 @if(Session::has('q'))
-                    <li class="{{ Request::is('schedulizer/results') ? 'active' : '' }}"><a href="{{ url('/schedulizer/results') }}?q={{ Session::get('q') }}">Results</a></li>
+                    <li
+                        class="{{ Request::is('schedulizer/results') ? 'active' : '' }}"
+                    >
+                        <a
+                            href="{{ url('/schedulizer/results') }}?q={{ Session::get('q') }}"
+                        >
+                            <span class="glyphicon glyphicon-align-justify"></span>
+                            Results
+                        </a>
+                    </li>
                 @endif
                 <li
                     class="{{ Request::is('schedulizer/schedule') ? 'active' : '' }}"
@@ -22,6 +40,7 @@
                     <a
                         href="{{ url('/schedulizer/schedule') }}"
                     >
+                    <span class="glyphicon glyphicon-calendar"></span>
                     Schedule
                         <li
                             id="jewel"
