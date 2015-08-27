@@ -16,8 +16,10 @@
 <td> {{ $class->crn}} </td>
 <td> {{ $class->day}} </td>
 <td> {{ $class->time}} </td>
-<td><a
-        <?php $name = explode(' ', $class->instructor); ?>
+<td>
+    <?php $name = explode(' ', $class->instructor); ?>
+    @if($class->instructor != "STAFF")
+    <a
         href=
         "{{ 'http://www.ratemyprofessors.com/search.jsp?' .
             'queryBy=teacherName&' .
@@ -34,8 +36,12 @@
             class="moreMuted"
         @endif
     >
+        <span class="glyphicon glyphicon-education"></span>
         {{ $class->instructor}}
     </a>
+    @else
+        {{ $class->instructor}}
+    @endif
 </td>
 <td> {{ $class->enroll}} </td>
 <td> {{ $class->max_enroll}} </td>
