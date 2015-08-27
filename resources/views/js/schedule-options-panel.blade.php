@@ -141,8 +141,8 @@
             }
             for (i = 0; i < result.classes[index].length; i++) {
                 text += '<li class="list-group-item">' +
-                '<span style="font-size: 10px; opacity: 0.65; color:' +
-                result.classes[index][i]['color'] +'">&#11044;</span> ' +
+                '<span class="glyphicon glyphicon-dot" style="opacity: 0.65; color:' +
+                result.classes[index][i]['color'] +'"></span> ' +
                 result.classes[index][i]['short_name'] +
                 ' (' + result.classes[index][i]['crn'] + ')' +
                 '<a data-action="remove" data-class-name="' +

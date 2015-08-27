@@ -247,6 +247,11 @@ h3.margin-class-name {
 .list-group.class-cart {
   margin-bottom: 0px; }
 
+/* Circle glyphicon */
+.glyphicon.glyphicon-dot:before {
+  content: "\25cf";
+  font-size: 1.7em; }
+
 /*
 
 This is the Material Design theme for FullCalendar Weekly Agenda view
