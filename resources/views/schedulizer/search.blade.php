@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="page-heading">
-        <h1>Search for a Class</h1>
+        <h1>Search for Fall 2015 Classes</h1>
     </div>
 
     @include('schedulizer.cart-fixed-button')
@@ -23,7 +23,7 @@
                 class="form-control floating-label"
                 id="q"
                 name="q"
-                placeholder="i.e. ECE 201, Digital Logic, Kandasamy, or 41045"
+                placeholder="i.e. ECE 201, Digital Logic, Kandasamy, or 10121"
             >
         </div>
         <button type="submit" class="btn btn-material-teal shadow-z-1">
@@ -34,7 +34,7 @@
     @include('errors.list')
     @include('js.classes-autocomplete')
     @include('js.select-all')
-    @include('js.footer')
+    @include('js.header-padding')
 
 @stop
 

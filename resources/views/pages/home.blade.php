@@ -10,3 +10,5 @@
         <p>This is where I host my personal projects. Feel free to check out my other stuff on <a href="https://github.com/jackyliang">Github</a>!</p>
     </div>
 @stop
+
+@include('js.header-padding')

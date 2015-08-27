@@ -9,7 +9,7 @@
             {!! Form::text('q', $term, [
                 'class' => 'form-control',
                 'id' =>  'q',
-                'placeholder' =>  'i.e. ECE 201, Digital Logic, Kandasamy, or 41045'
+                'placeholder' =>  'i.e. ECE 201, Digital Logic, Kandasamy, or 10121'
             ]) !!}
         <span class="input-group-btn">
             <button type="submit" class="btn btn-material-teal">
