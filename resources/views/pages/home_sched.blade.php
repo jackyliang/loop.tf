@@ -21,31 +21,28 @@
         </div>
     </div>
 
-    <hr class="featurette-divider">
 
     <div class="row featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading">It's accurate. <span class="text-muted">Only the most accurate class information for you.</span></h2>
+        <div class="col-md-7 col-md-push-5">
+            <h2 class="featurette-heading">It's accurate. <span class="text-muted">We provide only the most accurate class information for you.</span></h2>
             <p class="lead">"Made by Drexel students for Drexel students" isn't a cheesy tag line. Well, maybe. But we know how fast classes fill up during registration time, so Schedulizer only gives you the most up-to-date information, synced every half an hour.</p>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-5 col-md-pull-7">
             <img class="featurette-image img-responsive center-block" src="{{ URL('images/2.jpg') }}"  alt="Generic placeholder image">
         </div>
     </div>
 
-    <hr class="featurette-divider">
 
     <div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
+        <div class="col-md-7">
             <h2 class="featurette-heading">It's beautiful. <span class="text-muted">Good bye Drexel Term Master Schedule.</span></h2>
             <p class="lead">Say goodbye to the dreadful feeling of looking at the Drexel Term Master Schedule. With advanced search by professor name, CRN, subject code, and course name, spend less time making the perfect schedule and more time living. Did you know you can also bookmark your favorite classes? Take that TMS.</p>
         </div>
-        <div class="col-md-5 col-md-pull-7">
+        <div class="col-md-5">
             <img class="featurette-image img-responsive center-block" src="{{ URL('images/3.jpg') }}" alt="Generic placeholder image">
         </div>
     </div>
 
-    <hr class="featurette-divider">
 
 @stop
 
