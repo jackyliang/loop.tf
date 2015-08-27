@@ -14,7 +14,7 @@
         </p>
     </div>
 
-    @include('schedulizer.cart-fixed-button')
+{{--    @include('schedulizer.cart-fixed-button')--}}
 
     <div class="container table-responsive">
     @if($classesByLabelAndType)
