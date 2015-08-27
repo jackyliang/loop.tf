@@ -28,6 +28,7 @@
             'facetSearch=true&' .
             'schoolName=drexel+university'
         }}"
+        target="_blank"
         {{-- TODO: Refactor this duplicate if-statement --}}
         @if(
             $class->enroll === $class->max_enroll ||

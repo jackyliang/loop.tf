@@ -146,7 +146,7 @@
                 result.classes[index][i]['short_name'] +
                 ' (' + result.classes[index][i]['crn'] + ')' +
                 '<a data-action="remove" data-class-name="' +
-                result.classes[index][i]['name'] + '"class="btn btn-default remove-item btn-xs btn-font-12-px btn-raised margin-add-to-cart mdi-content-remove-circle-outline"></a>' +
+                result.classes[index][i]['name'] + '"class="btn btn-default remove-item btn-xs btn-font-12-px btn-raised margin-add-to-cart mdi-content-clear"></a>' +
                 '</li>'
                 ;
             }
@@ -214,7 +214,6 @@
                 window.location.hash = '#' + (index + 1);
                 // Save the response data to hash
                 result = data;
-                console.log(data);
                 text = formatList(result);
                 $("#classes").html(text);
                 updateIndexOfSchedule();
