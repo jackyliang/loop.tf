@@ -129,6 +129,16 @@
             //                   This section of code is NASTY. I am sorry.
             var text = '';
             text += '<ul class="list-group class-cart">';
+
+            // index is a global variable that keeps track of where the user is
+            // when looking through the schedules. If he/she removes an item
+            // from the cart, there's a possibility that the number of schedules
+            // generated is less than the ones before removal, and so the index
+            // would mismatch with the new number of schedules. Reset it in that
+            // case, otherwise, leave it be.
+            if(typeof result.classes[index] === 'undefined'){
+                index = 0;
+            }
             for (i = 0; i < result.classes[index].length; i++) {
                 text += '<li class="list-group-item">' +
                 '<span style="font-size: 10px; opacity: 0.65; color:' +
