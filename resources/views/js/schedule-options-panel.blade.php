@@ -67,8 +67,6 @@
                 return $(this).data('date');
             }).toArray();
             limit = searchIDs.join('');
-            // TODO: Figure out a way to this without calling getUpdatedURL()
-            // and updateResults() five times
             getUpdatedURL();
         });
 
