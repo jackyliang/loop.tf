@@ -118,13 +118,8 @@
          */
         function formatList(result) {
             if(result.quantity === 0) {
-                return 'Oops! Looks like no schedules were generated. <a id="focus">Add</a> some classes or widen your filter options!';
+                return 'Oops! Looks like no schedules were generated. <a id="focus"><span class="glyphicon glyphicon-search"></span> Add</a> some classes or widen your filter options!';
             }
-            // Build the unordered list of classes with their name and CRN
-            // HACK Aug 21 2015: Yes. I used in-line style. But I am not sure
-            //                   how to assign from JSON a `color` variable
-            //                   dynamically to the unicode circle item.
-            //                   This section of code is NASTY. I am sorry.
             var text = '';
             text += '<ul class="list-group class-cart">';
 
@@ -137,6 +132,11 @@
             if(typeof result.classes[index] === 'undefined'){
                 index = 0;
             }
+            // Build the unordered list of classes with their name and CRN
+            // HACK Aug 21 2015: Yes. I used in-line style. But I am not sure
+            //                   how to assign from JSON a `color` variable
+            //                   dynamically to the unicode circle item.
+            //                   This section of code is NASTY. I am sorry.
             for (i = 0; i < result.classes[index].length; i++) {
                 text += '<li class="list-group-item">' +
                 '<span class="glyphicon glyphicon-dot" style="opacity: 0.65; color:' +
@@ -217,6 +217,7 @@
                 updateIndexOfSchedule();
                 // Render the calendar on page-load
                 renderCalendar(index);
+                getCartQuantity();
                 if(data.quantity === 0) {
                     notification(result.message, 'error');
                 } else {
@@ -225,10 +226,31 @@
             });
         }
 
+        /**
+         * Get and change the cart quantity
+         */
+        function getCartQuantity() {
+            $('#jewel').text('');
+            $.getJSON("{{ url('schedulizer/cart') }}", function(data) {
+                if(data.quantity > 0) {
+                    $('#jewel')
+                            .show("slide", { direction: "up" }, 300)
+                            .text(data.quantity);
+                } else {
+                    $('#jewel')
+                            .hide("slide", { direction: "down" }, 300)
+                            .text(data.quantity);
+                }
+            });
+        }
+
         /*
          * Render the calendar onto the view
          */
         function renderCalendar(index) {
+
+            // Destroy the old calendar before updating the calendar again.
+            $('#calendar').fullCalendar('destroy');
 
             var myDataset = result;
 
@@ -278,9 +300,6 @@
                 }
                 return false;
             }
-
-            // Clear all events to prepare for the next set of events.
-            $('#calendar').fullCalendar('removeEvents');
 
             // Add events from JSON data
             $('#calendar').fullCalendar('addEventSource',
@@ -442,7 +461,6 @@
                 return;
             }
             // Calculate next index for data to show.
-            // I use the text < or > here to check, better way may be add class left/right to each anchor.
             var next = $(this).data('direction') === 'left' ? -1 : 1;
             index = index + next;
             // Make the index in boundary.
