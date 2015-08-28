@@ -5,7 +5,9 @@
     </p>
     <h6 class="text-muted text-center">
         <small>
-            <a href="http://www.jackyliang.com/contact-jacky/">Contact Me</a>
+            <a href="http://www.jackyliang.com/contact-jacky/">Contact Me</a> |
+            <a href="{{ URL('schedulizer/about') }}">About</a>
+
         </small>
     </h6>
 </div>

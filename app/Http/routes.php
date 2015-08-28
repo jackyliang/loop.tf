@@ -16,7 +16,7 @@ Route::get('/', 'PagesController@home');
 /**
  * Home page of Schedulizer
  */
-Route::get('schedulizer', 'SchedulizerController@home');
+Route::get('schedulizer/about', 'SchedulizerController@about');
 
 /**
  * UGC Roster Check form

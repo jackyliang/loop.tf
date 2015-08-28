@@ -590,6 +590,11 @@ class SchedulizerController extends Controller {
         return view('schedulizer.results', compact('classesByLabelAndType', 'term', 'classCount', 'lastUpdated'));
     }
 
+    public function about()
+    {
+        return view('schedulizer.about');
+    }
+
     public function home()
     {
         return view('pages.home_sched');
