@@ -1,13 +1,9 @@
 <div class="container">
     <p class="text-muted text-center">
         Made with ♥ by Drexel Students for Drexel Students
-        {{--<a href="http://www.jackyliang.com/">Jacky</a> and <a href="http://bryanwongdesign.squarespace.com/">Bryan</a>--}}
     </p>
     <h6 class="text-muted text-center">
-        <small>
-            <a href="http://www.jackyliang.com/contact-jacky/">Contact Me</a> |
-            <a href="{{ URL('schedulizer/about') }}">About</a>
-
-        </small>
+            <a href="http://www.jackyliang.com/contact-jacky/"><span class="glyphicon glyphicon glyphicon-thumbs-up"></span> Contact</a> |
+            <a href="{{ URL('schedulizer/about') }}"><span class="glyphicon glyphicon-info-sign"></span> About</a>
     </h6>
 </div>
