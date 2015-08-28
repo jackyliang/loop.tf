@@ -7,6 +7,21 @@ based projects
 
 ### 2015
 
+#### Aug 28
+
+After an intermittent period of going private, here are the new features:
+
+- Generate schedules based on classes added to cart with advanced
+  filtering capabilities
+
+- RateMyProfessor integration with all Drexel professors. This feature 
+  can be inconsistent as RMS doesn't contain information on all
+  Drexel professors
+
+- About page
+
+- Improved performance on all pages
+
 #### July 25
 
 - Added [Schedulizer Class Results](http://loop.tf/schedulizer/results)
