@@ -9,7 +9,8 @@
     </title>
 
     @include('libs.libs')
-    @include('google.analytics')
+    @include('analytics.google')
+    @include('analytics.sumome')
 
 </head>
 <body>
