@@ -60,8 +60,17 @@ class ParseStocks {
         }
     }
 
+    // Get max ID
+    public function getMaxID() {
+        return $this->message[0]['stock_id'];
+    }
+
     public function getData() {
         return $this->message;
+    }
+
+    public function getURL() {
+        return $this->url;
     }
 
     public function getBody(){

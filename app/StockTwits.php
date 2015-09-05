@@ -1,6 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class StockTwits extends Model {
 
@@ -11,11 +12,4 @@ class StockTwits extends Model {
      */
     protected $table = 'stocks';
 
-    // Get the max stock ID for a specified symbol
-    public function scopeMax($query, $symbol) {
-        return $query->where(
-            'symbol',
-            $symbol
-        )->max('stock_id');
-    }
 }

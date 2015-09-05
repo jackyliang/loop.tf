@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Services\StockTwits\ParseStocks;
 use Response;
+use App\StockTwits;
 
 use Illuminate\Http\Request;
 
@@ -19,7 +20,15 @@ class StockTwitsController extends Controller {
 		$AAPL = new ParseStocks('AAPL', 41000000);
         $AAPL->load();
         $AAPL->parseMessages();
-        return Response::json($AAPL->getData());
+        $max = $AAPL->getMaxID();
+
+//        return Response::json($AAPL->getData());
+        return Response::json(
+            array(
+                'max' => $max,
+                'url' => $AAPL->getURL()
+            )
+        );
 	}
 
 	/**
