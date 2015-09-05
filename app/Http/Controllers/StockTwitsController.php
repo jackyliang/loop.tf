@@ -18,6 +18,7 @@ class StockTwitsController extends Controller {
 	{
 		$AAPL = new ParseStocks('AAPL', 41000000);
         $AAPL->load();
+        $AAPL->parseMessages();
         return Response::json($AAPL->getData());
 	}
 

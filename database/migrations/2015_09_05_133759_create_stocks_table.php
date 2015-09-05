@@ -17,8 +17,10 @@ class CreateStocksTable extends Migration {
             $table->increments('id');
             $table->integer('stock_id');
             $table->string('body');
-            $table->date('created_at');
+            $table->timestamp('stock_created_at');
             $table->string('symbol');
+            $table->timestamp('updated_at');
+            $table->timestamp('created_at');
         });
 	}
 
