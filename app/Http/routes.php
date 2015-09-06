@@ -90,6 +90,11 @@ Route::get('schedulizer/results', 'SchedulizerController@results');
 Route::get('stocktwits/results', 'StockTwitsController@results');
 
 /**
+ * StockTwits Results Page
+ */
+Route::get('stocktwits/home', 'StockTwitsController@home');
+
+/**
  * Authentication
  */
 Route::controllers([

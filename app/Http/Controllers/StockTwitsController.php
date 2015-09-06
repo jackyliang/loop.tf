@@ -21,14 +21,14 @@ class StockTwitsController extends Controller {
         $data = array();
 
         $symbol = 'SPX';
-        $starting_id = 41620559; // Aug 8th 2015
-          $ending_id = 41800000;
+        $starting_id = 41888517; // Aug 8th 2015
+          $ending_id = 42100000;
 
         $index = 0;
 
         try {
             while($starting_id < $ending_id) {
-                if($index >= 80) {
+                if($index >= 0) {
                     break;
                 }
 
@@ -49,6 +49,10 @@ class StockTwitsController extends Controller {
 
         return Response::json($data);
 	}
+
+    public function home() {
+        return view('stocktwits.home');
+    }
 
 	/**
 	 * Show the form for creating a new resource.
