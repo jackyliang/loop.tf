@@ -247,9 +247,7 @@ h3.margin-class-name {
   content: "\25cf";
   font-size: 1.7em; }
 
-#chartdiv {
-  background: #3f3f4f;
-  color: #ffffff;
+#chart_div {
   width: 100%;
   height: 500px; }
 
