@@ -24,7 +24,7 @@
         var options = {
             curveType: 'function',
             legend: { position: 'bottom' },
-            title : 'StockTwits Writing Tone',
+            title : 'StockTwits Writing Tone from Aug 10th 2015 to Aug 27th 2015',
             vAxis: {title: "Emotion Percentage (%)"},
             hAxis: {title: "Day"},
             series: {
