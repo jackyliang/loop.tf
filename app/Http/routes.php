@@ -85,6 +85,16 @@ Route::get('autocomplete', 'SchedulizerController@autocomplete');
 Route::get('schedulizer/results', 'SchedulizerController@results');
 
 /**
+ * StockTwits Parse Data
+ */
+Route::get('stocktwits/results', 'StockTwitsController@results');
+
+/**
+ * StockTwits Results Page
+ */
+Route::get('stocktwits/home', 'StockTwitsController@home');
+
+/**
  * Authentication
  */
 Route::controllers([
