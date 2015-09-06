@@ -92,7 +92,7 @@ Route::get('stocktwits/results', 'StockTwitsController@results');
 /**
  * StockTwits Results Page
  */
-Route::get('stocktwits/home', 'StockTwitsController@home');
+Route::get('groupthink', 'StockTwitsController@home');
 
 /**
  * Authentication
