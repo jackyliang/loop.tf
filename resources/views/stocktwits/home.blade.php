@@ -22,5 +22,5 @@
 @stop
 
 @include('js.chart-spx')
-@include('js.chart-sentiment')
 @include('js.chart-sentiment-emotion')
+@include('js.chart-sentiment')
