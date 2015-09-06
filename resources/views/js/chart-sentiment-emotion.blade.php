@@ -34,7 +34,7 @@
             }
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart_2'));
 
         chart.draw(data, options);
     }

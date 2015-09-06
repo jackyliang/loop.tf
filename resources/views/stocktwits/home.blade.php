@@ -16,6 +16,7 @@
     <body>
         <div id="chart_div"></div>
         <div id="curve_chart"></div>
+        <div id="curve_chart_2" style="width:100%;height:500px"></div>
     </body>
 
 @stop
