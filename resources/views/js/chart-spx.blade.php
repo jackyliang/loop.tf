@@ -36,7 +36,7 @@
                 fallingColor: { strokeWidth: 0, fill: '#D32F2F', stroke:'black' }, // red
                 risingColor: { strokeWidth: 0, fill: '#388E3C', stroke:'black' }   // green
             },
-            title : 'S&P500 vs StockTwits Emotional Sentiment',
+            title : 'Standard and Poor 500 (SPX) Stock Prices Aug 7th 2015 to Aug 27th 2015',
             vAxis: {title: "Price in USD ($)"},
             hAxis: {title: "Day"},
             displayAnnotations: true,
