@@ -37,9 +37,10 @@
                 risingColor: { strokeWidth: 0, fill: '#388E3C', stroke:'black' }   // green
             },
             title : 'S&P500 vs StockTwits Emotional Sentiment',
-            vAxis: {title: "Price in USD"},
+            vAxis: {title: "Price in USD ($)"},
             hAxis: {title: "Day"},
             displayAnnotations: true,
+
         };
 
         var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));
