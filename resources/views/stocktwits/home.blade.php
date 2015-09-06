@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('title')
-    StockTwits Results
+    GroupThink
 @stop
 
 @section('content')
