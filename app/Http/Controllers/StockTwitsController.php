@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Services\StockTwits\ParseStocks;
 use Response;
 use App\StockTwits;
+use Exception;
 
 use Illuminate\Http\Request;
 
@@ -17,18 +18,36 @@ class StockTwitsController extends Controller {
 	 */
 	public function results()
 	{
-		$AAPL = new ParseStocks('AAPL', 41000000);
-        $AAPL->load();
-        $AAPL->parseMessages();
-        $max = $AAPL->getMaxID();
+        $data = array();
 
-//        return Response::json($AAPL->getData());
-        return Response::json(
-            array(
-                'max' => $max,
-                'url' => $AAPL->getURL()
-            )
-        );
+        $symbol = 'SPX';
+        $starting_id = 41620559; // Aug 8th 2015
+          $ending_id = 41800000;
+
+        $index = 0;
+
+        try {
+            while($starting_id < $ending_id) {
+                if($index >= 80) {
+                    break;
+                }
+
+                $AAPL = new ParseStocks(
+                    $symbol,
+                    $starting_id
+                );
+                $AAPL->load();
+                $AAPL->parseMessages();
+                array_push($data, $AAPL->getData());
+                $starting_id = $AAPL->getMaxID();
+
+                $index++;
+            }
+        } catch (Exception $e) {
+            throw new Exception('You should see this: ' . $e);
+        }
+
+        return Response::json($data);
 	}
 
 	/**
