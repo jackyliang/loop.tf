@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 
 class StockTwitsController extends Controller {
 
+    public function search()
+    {
+        return view('schedulizer.search-spx');
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *

@@ -89,6 +89,8 @@ Route::get('schedulizer/results', 'SchedulizerController@results');
  */
 Route::get('stocktwits/results', 'StockTwitsController@results');
 
+Route::get('groupthink/search', 'StockTwitsController@search');
+
 /**
  * StockTwits Results Page
  */
