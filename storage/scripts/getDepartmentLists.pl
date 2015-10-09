@@ -31,7 +31,7 @@ my $sessionId = '2357A293F0608215F6D989A989D17BE1';
 my $body=''; #response body
 my @termNames = ('', 'Fall', 'Winter', 'Spring', 'Summer');
 
-my $year = 2015;
+my $year = 2016;
 my $term = 'Winter';
 
 my $firstUrl = "https://duapp2.drexel.edu/webtms_du/app?page=Home&service=page";
@@ -54,7 +54,7 @@ print "$tempCurlRequest\n";
 $body = `$tempCurlRequest`; #get response body from curl
 
 my @termUrls = ();
-while ($body =~ m/<a href="(\/webtms_du\/app\?component=quarterTermDetailsNext&amp;page=Home[^<>"]+?)">/g)
+while ($body =~ m/<a href="(\/webtms_du\/app\?component=quarterTermDetails&amp;page=Home[^<>"]+?)">/g)
 {#get all the urls for next year's terms from the main tms page
 	push @termUrls, decode_entities($1);
 }

@@ -11,12 +11,9 @@
 |
 */
 
-Route::get('/', 'PagesController@home');
+use Illuminate\Support\Facades\Redirect;
 
-/**
- * Home page of Schedulizer
- */
-Route::get('schedulizer/about', 'SchedulizerController@about');
+Route::get('/', 'PagesController@home');
 
 /**
  * UGC Roster Check form
@@ -29,55 +26,11 @@ Route::get('ugc', 'UGCController@create');
 Route::post('ugc/verify', 'UGCController@verify');
 
 /**
- * Schedulizer class search form
+ * Redirect old users of loop.tf/schedulizer to the new site
  */
-Route::get('schedulizer/search', 'SchedulizerController@search');
-
-/**
- * Schedulizer generated schedules
- */
-Route::get('schedulizer/schedule', 'SchedulizerController@schedule');
-
-/**
- * Add class to session
- */
-Route::post('schedulizer/add', 'SchedulizerController@add');
-
-/**
- * Remove class from session
- */
-Route::post('schedulizer/remove', 'SchedulizerController@remove');
-
-/**
- * API for classes generated
- */
-Route::get('schedulizer/generate', 'SchedulizerController@generate');
-
-/**
- * Clear the cart
- * TODO: Change this to POST
- */
-Route::get('schedulizer/cart/clear', 'SchedulizerController@clear');
-
-/**
- * TODO: Remove this test API
- */
-Route::get('schedulizer/classes', 'SchedulizerController@classes');
-
-/**
- * Get cart contents
- */
-Route::get('schedulizer/cart', 'SchedulizerController@cart');
-
-/**
- * TODO: Schedulizer home page
- */
-Route::get('schedulizer', 'SchedulizerController@home');
-
-/**
- * Schedulizer autocomplete API
- */
-Route::get('autocomplete', 'SchedulizerController@autocomplete');
+Route::get('schedulizer', function(){
+    return Redirect::to('http://schedulizer.me');
+});
 
 /**
  * Schedulizer class search results page
