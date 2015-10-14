@@ -1,6 +1,6 @@
 <div class="container">
     <p class="text-muted text-center">
-        Made with ♥ by <a href="http://steamcommunity.com/id/looptf2">loop</a>
+        Made with ♥ by <a href="http://steamcommunity.com/id/looptf2">loop</a>/<a href="http://jackyliang.com">Jacky</a>
     </p>
     <h6 class="text-muted text-center">
         <small>
