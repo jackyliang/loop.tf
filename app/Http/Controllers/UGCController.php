@@ -24,22 +24,18 @@ class UGCController extends Controller {
 	{
         $ourTeamURL = 'http://www.ugcleague.com/team_page.cfm?clan_id=8838';
         $theirTeamURL = 'http://www.ugcleague.com/team_page.cfm?clan_id=9831';
-        $sampleStatus = 'Type `status` into your console and paste it here';
+        $sampleStatus = 'Type \'status\' into your in-game console and paste results here';
 
         $popoverTitle = "<center>UGC Roster Verifier</center>";
         $popoverText = "
-This simple tools allows anyone to <i>conveniently verify every individual on the
-server</i> as long as you have both team's UGC profile URL and the Valve server
+This tool allows you to conveniently verify every TF2 player on the
+server as long as you have both team's UGC profile URL and the Valve server
 status outputs. <br><br>
-Prior to each match, there are uncertainties as to the players whom you play
-against are really the individuals they claim they are.<br><br>
 
-The old fashioned way of verifying whether the opposing team's roster is to
-exhaustively and manually checking each player's name against the team's UGC
-profile page. <br><br>
+
 This app saves 90% of your time prior to the match for 100% roster verification accuracy.
 
-<br><br>(Warning: these statistics may be complete bullshit)
+I am always improving this service, so feel free to send me feedback!
 ";
 
 		return view(
