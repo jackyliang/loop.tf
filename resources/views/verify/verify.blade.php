@@ -19,6 +19,9 @@
                 What is this?
             </button>
         </div>
+
+        <a class="btn btn-link" href="http://www.ugcleague.com/rankings_tf2h_all.cfm">What is my team?</a>
+
     </div>
 
 
@@ -31,7 +34,7 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('their_team_link', 'Enemy team\'s UGC profile Link'); !!}
+        {!! Form::label('their_team_link', 'Opposing team\'s UGC profile link'); !!}
         {!! Form::text('their_team_link', null, ['class' => 'form-control',
                                                 'placeholder' => $theirTeamURL]); !!}
     </div>
