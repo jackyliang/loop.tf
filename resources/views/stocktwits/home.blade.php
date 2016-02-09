@@ -10,7 +10,7 @@
         <p
             class="text-muted">
             Is there correlation between <a href="http://stocktwits.com/symbol/SPX">S&P 500 StockTwits sentiment</a> vs the <a href="https://www.google.com/finance/historical?cid=626307&startdate=Aug+5%2C+2015&enddate=Sep+5%2C+2015&num=30&ei=9c_rVbm3H9bCe4mkj-gH">S&P 500 stock index</a>?
-            Maybe IBM Watson can answer this question
+            Maybe IBM Watson can answer this question. Made with <a href="https://www.linkedin.com/in/mkmohammed">Mohammed Mohammed</a>.
         </p>
     </div>
 
